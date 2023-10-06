@@ -101,6 +101,14 @@ export const App = () => {
               {revelaed && `(${currentWord.german})`}
             </p>
           </div>
+          <div>
+            <p>Click the buttons to add letters:</p>
+            {letters.split("").map((letter, index) => (
+              <button key={index} onClick={() => handleLetterClick(letter)}>
+                {letter}
+              </button>
+            ))}
+          </div>
           <div class="user-input">
             <input
               onKeyDown={(e) => {
@@ -121,14 +129,6 @@ export const App = () => {
             <p>
               Progress: {currentWordIndex + 1}/{wordList.length}
             </p>
-          </div>
-          <div>
-            <p>Click the buttons to add letters:</p>
-            {letters.split("").map((letter, index) => (
-              <button key={index} onClick={() => handleLetterClick(letter)}>
-                {letter}
-              </button>
-            ))}
           </div>
         </>
       ) : (
