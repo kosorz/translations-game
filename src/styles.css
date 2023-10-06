@@ -1,0 +1,31 @@
+.App {
+    font-family: sans-serif;
+    text-align: center;
+  }
+  
+  html,
+  body {
+    background-color: #333;
+    color: #fafafa;
+  }
+  
+  h1 {
+    font-size: 3em;
+  }
+  
+  p,
+  input,
+  button {
+    font-size: 2em;
+  }
+  
+  button {
+    background: lightsalmon;
+    padding: 0.5em;
+  }
+  
+  .user-input {
+    display: flex;
+    gap: 1em;
+  }
+  
