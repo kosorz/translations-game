@@ -42,7 +42,7 @@ export const App = () => {
 
   useEffect(() => {
     setCurrentWord(wordList[currentWordIndex]);
-  }, [currentWordIndex]);
+  }, [currentWordIndex, wordList]);
 
   const checkAnswer = () => {
     if (
