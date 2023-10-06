@@ -36,7 +36,7 @@ export const App = () => {
   const [currentWord, setCurrentWord] = useState(wordList[0]);
   const [userInput, setUserInput] = useState("");
   const [score, setScore] = useState(0);
-  const [revelaed, setRevealed] = useState(false);
+  const [revealed, setRevealed] = useState(false);
 
   const inputRef = useRef(null);
 
@@ -52,7 +52,7 @@ export const App = () => {
         .includes(userInput.toLowerCase()) &&
       userInput !== ""
     ) {
-      if (!revelaed) {
+      if (!revealed) {
         setScore(score + 1);
       }
       setUserInput("");
@@ -95,14 +95,12 @@ export const App = () => {
       {currentWordIndex !== QUESTIONS ? (
         <>
           <div>
-            <p>Translate the word:</p>
-            <p>
-              {currentWord && currentWord.english}{" "}
-              {revelaed && `(${currentWord.german})`}
-            </p>
+            <h2>
+              {currentWord && currentWord.english}<p>{' '}{revealed && `(${currentWord.german})`}</p>
+            </h2>
+            
           </div>
           <div>
-            <p>Click the buttons to add letters:</p>
             {letters.split("").map((letter, index) => (
               <button key={index} onClick={() => handleLetterClick(letter)}>
                 {letter}
@@ -136,7 +134,7 @@ export const App = () => {
           <p>
             Your result is {score}/{QUESTIONS}
           </p>
-          <div class="user-input">
+          <div class="user-actions">
             <button
               onClick={() => {
                 reset();

@@ -308,7 +308,7 @@ export const foundation = [
       english: "cheap"
     },
     {
-      german: "bisschen (ein)",
+      german: "bisschen",
       english: "a little"
     },
     {

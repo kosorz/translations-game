@@ -12,7 +12,19 @@
   h1 {
     font-size: 3em;
   }
-  
+
+  h2 {
+    font-size: 2em;
+    display: flex;
+    align-items: center;
+    gap: 0.2em;
+  }
+
+  h2 > p {
+    font-size: 1em;
+    margin: 0;
+  }
+
   p,
   input,
   button {
@@ -25,6 +37,10 @@
   }
   
   .user-input {
+    display: flex;
+  }
+
+  .user-actions {
     display: flex;
     gap: 1em;
   }
