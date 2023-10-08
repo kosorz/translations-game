@@ -396,7 +396,7 @@ export const foundation = [
       english: "own"
     },
     {
-      german: "eilen (sich beeilen)",
+      german: "eilen",
       english: "to hurry (up)"
     },
     {
@@ -696,7 +696,7 @@ export const foundation = [
       english: "to do / make"
     },
     {
-      german: "mal e.g. zweimal",
+      german: "mal",
       english: "times e.g. twice"
     },
     {

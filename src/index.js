@@ -1,30 +1,20 @@
 import React, { useState, useEffect, useRef } from "react";
 import ReactDOM from "react-dom";
+import {
+  Grommet,
+  Box,
+  Heading,
+  Button,
+  Paragraph,
+  TextInput,
+  DropButton,
+} from "grommet";
 
-import "./styles.css";
 import { foundation } from "./sources";
+import { shuffle } from "./utils/shuffle";
+import { theme } from "./utils/theme";
 
-const source = foundation
-
-function shuffle(array) {
-  let currentIndex = array.length,
-    randomIndex;
-
-  // While there remain elements to shuffle.
-  while (currentIndex > 0) {
-    // Pick a remaining element.
-    randomIndex = Math.floor(Math.random() * currentIndex);
-    currentIndex--;
-
-    // And swap it with the current element.
-    [array[currentIndex], array[randomIndex]] = [
-      array[randomIndex],
-      array[currentIndex]
-    ];
-  }
-
-  return array;
-}
+const source = foundation;
 
 const QUESTIONS = 10;
 
@@ -89,70 +79,126 @@ export const App = () => {
   };
 
   return (
-    <div>
-
+    <Grommet theme={theme}>
       {currentWordIndex !== QUESTIONS ? (
-        <>
-          <p class="progress">
-            {currentWordIndex + 1}/{wordList.length}
-          </p>
-        
-          <div>
-            <h2>
-              {currentWord && currentWord.english}<p>{' '}{revealed && `(${currentWord.german})`}</p>
-            </h2>
-            
-          </div>
-          <div class="letters">
-            {letters.split("").map((letter, index) => (
-              <button key={index} onClick={() => handleLetterClick(letter)}>
-                {letter}
-              </button>
-            ))}
-          </div>
-          <div class="user-input">
-            <input
-              onKeyDown={(e) => {
-                if (e.keyCode === 13) {
-                  checkAnswer();
-                }
+        <Box align="center">
+          <Box
+            border={{ color: "brand", size: "large" }}
+            width="medium"
+            pad="medium"
+            elevation="big"
+            round
+            responsive
+          >
+            <Paragraph
+              style={{
+                margin: 0,
+                textAlign: "left",
               }}
-              type="text"
-              ref={inputRef}
-              value={userInput}
-              onChange={(e) => setUserInput(e.target.value)}
-            />
-            <button onClick={checkAnswer}>Check</button>
-          </div>
+              color="gray"
+            >
+              {currentWordIndex + 1}/{wordList.length}
+            </Paragraph>
+            <Heading
+              style={{
+                paddingBottom: revealed ? 0 : "24px",
+              }}
+              level={2}
+              responsive
+              textAlign="center"
+              weight="bold"
+            >
+              {currentWord && currentWord.english}
+              <Heading style={{ margin: 0 }} color="gray" level={4}>
+                {revealed && `(${currentWord.german})`}
+              </Heading>
+            </Heading>
 
-          <p class="score">Score: {score}</p>
-        </>
+            <Box direction="row" gap="2px">
+              <TextInput
+                onKeyDown={(e) => {
+                  if (e.keyCode === 13) {
+                    checkAnswer();
+                  }
+                }}
+                placeholder="Translation"
+                type="text"
+                ref={inputRef}
+                value={userInput}
+                onChange={(e) => setUserInput(e.target.value)}
+              />
+              <DropButton
+                style={{ marginLeft: "8px" }}
+                dropAlign={{ top: "bottom" }}
+                primary
+                label={"🇩🇪"}
+                size="small"
+                dropProps={{
+                  style: {
+                    border: 0,
+                    boxShadow: "none",
+                  },
+                }}
+                dropContent={
+                  <Box wrap gap="2px" style={{ padding: "2px" }}>
+                    {letters.split("").map((letter, index) => (
+                      <Button
+                        size="small"
+                        key={index}
+                        label={letter}
+                        onClick={() => handleLetterClick(letter)}
+                      />
+                    ))}
+                  </Box>
+                }
+              />
+            </Box>
+          </Box>
+
+          {!!currentWordIndex && (
+            <Heading level={2} color="brand">
+              {score}/{currentWordIndex} ✅
+            </Heading>
+          )}
+        </Box>
       ) : (
-        <div>
-          <p class="score">
-            {score}/{QUESTIONS}
-          </p>
-          <div class="user-actions">
-            <button
+        <Box align="center">
+          <Box
+            direction="column"
+            width="small"
+            pad="medium"
+            elevation="big"
+            round
+            responsive
+          >
+            <Heading level={1} color='brand'>
+              {score}/{QUESTIONS}
+            </Heading>
+            <Button
+              label="Repeat set"
               onClick={() => {
                 reset();
                 setWordList(shuffle(wordList));
               }}
-            >
-              Repeat set
-            </button>
-            <button
+            />
+
+            <Button
+                          style={{
+                marginTop: "8px",
+              }}
+              secondary
+              primary
+              label="New set"
               onClick={() => {
                 reset();
                 setWordList(getWordList());
               }}
-            >
-              New set
-            </button>
-          </div>
-        </div>
+            />
+
+          </Box>
+        </Box>
       )}
-    </div>
+    </Grommet>
   );
 };
 
