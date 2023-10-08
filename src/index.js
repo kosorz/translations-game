@@ -2,26 +2,24 @@ import React, { useState, useEffect, useRef } from "react";
 import ReactDOM from "react-dom";
 import {
   Grommet,
-  Box,
-  Heading,
-  Button,
-  Paragraph,
   TextInput,
-  DropButton,
+  Button,
+  Page,
 } from "grommet";
+import { general, homeAndLocalArea } from "./sources";
 
-import { foundation } from "./sources";
 import { shuffle } from "./utils/shuffle";
 import { theme } from "./utils/theme";
-
-const source = foundation;
+import * as S from "./styles";
+import { Achievement, Announce, Home, Launch, Trophy } from "grommet-icons";
 
 const QUESTIONS = 10;
 
-const getWordList = () => shuffle(source).slice(0, QUESTIONS);
+const getWordList = (src) => shuffle(src).slice(0, QUESTIONS);
 
 export const App = () => {
-  const [wordList, setWordList] = useState(getWordList());
+  const [source, setSource] = useState({ name: "General", value: general });
+  const [wordList, setWordList] = useState(getWordList(source.value));
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
   const [currentWord, setCurrentWord] = useState(wordList[0]);
   const [userInput, setUserInput] = useState("");
@@ -29,9 +27,18 @@ export const App = () => {
   const [revealed, setRevealed] = useState(false);
 
   const inputRef = useRef(null);
+  const continueRef = useRef(null);
 
   useEffect(() => {
     setCurrentWord(wordList[currentWordIndex]);
+
+    if (inputRef.current) {
+      inputRef.current.focus();
+    }
+
+    if (continueRef.current) {
+      continueRef.current.focus();
+    }
   }, [currentWordIndex, wordList]);
 
   const checkAnswer = () => {
@@ -54,23 +61,6 @@ export const App = () => {
     }
   };
 
-  const handleLetterClick = (letter) => {
-    const inputElement = inputRef.current;
-    const startPos = inputElement.selectionStart;
-    const endPos = inputElement.selectionEnd;
-
-    const newText =
-      userInput.substring(0, startPos) + letter + userInput.substring(endPos);
-
-    setUserInput(newText);
-
-    const newCaretPosition = startPos + letter.length;
-    inputElement.focus();
-    inputElement.setSelectionRange(newCaretPosition, newCaretPosition);
-  };
-
-  const letters = "äöüß";
-
   const reset = () => {
     setCurrentWordIndex(0);
     setRevealed(false);
@@ -78,126 +68,139 @@ export const App = () => {
     setScore(0);
   };
 
+  useEffect(() => {
+    reset();
+    setWordList(getWordList(source.value));
+  }, [source.name, source.value]);
+
+  const NewSet = (
+    <S.NewSet
+      label="New set"
+      ref={score === QUESTIONS ? continueRef : undefined}
+      onClick={() => {
+        reset();
+        setWordList(getWordList(source.value));
+      }}
+    />
+  );
+
+  const RedoSet = (
+    <S.RedoSet
+      label="Repeat set"
+      ref={score === QUESTIONS ? undefined : continueRef}
+      onClick={() => {
+        reset();
+        setWordList(shuffle(wordList));
+      }}
+    />
+  );
+
+  const Quiz = (
+    <S.Center>
+      <S.Main width='medium'>
+        <S.Progress>
+          {currentWordIndex + 1}/{wordList.length}
+        </S.Progress>
+
+        <S.Word>
+          {currentWord && currentWord.english}
+          <S.Answer>{revealed && `(${currentWord.german})`}</S.Answer>
+        </S.Word>
+
+        <S.Control>
+          <TextInput
+            onKeyDown={(e) => {
+              if (e.keyCode === 13) {
+                checkAnswer();
+              }
+            }}
+            placeholder="Translation"
+            type="text"
+            ref={inputRef}
+            value={userInput}
+            onChange={(e) => setUserInput(e.target.value)}
+          />
+        </S.Control>
+      </S.Main>
+
+      {!!currentWordIndex && (
+        <S.Score>
+          {score}/{currentWordIndex}
+        </S.Score>
+      )}
+    </S.Center>
+  );
+
+  const result = (() => {
+    if (score >= QUESTIONS) {
+      return {
+        Icon: Achievement,
+        heading: "Perfect!",
+        subHeading: "You can now move on to a new set!",
+      };
+    }
+
+    if (score >= QUESTIONS * 0.8) {
+      return {
+        Icon: Trophy,
+        heading: "Almost!",
+        subHeading: "You can now move or consider repeating set!",
+      };
+    }
+
+    return {
+      Icon: Announce,
+      heading: "Keep going!",
+      subHeading: "You need to train more!",
+    };
+  })();
+
+  const Result = (
+    <S.Center>
+      <S.Main>
+        <S.Badge>
+          <result.Icon size="large" color="brand" />
+        </S.Badge>
+
+        <S.Encouragement>{result.heading}</S.Encouragement>
+
+        <S.EncouragementLong>{result.subHeading}</S.EncouragementLong>
+
+        <S.Score>
+          {score}/{QUESTIONS}
+        </S.Score>
+      </S.Main>
+      <S.Actions>
+        {NewSet}
+        {RedoSet}
+      </S.Actions>
+    </S.Center>
+  );
+
   return (
     <Grommet theme={theme}>
-      {currentWordIndex !== QUESTIONS ? (
-        <Box align="center">
-          <Box
-            border={{ color: "brand", size: "large" }}
-            width="medium"
-            pad="medium"
-            elevation="big"
-            round
-            responsive
-          >
-            <Paragraph
-              style={{
-                margin: 0,
-                textAlign: "left",
-              }}
-              color="gray"
-            >
-              {currentWordIndex + 1}/{wordList.length}
-            </Paragraph>
-            <Heading
-              style={{
-                paddingBottom: revealed ? 0 : "24px",
-              }}
-              level={2}
-              responsive
-              textAlign="center"
-              weight="bold"
-            >
-              {currentWord && currentWord.english}
-              <Heading style={{ margin: 0 }} color="gray" level={4}>
-                {revealed && `(${currentWord.german})`}
-              </Heading>
-            </Heading>
-
-            <Box direction="row" gap="2px">
-              <TextInput
-                onKeyDown={(e) => {
-                  if (e.keyCode === 13) {
-                    checkAnswer();
-                  }
-                }}
-                placeholder="Translation"
-                type="text"
-                ref={inputRef}
-                value={userInput}
-                onChange={(e) => setUserInput(e.target.value)}
-              />
-              <DropButton
-                style={{ marginLeft: "8px" }}
-                dropAlign={{ top: "bottom" }}
-                primary
-                label={"🇩🇪"}
-                size="small"
-                dropProps={{
-                  style: {
-                    border: 0,
-                    boxShadow: "none",
-                  },
-                }}
-                dropContent={
-                  <Box wrap gap="2px" style={{ padding: "2px" }}>
-                    {letters.split("").map((letter, index) => (
-                      <Button
-                        size="small"
-                        key={index}
-                        label={letter}
-                        onClick={() => handleLetterClick(letter)}
-                      />
-                    ))}
-                  </Box>
-                }
-              />
-            </Box>
-          </Box>
-
-          {!!currentWordIndex && (
-            <Heading level={2} color="brand">
-              {score}/{currentWordIndex} ✅
-            </Heading>
-          )}
-        </Box>
-      ) : (
-        <Box align="center">
-          <Box
-            direction="column"
-            width="small"
-            pad="medium"
-            elevation="big"
-            round
-            responsive
-          >
-            <Heading level={1} color='brand'>
-              {score}/{QUESTIONS}
-            </Heading>
+      <Page direction="row">
+        <S.Categories>
+          <S.Navigation>
             <Button
-              label="Repeat set"
-              onClick={() => {
-                reset();
-                setWordList(shuffle(wordList));
-              }}
+              active={source.name === "General"}
+              icon={<Launch />}
+              onClick={() => setSource({ name: "General", value: general })}
             />
-
             <Button
-                          style={{
-                marginTop: "8px",
-              }}
-              secondary
-              primary
-              label="New set"
-              onClick={() => {
-                reset();
-                setWordList(getWordList());
-              }}
+              active={source.name === "Home and local area"}
+              icon={<Home />}
+              onClick={() =>
+                setSource({
+                  name: "Home and local area",
+                  value: homeAndLocalArea,
+                })
+              }
             />
-
-          </Box>
-        </Box>
-      )}
+          </S.Navigation>
+        </S.Categories>
+        {currentWordIndex !== QUESTIONS ? Quiz : Result}
+      </Page>
     </Grommet>
   );
 };
