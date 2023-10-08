@@ -100,7 +100,7 @@ export const App = () => {
             </h2>
             
           </div>
-          <div>
+          <div class="letters">
             {letters.split("").map((letter, index) => (
               <button key={index} onClick={() => handleLetterClick(letter)}>
                 {letter}
