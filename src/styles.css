@@ -80,6 +80,19 @@ button:hover {
     justify-content: center;
 }
 
+.score {
+    font-size: 1.5em;
+    color: #ff6b6b;
+    margin-bottom: 10px;
+}
+
+.progress {
+    font-size: 1.2em;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+
 /* Responsive styles for screens up to 500px */
 @media screen and (max-width: 500px) {
     .App {
