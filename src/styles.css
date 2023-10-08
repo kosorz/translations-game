@@ -84,6 +84,7 @@ button:hover {
     font-size: 1.5em;
     color: #ff6b6b;
     margin-bottom: 10px;
+    text-align: ceter;
 }
 
 .progress {
