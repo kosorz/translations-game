@@ -45,3 +45,43 @@
     gap: 1em;
   }
   
+  @media screen and (max-width: 375px) {
+    .App {
+      font-size: 18px; /* Adjust font size as needed */
+      margin: 10px; /* Adjust margins as needed */
+    }
+    
+    h1 {
+      font-size: 2em; /* Adjust font size */
+    }
+  
+    h2 {
+      font-size: 1.5em; /* Adjust font size */
+      justify-content: center; /* Center align text */
+      gap: 0.1em; /* Reduce the gap between elements */
+    }
+  
+    h2 > p {
+      font-size: 1em; /* Adjust font size */
+      margin: 0; /* Remove margins */
+    }
+  
+    p,
+    input,
+    button {
+      font-size: 1.5em; /* Adjust font size */
+    }
+    
+    button {
+      background: lightsalmon;
+      padding: 0.2em 1em; /* Adjust button padding */
+    }
+    
+    .user-input {
+      flex-direction: column; /* Adjust layout to stack elements */
+    }
+  
+    .user-actions {
+      gap: 0.5em; /* Reduce the gap between elements */
+    }
+  }
