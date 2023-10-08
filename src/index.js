@@ -90,7 +90,10 @@ export const App = () => {
 
   return (
     <div>
-      <h1>English-German Translation Game</h1>
+
+      <p class="progress">
+        {currentWordIndex + 1}/{wordList.length}
+      </p>
 
       {currentWordIndex !== QUESTIONS ? (
         <>
@@ -122,12 +125,7 @@ export const App = () => {
             <button onClick={checkAnswer}>Check</button>
           </div>
 
-          <div>
-            <p>Score: {score}</p>
-            <p>
-              Progress: {currentWordIndex + 1}/{wordList.length}
-            </p>
-          </div>
+          <p class="score">Score: {score}</p>
         </>
       ) : (
         <div>
