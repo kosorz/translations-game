@@ -74,6 +74,12 @@ button:hover {
     gap: 1em;
 }
 
+.letters {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+}
+
 /* Responsive styles for screens up to 500px */
 @media screen and (max-width: 500px) {
     .App {
@@ -110,5 +116,9 @@ button:hover {
 
     .user-actions {
         gap: 0.5em;
+    }
+    
+    .letters {
+        display: none;
     }
 }
