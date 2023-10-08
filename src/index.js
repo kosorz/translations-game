@@ -91,12 +91,12 @@ export const App = () => {
   return (
     <div>
 
-      <p class="progress">
-        {currentWordIndex + 1}/{wordList.length}
-      </p>
-
       {currentWordIndex !== QUESTIONS ? (
         <>
+          <p class="progress">
+            {currentWordIndex + 1}/{wordList.length}
+          </p>
+        
           <div>
             <h2>
               {currentWord && currentWord.english}<p>{' '}{revealed && `(${currentWord.german})`}</p>
@@ -129,8 +129,8 @@ export const App = () => {
         </>
       ) : (
         <div>
-          <p>
-            Your result is {score}/{QUESTIONS}
+          <p class="score">
+            {score}/{QUESTIONS}
           </p>
           <div class="user-actions">
             <button
