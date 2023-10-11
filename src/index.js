@@ -1,71 +1,93 @@
-import React from "react";
+import React, { useState } from "react";
 import ReactDOM from "react-dom";
 import { germanEnglishConfig } from "./configs/german-english";
-import { Wizard } from "./components/Wizard";
-
+import { Wizard } from "./components/Wizard/Wizard";
+import { grommet, Grommet } from "grommet";
+import styled from "styled-components";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { polishEnglishConfig } from "./configs/polish-english";
+import { Dashboard } from "./components/Dashboard/Dashboard";
 
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: (
-      <Wizard
-        baseLanguage="english"
-        aimLanguage="german"
-        config={germanEnglishConfig}
-      />
-    ),
-  },
-  {
-    path: "/english-german",
-    element: (
-      <Wizard
-        baseLanguage="english"
-        aimLanguage="german"
-        config={germanEnglishConfig}
-      />
-    ),
-  },
-  {
-    path: "/german-english",
-    element: (
-      <Wizard
-        baseLanguage="german"
-        aimLanguage="english"
-        config={germanEnglishConfig}
-      />
-    ),
-  },
-  {
-    path: "/polish-english",
-    element: (
-      <Wizard
-        questions={5}
-        aimLanguage="english"
-        baseLanguage="polish"
-        config={polishEnglishConfig}
-      />
-    ),
-  },
-  {
-    path: "/english-polish",
-    element: (
-      <Wizard
-        questions={5}
-        aimLanguage="polish"
-        baseLanguage="english"
-        config={polishEnglishConfig}
-      />
-    ),
-  },
-]);
+const router = ({ setTheme, theme }) =>
+  createBrowserRouter([
+    {
+      path: "/",
+      element: <Dashboard setTheme={setTheme} theme={theme} />,
+    },
+    {
+      path: "/english-german",
+      element: (
+        <Wizard
+          baseLanguage="english"
+          aimLanguage="german"
+          config={germanEnglishConfig}
+          setTheme={setTheme}
+          theme={theme}
+        />
+      ),
+    },
+    {
+      path: "/german-english",
+      element: (
+        <Wizard
+          baseLanguage="german"
+          aimLanguage="english"
+          config={germanEnglishConfig}
+          setTheme={setTheme}
+          theme={theme}
+        />
+      ),
+    },
+    {
+      path: "/polish-english",
+      element: (
+        <Wizard
+          questions={5}
+          aimLanguage="english"
+          baseLanguage="polish"
+          config={polishEnglishConfig}
+          setTheme={setTheme}
+          theme={theme}
+        />
+      ),
+    },
+    {
+      path: "/english-polish",
+      element: (
+        <Wizard
+          questions={5}
+          aimLanguage="polish"
+          baseLanguage="english"
+          config={polishEnglishConfig}
+          setTheme={setTheme}
+          theme={theme}
+        />
+      ),
+    },
+  ]);
+
+const Root = styled(Grommet)({
+  minHeight: "100%",
+});
 
 export const App = () => {
+  const [theme, setTheme] = useState("dark");
+
   return (
-    <React.StrictMode>
-      <RouterProvider router={router} />
-    </React.StrictMode>
+    <Root
+      theme={{
+        ...grommet,
+        global: {
+          ...grommet.global,
+          colors: { background: { dark: "#1b1e25", light: "#f4f4f4" } },
+        },
+      }}
+      themeMode={theme}
+    >
+      <React.StrictMode>
+        <RouterProvider router={router({ setTheme, theme })} />
+      </React.StrictMode>
+    </Root>
   );
 };
 

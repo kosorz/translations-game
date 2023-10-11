@@ -1,11 +1,20 @@
 import React, { useState, useEffect, useRef, useLayoutEffect } from "react";
-import { TextInput, Page, Heading, grommet, Box } from "grommet";
+import { TextInput, Heading, Box } from "grommet";
 
-import { shuffle } from "../utils/shuffle";
+import { shuffle } from "../../utils/shuffle";
 import * as S from "./Wizard.styles";
-import { Achievement, Announce, Moon, Sun, Trophy } from "grommet-icons";
+import { Achievement, Announce, Trophy } from "grommet-icons";
+import { Sidebar } from "../Sidebar/Sidebar";
+import { Page } from "../Page/Page"
 
-export const Wizard = ({ baseLanguage, aimLanguage, config, questions = 10 }) => {
+export const Wizard = ({
+  baseLanguage,
+  aimLanguage,
+  config,
+  questions = 10,
+  setTheme,
+  theme,
+}) => {
   const getWordList = (src) => shuffle(src).slice(0, questions);
 
   const [source, setSource] = useState({
@@ -18,12 +27,6 @@ export const Wizard = ({ baseLanguage, aimLanguage, config, questions = 10 }) =>
   const [userInput, setUserInput] = useState("");
   const [score, setScore] = useState(0);
   const [revealed, setRevealed] = useState(false);
-
-  const isDarkMode = () =>
-    window.matchMedia &&
-    window.matchMedia("(prefers-color-scheme: dark)").matches;
-
-  const [theme, setTheme] = useState(isDarkMode ? "dark" : "light");
 
   const continueRef = useRef(null);
   const inputRef = useRef(null);
@@ -69,7 +72,7 @@ export const Wizard = ({ baseLanguage, aimLanguage, config, questions = 10 }) =>
     if (inputRef.current) {
       inputRef.current.focus();
     }
-  }, [currentSet, theme, wordList]);
+  }, [currentSet, wordList]);
 
   const NewSet = (
     <S.NewSet
@@ -185,53 +188,27 @@ export const Wizard = ({ baseLanguage, aimLanguage, config, questions = 10 }) =>
   };
 
   return (
-    <S.Root
-      theme={{
-        ...grommet,
-        global: {
-          ...grommet.global,
-          colors: { background: { dark: "#1b1e25", light: "#f4f4f4" } },
-        },
-      }}
-      themeMode={theme}
-    >
-      <Page pad="small" direction="row">
-        <S.Categories
-          header={
-            <>
-              <S.ThemeSwitch
-                onClick={() => setTheme("light")}
-                active={theme === "light"}
-                icon={<Sun />}
-              />
-              <S.ThemeSwitch
-                onClick={() => setTheme("dark")}
-                active={theme === "dark"}
-                icon={<Moon />}
-              />
-            </>
-          }
-        >
-          <S.Navigation>
-            {Object.values(config).map((category) => (
-              <S.Category
-                active={source.name === category.name[baseLanguage]}
-                icon={<category.Icon />}
-                onClick={() =>
-                  onSwitchCategory({
-                    name: category.name[baseLanguage],
-                    value: category.value,
-                  })
-                }
-              />
-            ))}
-          </S.Navigation>
+    <Page>
+      <Sidebar theme={theme} setTheme={setTheme}>
+        <S.Categories>
+          {Object.values(config).map((category) => (
+            <S.Category
+              active={source.name === category.name[baseLanguage]}
+              icon={<category.Icon />}
+              onClick={() =>
+                onSwitchCategory({
+                  name: category.name[baseLanguage],
+                  value: category.value,
+                })
+              }
+            />
+          ))}
         </S.Categories>
-        <S.Center>
-          <Heading textAlign="center">{source.name}</Heading>
-          {currentWordIndex !== questions ? Quiz : Result}
-        </S.Center>
-      </Page>
-    </S.Root>
+      </Sidebar>
+      <S.Center>
+        <Heading textAlign="center">{source.name}</Heading>
+        {currentWordIndex !== questions ? Quiz : Result}
+      </S.Center>
+    </Page>
   );
 };

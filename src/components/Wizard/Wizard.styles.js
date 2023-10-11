@@ -1,18 +1,6 @@
 import styled from "styled-components";
-import {
-  Box,
-  Button,
-  Grommet,
-  Heading,
-  Paragraph,
-  Sidebar,
-  Nav,
-} from "grommet";
+import { Box, Button, Heading, Paragraph, Nav } from "grommet";
 import { Star as StarBase } from "grommet-icons";
-
-export const Root = styled(Grommet)({
-  height: "100%",
-});
 
 export const Progress = styled(Paragraph)({
   margin: 0,
@@ -81,15 +69,15 @@ export const ProgressScore = styled(Progress)({
 });
 
 export const Score = styled(Heading)({
-  justifyContent: 'center',
-  display: 'flex',
-  alignItems: 'center',
-})
+  justifyContent: "center",
+  display: "flex",
+  alignItems: "center",
+});
 
 Score.defaultProps = {
-  color: 'brand',
+  color: "brand",
   level: 1,
-}
+};
 
 export const Actions = styled(Box)({
   marginTop: "16px",
@@ -127,36 +115,26 @@ Encouragement.defaultProps = {
 
 export const EncouragementLong = styled(Paragraph)({});
 
-export const Categories = styled(Sidebar)({
-  flexShrink: 0,
-  paddingTop: 0,
+export const Category = styled(Button)({
+  borderRadius: "11px",
+  "@media (max-width: 768px)": {
+    borderRadius: "6px",
+  },
 });
+
+export const Categories = styled(Nav)({});
 
 Categories.defaultProps = {
-  round: "small",
-};
-
-export const Category = styled(Button)({
-  borderRadius: "6px",
-});
-
-export const Navigation = styled(Nav)({});
-
-Navigation.defaultProps = {
   gap: "small",
   background: "brand",
   round: "small",
 };
 
-export const ThemeSwitch = styled(Button)({
-  borderRadius: "50%",
-});
-
 export const Star = styled(StarBase)({
   width: 18,
-  height: 'auto',
-})
+  height: "auto",
+});
 
 Star.defaultProps = {
-  color: 'gold',
-}
+  color: "gold",
+};
