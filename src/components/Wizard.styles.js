@@ -1,5 +1,18 @@
 import styled from "styled-components";
-import { Box, Button, Heading, Paragraph, Sidebar, Nav} from "grommet";
+import {
+  Box,
+  Button,
+  Grommet,
+  Heading,
+  Paragraph,
+  Sidebar,
+  Nav,
+} from "grommet";
+import { Star as StarBase } from "grommet-icons";
+
+export const Root = styled(Grommet)({
+  height: "100%",
+});
 
 export const Progress = styled(Paragraph)({
   margin: 0,
@@ -8,7 +21,6 @@ export const Progress = styled(Paragraph)({
 });
 
 export const Main = styled(Box)({
-  flexGrow: 1,
   textAlign: "center",
 });
 
@@ -18,10 +30,14 @@ Main.defaultProps = {
   elevation: "big",
   round: true,
   responsive: true,
+  justify: "between",
 };
 
 export const Center = styled(Box)({
   flexGrow: 1,
+  paddingRight: 6,
+  paddingLeft: 6,
+  paddingTop: 6,
 });
 
 Center.defaultProps = {
@@ -30,6 +46,10 @@ Center.defaultProps = {
 
 export const Word = styled(Heading)(({ revealed }) => ({
   paddingBottom: revealed ? 0 : "24px",
+
+  "@media (max-width: 768px)": {
+    paddingBottom: revealed ? 0 : "22px",
+  },
 }));
 
 Word.defaultProps = {
@@ -55,12 +75,21 @@ Control.defaultProps = {
   gap: "2px",
 };
 
-export const Score = styled(Heading)({});
+export const ProgressScore = styled(Progress)({
+  display: "flex",
+  alignItems: "center",
+});
+
+export const Score = styled(Heading)({
+  justifyContent: 'center',
+  display: 'flex',
+  alignItems: 'center',
+})
 
 Score.defaultProps = {
+  color: 'brand',
   level: 1,
-  color: "brand",
-};
+}
 
 export const Actions = styled(Box)({
   marginTop: "16px",
@@ -80,13 +109,17 @@ NewSet.defaultProps = {
   primary: true,
 };
 
-export const Badge = styled(Heading)({});
+export const Badge = styled(Heading)({
+  marginBottom: 0,
+});
 
 Badge.defaultProps = {
   level: 1,
 };
 
-export const Encouragement = styled(Heading)({});
+export const Encouragement = styled(Heading)({
+  marginBottom: 0,
+});
 
 Encouragement.defaultProps = {
   level: 3,
@@ -96,12 +129,16 @@ export const EncouragementLong = styled(Paragraph)({});
 
 export const Categories = styled(Sidebar)({
   flexShrink: 0,
-  paddingLeft: 0,
+  paddingTop: 0,
 });
 
 Categories.defaultProps = {
   round: "small",
 };
+
+export const Category = styled(Button)({
+  borderRadius: "6px",
+});
 
 export const Navigation = styled(Nav)({});
 
@@ -110,3 +147,16 @@ Navigation.defaultProps = {
   background: "brand",
   round: "small",
 };
+
+export const ThemeSwitch = styled(Button)({
+  borderRadius: "50%",
+});
+
+export const Star = styled(StarBase)({
+  width: 18,
+  height: 'auto',
+})
+
+Star.defaultProps = {
+  color: 'gold',
+}
