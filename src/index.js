@@ -71,7 +71,7 @@ const Root = styled(Grommet)({
 });
 
 export const App = () => {
-  const [theme, setTheme] = useState("dark");
+  const [theme, setTheme] = useState(localStorage.getItem("theme") || 'dark');
 
   return (
     <Root

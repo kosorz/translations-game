@@ -5,7 +5,8 @@ export const germanEnglishConfig = {
     value: [
       {
         german: "ab",
-        english: "from (e.g. time)",
+        english: "from",
+        englishExtra: "(e.g. time)",
       },
       {
         german: "ab und zu",
@@ -13,22 +14,25 @@ export const germanEnglishConfig = {
       },
       {
         german: "Abend",
-        english: "(in the) evening",
+        english: "evening",
       },
       {
         german: "als / wenn",
-        english: "when (conj)",
+        english: "when",
+        englishExtra: "(in the)",
       },
       {
         german: "bald",
+        germanExtra: "(bis bald)",
         english: "soon",
+        englishExtra: "(see you...soon!)"
       },
       {
         german: "bevor",
         english: "before",
       },
       {
-        german: "dann",
+        german: "damals",
         english: "then",
       },
       {
@@ -37,11 +41,14 @@ export const germanEnglishConfig = {
       },
       {
         german: "erst",
+        germanExtra: "um",
         english: "not until",
       },
       {
         german: "früh",
+        germanExtra: "(früher)",
         english: "early",
+        englishExtra: "(previously)",
       },
       {
         german: "gestern",
@@ -57,7 +64,9 @@ export const germanEnglishConfig = {
       },
       {
         german: "immer",
+        germanExtra: "noch",
         english: "always",
+        englishExtra: "still",
       },
       {
         german: "manchmal",
@@ -65,11 +74,15 @@ export const germanEnglishConfig = {
       },
       {
         german: "Mittag",
+        germanExtra: "(mittags)",
         english: "midday",
+        englishExtra: "(at midday)",
       },
       {
         german: "Mitte",
+        germanExtra: "(mitten in)",
         english: "middle",
+        englishExtra: "(in the middle of)",
       },
       {
         german: "Mitternacht",
@@ -77,7 +90,9 @@ export const germanEnglishConfig = {
       },
       {
         german: "Monat",
+        germanExtra: "(monatlich)",
         english: "month",
+        englishExtra: "month(ly)"
       },
       {
         german: "morgen",
@@ -85,7 +100,9 @@ export const germanEnglishConfig = {
       },
       {
         german: "Morgen",
+        germanExtra: "(morgens)",
         english: "morning",
+        englishExtra: "(in the)",
       },
       {
         german: "nachdem",
@@ -97,7 +114,9 @@ export const germanEnglishConfig = {
       },
       {
         german: "Nachmittag",
+        germanExtra: "(nachmittags)",
         english: "afternoon",
+        englishExtra: "(in the)",
       },
       {
         german: "nächst",
@@ -118,6 +137,7 @@ export const germanEnglishConfig = {
       {
         german: "noch",
         english: "still",
+        englishExtra: "(=even now)",
       },
       {
         german: "noch nicht",
@@ -153,11 +173,13 @@ export const germanEnglishConfig = {
       },
       {
         german: "vorher",
-        english: "beforehand/ previously",
+        english: "beforehand / previously",
       },
       {
         german: "Vormittag",
-        english: "(in the) morning",
+        germanExtra: "(vormittags)",
+        english: "morning",
+        englishExtra: "(in the morning)",
       },
       {
         german: "zuerst",
@@ -189,7 +211,7 @@ export const germanEnglishConfig = {
       },
       {
         german: "anfangen",
-        english: "to begin/ start",
+        english: "to begin / start",
       },
       {
         german: "Antwort",
@@ -229,7 +251,7 @@ export const germanEnglishConfig = {
       },
       {
         german: "beginnen",
-        english: "to begin/start",
+        english: "to begin / start",
       },
       {
         german: "begrüßen",
@@ -341,7 +363,9 @@ export const germanEnglishConfig = {
       },
       {
         german: "danke",
-        english: "thank you (to thank)",
+        germanExtra: "(e)",
+        english: "thank you",
+        englishExtra: "(to thank)",
       },
       {
         german: "dass",
@@ -369,7 +393,9 @@ export const germanEnglishConfig = {
       },
       {
         german: "doch",
-        english: "yes (contradicting)",
+        english: "yes",
+        englishExtra: "(contradicting)",
+
       },
       {
         german: "drücken",
@@ -377,7 +403,7 @@ export const germanEnglishConfig = {
       },
       {
         german: "dürfen",
-        english: "to be allowed to / “may”",
+        english: "to be allowed to / may",
       },
       {
         german: "eben",
@@ -389,7 +415,8 @@ export const germanEnglishConfig = {
       },
       {
         german: "egal",
-        english: "(I don’t care!)",
+        germanExtra: "(das ist mir egal)",
+        english: "I don’t care!",
       },
       {
         german: "ehemalig",
@@ -401,11 +428,12 @@ export const germanEnglishConfig = {
       },
       {
         german: "eilen",
-        english: "to hurry (up)",
+        germanExtra: "(sich beeilen)",
+        english: "to hurry",
       },
       {
         german: "einander",
-        english: "one another/ each other",
+        english: "one another / each other",
       },
       {
         german: "einige",
@@ -413,6 +441,7 @@ export const germanEnglishConfig = {
       },
       {
         german: "einmal",
+        germanExtra: "(noch einmal)",
         english: "once",
       },
       {
@@ -433,7 +462,8 @@ export const germanEnglishConfig = {
       },
       {
         german: "entschuldigen Sie!",
-        english: "excuse me! (to apologize)",
+        germanExtra: "(sich entschuldigen)",
+        english: "excuse me!",
       },
       {
         german: "Entschuldigung!",
@@ -445,7 +475,9 @@ export const germanEnglishConfig = {
       },
       {
         german: "erinnern",
-        english: "to remind (remember)",
+        germanExtra: "(sich)",
+        english: "to remind",
+        englishExtra: '(remember)'
       },
       {
         german: "erkennen",
@@ -453,6 +485,7 @@ export const germanEnglishConfig = {
       },
       {
         german: "erzählen",
+        germanExtra: "(Erzählung)",
         english: "to tell",
       },
       {
@@ -469,10 +502,12 @@ export const germanEnglishConfig = {
       },
       {
         german: "etwas",
+        germanExtra: "(irgend etwas)",
         english: "something",
       },
       {
         german: "fallen",
+        germanExtra: "(lassen)",
         english: "to fall",
       },
       {
@@ -505,7 +540,9 @@ export const germanEnglishConfig = {
       },
       {
         german: "Frage",
-        english: "question (to ask a question)",
+        germanExtra: "(eine Frage stellen)",
+        english: "question",
+        englishExtra: '(to ask a question)',
       },
       {
         german: "fragen",
@@ -517,7 +554,9 @@ export const germanEnglishConfig = {
       },
       {
         german: "geben",
-        english: "to give (there is)",
+        germanExtra: "(es gibt)",
+        english: "to give",
+        englishExtra: "(there is)",
       },
       {
         german: "genau",
@@ -529,7 +568,7 @@ export const germanEnglishConfig = {
       },
       {
         german: "gern",
-        english: "glad(ly)",
+        english: "glad",
       },
       {
         german: "geschlossen",
@@ -537,7 +576,7 @@ export const germanEnglishConfig = {
       },
       {
         german: "getrennt",
-        english: "separate(ly)",
+        english: "separate",
       },
       {
         german: "glauben",
@@ -545,11 +584,15 @@ export const germanEnglishConfig = {
       },
       {
         german: "gleich",
-        english: "immediately (the same)",
+        germanExtra: "(der/das/die gleiche)",
+        english: "immediatele",
+        englishExtra: "(the same)",
       },
       {
         german: "glücklich",
-        english: "happy (good luck)",
+        germanExtra: "(Glück)",
+        english: "happy",
+        englishExtra: '(good luck)',
       },
       {
         german: "Gott",
@@ -593,7 +636,8 @@ export const germanEnglishConfig = {
       },
       {
         german: "halten",
-        english: "to hold / to stop (moving)",
+        english: "to hold / to stop",
+        englishExtra: "(moving)",
       },
       {
         german: "hier",
@@ -621,7 +665,8 @@ export const germanEnglishConfig = {
       },
       {
         german: "irgendwo",
-        english: "somewhere (or other)",
+        english: "somewhere",
+        englishExtra: "(or other)",
       },
       {
         german: "ja",
@@ -629,7 +674,8 @@ export const germanEnglishConfig = {
       },
       {
         german: "je / das Stück",
-        english: "each (=per item)",
+        english: "each",
+        englishExtra: "(=per item)",
       },
       {
         german: "jeder",
@@ -637,7 +683,7 @@ export const germanEnglishConfig = {
       },
       {
         german: "jemand",
-        english: "someone/ somebody",
+        english: "someone / somebody",
       },
       {
         german: "jener",
@@ -653,7 +699,8 @@ export const germanEnglishConfig = {
       },
       {
         german: "kein",
-        english: "no (= not any)",
+        english: "no",
+        englishExtra: "(= not any)",
       },
       {
         german: "klar",
@@ -661,7 +708,7 @@ export const germanEnglishConfig = {
       },
       {
         german: "können",
-        english: "to be able to/ 'can'",
+        english: "to be able to / can",
       },
       {
         german: "kriegen",
@@ -677,7 +724,8 @@ export const germanEnglishConfig = {
       },
       {
         german: "lassen",
-        english: "to let / leave (s.th)",
+        english: "to let / leave",
+        englishExtra: "(s.th)",
       },
       {
         german: "leider",
@@ -685,10 +733,12 @@ export const germanEnglishConfig = {
       },
       {
         german: "leid tun",
+        germanExtra: "(es tut mir leid)",
         english: "to feel sorry for",
       },
       {
         german: "leihen",
+        germanExtra: "(sich)",
         english: "to lend",
       },
       {
@@ -701,7 +751,9 @@ export const germanEnglishConfig = {
       },
       {
         german: "mal",
-        english: "times e.g. twice",
+        germanExtra: "(e.g. zweimal)",
+        english: "times",
+        englishExtra: "(e.g. twice)",
       },
       {
         german: "mäßig",
@@ -725,7 +777,8 @@ export const germanEnglishConfig = {
       },
       {
         german: "mögen",
-        english: "to like (to)",
+        english: "to like",
+        englishExtra: "(to)",
       },
       {
         german: "möglich",
@@ -733,7 +786,7 @@ export const germanEnglishConfig = {
       },
       {
         german: "müssen",
-        english: "to have to / 'must'",
+        english: "to have to / must",
       },
       {
         german: "natürlich",
@@ -793,10 +846,12 @@ export const germanEnglishConfig = {
       },
       {
         german: "Paar",
+        germanExtra: "(ein)",
         english: "a pair / couple",
       },
       {
         german: "paar",
+        germanExtra: "(ein)",
         english: "a few",
       },
       {
@@ -829,11 +884,14 @@ export const germanEnglishConfig = {
       },
       {
         german: "ruhig",
+        germanExtra: "(Ruhe)",
         english: "quiet",
+        englishExtra: "(rest / quiet)",
       },
       {
         german: "rund",
-        english: "round (=shape)",
+        english: "round",
+        englishExtra: "(=shape)",
       },
       {
         german: "sagen",
@@ -849,7 +907,9 @@ export const germanEnglishConfig = {
       },
       {
         german: "schließen",
+        germanExtra: "(abschließen)",
         english: "to close",
+        englishExtra: "(lock)",
       },
       {
         german: "schließlich",
@@ -865,7 +925,7 @@ export const germanEnglishConfig = {
       },
       {
         german: "schreien",
-        english: "to shout/ scream",
+        english: "to shout / scream",
       },
       {
         german: "sehr",
@@ -885,6 +945,7 @@ export const germanEnglishConfig = {
       },
       {
         german: "selbe",
+        germanExtra: "(der/das/dieselbe)",
         english: "same",
       },
       {
@@ -897,6 +958,7 @@ export const germanEnglishConfig = {
       },
       {
         german: "sollen",
+        germanExtra: "sollte",
         english: "ought to",
       },
       {
@@ -913,7 +975,7 @@ export const germanEnglishConfig = {
       },
       {
         german: "Tschüs!",
-        english: "cheerio!/ bye!/ see you!",
+        english: "cheerio! / bye! / see you!",
       },
       {
         german: "tun",
@@ -929,7 +991,8 @@ export const germanEnglishConfig = {
       },
       {
         german: "um ... zu",
-        english: "to (=in order to)",
+        english: "to",
+        englishExtra: "(=in order to)",
       },
       {
         german: "und",
@@ -941,7 +1004,7 @@ export const germanEnglishConfig = {
       },
       {
         german: "verschieden",
-        english: "different/ various",
+        english: "different / various",
       },
       {
         german: "Verzeihung!",
@@ -965,6 +1028,7 @@ export const germanEnglishConfig = {
       },
       {
         german: "wahr",
+        germanExtra: "(nicht wahr?)",
         english: "true",
       },
       {
@@ -977,7 +1041,9 @@ export const germanEnglishConfig = {
       },
       {
         german: "Weise",
-        english: "way (in this way)",
+        germanExtra: "(auf diese Weise)",
+        english: "way",
+        englishExtra: "(in this way)"
       },
       {
         german: "wenig",
@@ -1061,7 +1127,8 @@ export const germanEnglishConfig = {
       },
       {
         german: "zu",
-        english: "too (e.g. too old) / closed",
+        english: "too / closed",
+        englishExtra: "(e.g. too old)",
       },
       {
         german: "zufrieden",
@@ -1133,7 +1200,8 @@ export const germanEnglishConfig = {
       },
       {
         german: "es kommt darauf an",
-        english: "to depend (it depends)",
+        english: "to depend",
+        englishExtra: "(it depends)",
       },
       {
         german: "fließend",
@@ -1177,6 +1245,7 @@ export const germanEnglishConfig = {
       },
       {
         german: "irren",
+        germanExtra: "(sich)",
         english: "to be wrong",
       },
       {
@@ -1217,7 +1286,8 @@ export const germanEnglishConfig = {
       },
       {
         german: "Vorsicht",
-        english: "careful(!)",
+        germanExtra: "(vorsichtig)",
+        english: "careful",
       },
       {
         german: "wagen",
@@ -1271,7 +1341,8 @@ export const germanEnglishConfig = {
       {
         german: "anziehen",
         germanExtra: "(sich)",
-        english: "to put on (get dressed)",
+        english: "to put on",
+        englishExtra: "(get dressed)",
       },
       {
         german: "aufstehen",
@@ -1292,7 +1363,8 @@ export const germanEnglishConfig = {
       },
       {
         german: "aussehen",
-        english: "to look (appearance)",
+        english: "to look",
+        englishExtra: "(appearance)",
       },
       {
         german: "ausziehen",
@@ -1309,7 +1381,8 @@ export const germanEnglishConfig = {
       },
       {
         german: "Buchstabe",
-        english: "letter (=of alphabet)",
+        english: "letter",
+        englishExtra: "(=of alphabet)",
       },
       {
         german: "buchstabieren",
@@ -1357,7 +1430,8 @@ export const germanEnglishConfig = {
       },
       {
         german: "legen",
-        english: "to put (= to lay)",
+        english: "to put",
+        englishExtra: "(= to lay)",
       },
       {
         german: "Liebe",
@@ -1369,7 +1443,8 @@ export const germanEnglishConfig = {
       },
       {
         german: "liegen",
-        english: "to lie (be lying down)",
+        english: "to lie",
+        englishExtra: "(be lying down)",
       },
       {
         german: "mähen",
@@ -1394,10 +1469,12 @@ export const germanEnglishConfig = {
       {
         german: "sitzen",
         germanExtra: "(sich setzen)",
-        english: "to sit (down)",
+        english: "to sit",
+        englishExtra: "(down)",
       },
       {
-        german: "spülen (abspülen)",
+        german: "spülen",
+        germanExtra: "(abspülen)",
         english: "to wash up",
       },
       {
@@ -1406,7 +1483,8 @@ export const germanEnglishConfig = {
       },
       {
         german: "stecken",
-        english: "to put (inside something)",
+        english: "to put",
+        englishExtra: "(inside something)"
       },
       {
         german: "stehen",
@@ -1414,7 +1492,8 @@ export const germanEnglishConfig = {
       },
       {
         german: "stellen",
-        english: "to put / place (e.g. a vase)",
+        english: "to put / place",
+        englishExtra: "(e.g. a vase)",
       },
       {
         german: "Teil",
@@ -1435,7 +1514,8 @@ export const germanEnglishConfig = {
       {
         german: "umziehen",
         germanExtra: "(sich)",
-        english: "to move house (to get changed)",
+        english: "to move house",
+        englishExtra: "(to get changed)",
       },
       {
         german: "vorbereiten",
@@ -1444,11 +1524,13 @@ export const germanEnglishConfig = {
       {
         german: "waschen",
         germanExtra: "(sich)",
-        english: "to wash (o.s.)",
+        english: "to wash",
+        englishExtra: "(o.s.)",
       },
       {
         german: "wecken",
-        english: "to wake s.o.",
+        english: "to wake",
+        englishExtra: "s.o.",
       },
       {
         german: "wiegen",
@@ -1512,7 +1594,8 @@ export const germanEnglishConfig = {
       },
       {
         german: "Lieber / Liebe",
-        english: "Dear (=letters)",
+        english: "Dear",
+        englishExtra: "(=letters)",
       },
       {
         german: "verheiratet",
@@ -1604,7 +1687,8 @@ export const germanEnglishConfig = {
       },
       {
         german: "glatt",
-        english: "smooth / straight e.g. hair (black ice)",
+        english: "smooth / straight e.g. hair",
+        englishExtra: "(black ice)",
       },
       {
         german: "groß",
@@ -1612,7 +1696,8 @@ export const germanEnglishConfig = {
       },
       {
         german: "Größe",
-        english: "size / height (of people)",
+        english: "size / height",
+        englishExtra: "(of people)",
       },
       {
         german: "hassen",
@@ -1676,7 +1761,8 @@ export const germanEnglishConfig = {
       },
       {
         german: "mittelgroß / mittellang",
-        english: "medium / average (=height/length)",
+        english: "medium / average",
+        englishExtra: "(=height/length)",
       },
       {
         german: "müde",
@@ -1700,7 +1786,8 @@ export const germanEnglishConfig = {
       },
       {
         german: "Pech",
-        english: "luck (bad)",
+        english: "luck",
+        englishExtra: "(bad)",
       },
       {
         german: "reich",
@@ -1724,7 +1811,8 @@ export const germanEnglishConfig = {
       },
       {
         german: "schick",
-        english: "smart (e.g. dress)",
+        english: "smart",
+        englishExtra: "(e.g. dress)",
       },
       {
         german: "schlank",
@@ -1769,7 +1857,8 @@ export const germanEnglishConfig = {
       },
       {
         german: "Anzug",
-        english: "suit (men's)",
+        english: "suit",
+        englishExtra: "(men's)",
       },
       {
         german: "Armband",
@@ -1833,7 +1922,8 @@ export const germanEnglishConfig = {
       },
       {
         german: "Kostüm",
-        english: "suit (women's)",
+        english: "suit",
+        englishExtra: "(women's)",
       },
       {
         german: "Krawatte / Schlips",
@@ -1949,7 +2039,8 @@ export const germanEnglishConfig = {
       },
       {
         german: "Badewanne",
-        english: "bath (tub)",
+        english: "bath",
+        englishExtra: "(tub)",
       },
       {
         german: "Badezimmer",
@@ -1961,7 +2052,7 @@ export const germanEnglishConfig = {
       },
       {
         german: "Bude",
-        english: "stall / stand/ room",
+        english: "stall / stand / room",
       },
       {
         german: "Decke",
@@ -1969,7 +2060,8 @@ export const germanEnglishConfig = {
       },
       {
         german: "Diele",
-        english: "hall (=entrance to house)",
+        english: "hall",
+        englishExtra: "(=entrance to house)",
       },
       {
         german: "Doppelhaus",
@@ -2005,7 +2097,8 @@ export const germanEnglishConfig = {
       },
       {
         german: "Flur",
-        english: "hall (=inside house)",
+        english: "hall",
+        englishExtra: "(=inside house)",
       },
       {
         german: "Garage",
@@ -2177,7 +2270,8 @@ export const germanEnglishConfig = {
       },
       {
         german: "Stockwerk",
-        english: "floor (storey)",
+        english: "floor",
+        englishExtra: "(storey)",
       },
       {
         german: "Tisch",
