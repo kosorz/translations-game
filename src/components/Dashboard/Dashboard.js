@@ -66,6 +66,16 @@ export const Dashboard = ({ setTheme, theme }) => (
             flags={"🇬🇧 | 🇩🇪"}
           />
           <Mode
+            href={"/german-polish"}
+            name={"Deutsch / Polski"}
+            flags={"🇩🇪 | 🇵🇱"}
+          />
+          <Mode
+            href={"/polish-german"}
+            name={"Polski / Deutsch"}
+            flags={"🇵🇱 | 🇩🇪"}
+          />
+          <Mode
             href={"/polish-english"}
             name={"Polski / English"}
             flags={"🇵🇱 | 🇬🇧"}

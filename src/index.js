@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import ReactDOM from "react-dom";
 import { germanEnglishConfig } from "./configs/german-english";
+import { polishGermanConfig } from "./configs/polish-german";
 import { Wizard } from "./components/Wizard/Wizard";
 import { grommet, Grommet } from "grommet";
 import styled from "styled-components";
@@ -21,6 +22,30 @@ const router = ({ setTheme, theme }) =>
           baseLanguage="english"
           aimLanguage="german"
           config={germanEnglishConfig}
+          setTheme={setTheme}
+          theme={theme}
+        />
+      ),
+    },
+    {
+      path: "/polish-german",
+      element: (
+        <Wizard
+          baseLanguage="polish"
+          aimLanguage="german"
+          config={polishGermanConfig}
+          setTheme={setTheme}
+          theme={theme}
+        />
+      ),
+    },
+    {
+      path: "/german-polish",
+      element: (
+        <Wizard
+          baseLanguage="german"
+          aimLanguage="polish"
+          config={polishGermanConfig}
           setTheme={setTheme}
           theme={theme}
         />
