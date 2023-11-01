@@ -10,6 +10,7 @@ export const Progress = styled(Paragraph)({
 
 export const Main = styled(Box)({
   textAlign: "center",
+  boxShadow: 'none !important',
 });
 
 Main.defaultProps = {
@@ -138,3 +139,36 @@ export const Star = styled(StarBase)({
 Star.defaultProps = {
   color: "gold",
 };
+
+export const View = styled(Box)({});
+
+View.defaultProps = {
+  width: "100%",
+  justify: "center",
+  direction: "row",
+  alignItems: "center",
+  justifyContent: "center",
+};
+
+export const ViewAction = styled(Button)({
+  width: "100px",
+});
+
+export const ViewActionLeftBox = styled(Box)({
+  borderTopRightRadius: 0,
+  borderBottomRightRadius: 0,
+  borderTopLeftRadius: 18,
+  borderBottomLeftRadius: 18,
+  display: "inline-block",
+});
+
+ViewActionLeftBox.defaultProps = {
+  border: { color: "brand", size: "xsmall" },
+};
+
+export const ViewActionLeft = styled(ViewAction)({});
+
+export const ViewActionRight = styled(ViewAction)({
+  borderTopLeftRadius: 0,
+  borderBottomLeftRadius: 0,
+});

@@ -41,9 +41,9 @@ const Mode = ({ flags, name, href }) => (
   />
 );
 
-export const Dashboard = ({ setTheme, theme }) => (
+export const Dashboard = ({ setTheme, theme, condition, setCondition }) => (
   <Page>
-    <Sidebar setTheme={setTheme} theme={theme} />
+    <Sidebar condition={condition} setCondition={setCondition} setTheme={setTheme} theme={theme} />
     <Center>
         <Heading>Explore modes</Heading>
         <Box

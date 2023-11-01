@@ -1,7 +1,7 @@
 import React from "react";
-import * as S from "./ThemeSwitch.styles";
 import { Box } from "grommet";
 import { Sun, Moon } from "grommet-icons";
+import { Switch } from "../Switch/Switch";
 
 export const ThemeSwitch = ({ setTheme, theme }) => {
   const saveTheme = (theme) => {
@@ -10,21 +10,25 @@ export const ThemeSwitch = ({ setTheme, theme }) => {
 
   return (
     <Box>
-      <S.Option
-        onClick={() => {
-          setTheme("light");
-          saveTheme("light");
-        }}
-        active={theme === "light"}
-        icon={<Sun />}
-      />
-      <S.Option
-        onClick={() => {
-          setTheme("dark");
-          saveTheme("dark");
-        }}
-        active={theme === "dark"}
-        icon={<Moon />}
+      <Switch
+        config={[
+          {
+            icon: <Sun />,
+            active: theme === "light",
+            onClick: () => {
+              setTheme("light");
+              saveTheme("light");
+            },
+          },
+          {
+            icon: <Moon />,
+            active: theme === "dark",
+            onClick: () => {
+              setTheme("dark");
+              saveTheme("dark");
+            },
+          },
+        ]}
       />
     </Box>
   );

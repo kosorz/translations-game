@@ -3,9 +3,9 @@ import { TextInput, Heading, Box } from "grommet";
 
 import { shuffle } from "../../utils/shuffle";
 import * as S from "./Wizard.styles";
-import { Achievement, Announce, Trophy } from "grommet-icons";
+import { Achievement, Announce, Trophy, Checkmark, Close } from "grommet-icons";
 import { Sidebar } from "../Sidebar/Sidebar";
-import { Page } from "../Page/Page"
+import { Page } from "../Page/Page";
 
 export const Wizard = ({
   baseLanguage,
@@ -13,6 +13,8 @@ export const Wizard = ({
   config,
   questions = 10,
   setTheme,
+  setCondition,
+  condition,
   theme,
 }) => {
   const getWordList = (src) => shuffle(src).slice(0, questions);
@@ -49,6 +51,13 @@ export const Wizard = ({
       setUserInput("");
       setRevealed(true);
     }
+  };
+
+  const viewContinue = (e) => {
+    e.stopPropagation();
+
+    setRevealed(false);
+    setCurrentWordIndex(currentWordIndex + 1);
   };
 
   const reset = () => {
@@ -97,15 +106,17 @@ export const Wizard = ({
   );
 
   const Quiz = (
-    <S.Main width="medium">
+    <S.Main width="medium" onClick={() => setRevealed(true)}>
       <Box direction="row" justify="between">
         <S.Progress>
           {currentWordIndex + 1}/{wordList.length}
         </S.Progress>
 
-        {(revealed || !!currentWordIndex) && (
+        {((revealed && condition === "write") || !!currentWordIndex) && (
           <S.ProgressScore>
-            {score}/{currentWordIndex + (revealed ? 1 : 0)} <S.Star />
+            {score}/
+            {currentWordIndex + (revealed && condition === "write" ? 1 : 0)}{" "}
+            <S.Star />
           </S.ProgressScore>
         )}
       </Box>
@@ -116,18 +127,38 @@ export const Wizard = ({
       </S.Word>
 
       <S.Control>
-        <TextInput
-          onKeyDown={(e) => {
-            if (e.keyCode === 13) {
-              checkAnswer();
-            }
-          }}
-          ref={inputRef}
-          placeholder="Translation"
-          type="text"
-          value={userInput}
-          onChange={(e) => setUserInput(e.target.value)}
-        />
+        {condition === "write" && (
+          <TextInput
+            onKeyDown={(e) => {
+              if (e.keyCode === 13) {
+                checkAnswer();
+              }
+            }}
+            ref={inputRef}
+            placeholder="Translation"
+            type="text"
+            value={userInput}
+            onChange={(e) => setUserInput(e.target.value)}
+          />
+        )}
+
+        {condition === "view" && revealed && (
+          <S.View>
+            <S.ViewActionLeftBox>
+              {" "}
+              <S.ViewActionLeft onClick={viewContinue} icon={<Close />} />
+            </S.ViewActionLeftBox>
+
+            <S.ViewActionRight
+              onClick={(e) => {
+                viewContinue(e);
+                setScore(score + 1);
+              }}
+              icon={<Checkmark />}
+              primary
+            />
+          </S.View>
+        )}
       </S.Control>
     </S.Main>
   );
@@ -189,7 +220,12 @@ export const Wizard = ({
 
   return (
     <Page>
-      <Sidebar theme={theme} setTheme={setTheme}>
+      <Sidebar
+        condition={condition}
+        setCondition={setCondition}
+        theme={theme}
+        setTheme={setTheme}
+      >
         <S.Categories>
           {Object.values(config).map((category) => (
             <S.Category

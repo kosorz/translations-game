@@ -9,11 +9,18 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { polishEnglishConfig } from "./configs/polish-english";
 import { Dashboard } from "./components/Dashboard/Dashboard";
 
-const router = ({ setTheme, theme }) =>
+const router = ({ setTheme, setCondition, condition, theme }) =>
   createBrowserRouter([
     {
       path: "/",
-      element: <Dashboard setTheme={setTheme} theme={theme} />,
+      element: (
+        <Dashboard
+          setCondition={setCondition}
+          condition={condition}
+          setTheme={setTheme}
+          theme={theme}
+        />
+      ),
     },
     {
       path: "/english-german",
@@ -24,6 +31,8 @@ const router = ({ setTheme, theme }) =>
           config={germanEnglishConfig}
           setTheme={setTheme}
           theme={theme}
+          setCondition={setCondition}
+          condition={condition}
         />
       ),
     },
@@ -36,6 +45,8 @@ const router = ({ setTheme, theme }) =>
           config={polishGermanConfig}
           setTheme={setTheme}
           theme={theme}
+          setCondition={setCondition}
+          condition={condition}
         />
       ),
     },
@@ -48,6 +59,8 @@ const router = ({ setTheme, theme }) =>
           config={polishGermanConfig}
           setTheme={setTheme}
           theme={theme}
+          setCondition={setCondition}
+          condition={condition}
         />
       ),
     },
@@ -60,6 +73,8 @@ const router = ({ setTheme, theme }) =>
           config={germanEnglishConfig}
           setTheme={setTheme}
           theme={theme}
+          setCondition={setCondition}
+          condition={condition}
         />
       ),
     },
@@ -73,6 +88,8 @@ const router = ({ setTheme, theme }) =>
           config={polishEnglishConfig}
           setTheme={setTheme}
           theme={theme}
+          setCondition={setCondition}
+          condition={condition}
         />
       ),
     },
@@ -86,6 +103,8 @@ const router = ({ setTheme, theme }) =>
           config={polishEnglishConfig}
           setTheme={setTheme}
           theme={theme}
+          setCondition={setCondition}
+          condition={condition}
         />
       ),
     },
@@ -96,7 +115,10 @@ const Root = styled(Grommet)({
 });
 
 export const App = () => {
-  const [theme, setTheme] = useState(localStorage.getItem("theme") || 'dark');
+  const [theme, setTheme] = useState(localStorage.getItem("theme") || "dark");
+  const [condition, setCondition] = useState(
+    localStorage.getItem("condition") || "view"
+  );
 
   return (
     <Root
@@ -110,7 +132,9 @@ export const App = () => {
       themeMode={theme}
     >
       <React.StrictMode>
-        <RouterProvider router={router({ setTheme, theme })} />
+        <RouterProvider
+          router={router({ setTheme, theme, condition, setCondition })}
+        />
       </React.StrictMode>
     </Root>
   );
