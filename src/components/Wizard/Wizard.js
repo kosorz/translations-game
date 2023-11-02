@@ -106,6 +106,44 @@ export const Wizard = ({
     />
   );
 
+  const View = (
+    <S.View>
+      <S.ViewActionLeft
+        icon={<Close color='red' />}
+        secondary
+        onClick={viewContinue}
+        label={<S.EmptyLabel />}
+      />
+
+      <S.ViewActionRight
+        onClick={(e) => {
+          viewContinue(e);
+          setScore(score + 1);
+        }}
+        icon={<Checkmark />}
+        label={<S.EmptyLabel />}
+        primary
+      />
+    </S.View>
+  );
+
+  const Write = (
+    <S.WriteInput>
+      <TextInput
+        onKeyDown={(e) => {
+          if (e.keyCode === 13) {
+            checkAnswer();
+          }
+        }}
+        ref={inputRef}
+        placeholder="Translation"
+        type="text"
+        value={userInput}
+        onChange={(e) => setUserInput(e.target.value)}
+      />
+    </S.WriteInput>
+  );
+
   const Quiz = (
     <>
       <S.Main width="medium" onClick={() => setRevealed(true)}>
@@ -128,43 +166,14 @@ export const Wizard = ({
           <S.Answer>{revealed && `(${currentWord[aimLanguage]})`}</S.Answer>
         </S.Word>
 
-        <S.Control>
-          {condition === "write" && (
-            <TextInput
-              onKeyDown={(e) => {
-                if (e.keyCode === 13) {
-                  checkAnswer();
-                }
-              }}
-              ref={inputRef}
-              placeholder="Translation"
-              type="text"
-              value={userInput}
-              onChange={(e) => setUserInput(e.target.value)}
-            />
-          )}
-        </S.Control>
+        {condition === "write" && Write}
       </S.Main>
-      {condition === "view" && revealed && (
-        <S.View>
-          <S.ViewActionLeftBox>
-            <S.ViewActionLeft onClick={viewContinue} icon={<Close />} />
-          </S.ViewActionLeftBox>
 
-          <S.ViewActionRight
-            onClick={(e) => {
-              viewContinue(e);
-              setScore(score + 1);
-            }}
-            icon={<Checkmark />}
-            primary
-          />
-        </S.View>
-      )}
+      {condition === "view" && revealed && View}
     </>
   );
 
-  const summary = (() => {
+  const Summary = (() => {
     if (score >= questions) {
       return {
         Icon: Achievement,
@@ -192,12 +201,12 @@ export const Wizard = ({
     <>
       <S.Main>
         <S.Badge>
-          <summary.Icon size="large" color="brand" />
+          <Summary.Icon size="large" color="brand" />
         </S.Badge>
 
-        <S.Encouragement>{summary.heading}</S.Encouragement>
+        <S.Encouragement>{Summary.heading}</S.Encouragement>
 
-        <S.EncouragementLong>{summary.subHeading}</S.EncouragementLong>
+        <S.EncouragementLong>{Summary.subHeading}</S.EncouragementLong>
 
         <S.Score>
           {score}/{questions}

@@ -10,7 +10,7 @@ export const Progress = styled(Paragraph)({
 
 export const Main = styled(Box)({
   textAlign: "center",
-  boxShadow: 'none !important',
+  boxShadow: "none !important",
 });
 
 Main.defaultProps = {
@@ -59,9 +59,9 @@ Answer.defaultProps = {
   level: 4,
 };
 
-export const Control = styled(Box)({});
+export const WriteInput = styled(Box)({});
 
-Control.defaultProps = {
+WriteInput.defaultProps = {
   direction: "row",
   gap: "2px",
 };
@@ -151,30 +151,34 @@ View.defaultProps = {
   alignItems: "center",
   justifyContent: "center",
   pad: {
-    top: 'medium'
-  }
+    top: "medium",
+  },
 };
 
 export const ViewAction = styled(Button)({
-  width: "100px",
-  textAlign: 'center',
+  textAlign: "center",
+
+  "> div > div": {
+    width: 0,
+  },
 });
 
-export const ViewActionLeftBox = styled(Box)({
+export const ViewActionLeft = styled(ViewAction)({
   borderTopRightRadius: 0,
   borderBottomRightRadius: 0,
-  borderTopLeftRadius: 18,
-  borderBottomLeftRadius: 18,
-  display: "inline-block",
+  borderColor: "red",
+
+  "&:hover": {
+    boxShadow: `0px 0px 0px 2px red`,
+  },
 });
-
-ViewActionLeftBox.defaultProps = {
-  border: { color: "brand", size: "xsmall" },
-};
-
-export const ViewActionLeft = styled(ViewAction)({});
 
 export const ViewActionRight = styled(ViewAction)({
   borderTopLeftRadius: 0,
   borderBottomLeftRadius: 0,
+});
+
+export const EmptyLabel = styled(Box)({
+  background: "red",
+  height: 35,
 });
