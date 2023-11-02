@@ -21,6 +21,9 @@ Main.defaultProps = {
     top: "medium",
     bottom: "medium",
   },
+  margin: {
+    bottom: "medium",
+  },
   elevation: "big",
   round: true,
   responsive: true,
@@ -33,6 +36,8 @@ export const Center = styled(Box)({
 
 Center.defaultProps = {
   align: "center",
+  round: "small",
+  pad: { bottom: "medium", right: "medium", left: "medium" },
 };
 
 export const Word = styled(Heading)(({ revealed }) => ({
@@ -150,9 +155,6 @@ View.defaultProps = {
   direction: "row",
   alignItems: "center",
   justifyContent: "center",
-  pad: {
-    top: "medium",
-  },
 };
 
 export const ViewAction = styled(Button)({
@@ -182,4 +184,9 @@ export const ViewActionRight = styled(ViewAction)({
 export const EmptyLabel = styled(Box)({
   background: "red",
   height: 35,
+});
+
+export const ViewPlaceholder = styled(Box)({
+  height: 47,
+  background: "red",
 });

@@ -13,10 +13,8 @@ export const Wizard = ({
   aimLanguage,
   config,
   questions = 10,
-  setTheme,
   setCondition,
   condition,
-  theme,
 }) => {
   const getWordList = (src) => shuffle(src).slice(0, questions);
 
@@ -54,6 +52,8 @@ export const Wizard = ({
     }
   };
 
+  const finished = currentWordIndex === questions
+
   const viewContinue = (e) => {
     e.stopPropagation();
 
@@ -61,7 +61,7 @@ export const Wizard = ({
     setCurrentWordIndex(currentWordIndex + 1);
   };
 
-  const reset = () => {
+  const reset = (e) => {
     setCurrentWordIndex(0);
     setRevealed(false);
     setUserInput("");
@@ -109,8 +109,8 @@ export const Wizard = ({
   const View = (
     <S.View>
       <S.ViewActionLeft
-        icon={<Close color='red' />}
         secondary
+        icon={<Close color="red" />}
         onClick={viewContinue}
         label={<S.EmptyLabel />}
       />
@@ -146,9 +146,7 @@ export const Wizard = ({
 
   const Quiz = (
     <>
-      <S.Main width="medium" onClick={() => {
-          if (condition === 'view') setRevealed(true)
-        }}>
+      <S.Main width="medium">
         <Box direction="row" justify="between">
           <S.Progress>
             {currentWordIndex + 1}/{wordList.length}
@@ -171,7 +169,7 @@ export const Wizard = ({
         {condition === "write" && Write}
       </S.Main>
 
-      {condition === "view" && revealed && View}
+      {condition === "view" && (revealed ? View : <S.ViewPlaceholder />)}
     </>
   );
 
@@ -232,10 +230,7 @@ export const Wizard = ({
 
   return (
     <>
-      <Header
-        condition={condition}
-        setCondition={setCondition}
-      />
+      <Header condition={condition} setCondition={setCondition} />
       <Page>
         <Sidebar>
           <S.Categories>
@@ -253,9 +248,12 @@ export const Wizard = ({
             ))}
           </S.Categories>
         </Sidebar>
-        <S.Center>
+        <S.Center
+          fill="vertical"
+          onClick={!finished && condition === "view" ? () => setRevealed(true) : undefined}
+        >
           <Heading textAlign="center">{source.name}</Heading>
-          {currentWordIndex !== questions ? Quiz : Result}
+          {finished ? Result : Quiz}
         </S.Center>
       </Page>
     </>
