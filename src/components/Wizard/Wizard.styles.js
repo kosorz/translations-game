@@ -157,6 +157,7 @@ View.defaultProps = {
 
 export const ViewAction = styled(Button)({
   textAlign: "center",
+  flexBasis: 100,
 
   "> div > div": {
     width: 0,

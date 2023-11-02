@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import ReactDOM from "react-dom";
-import { germanEnglishConfig } from "./configs/german-english";
 import { polishGermanConfig } from "./configs/polish-german";
 import { Wizard } from "./components/Wizard/Wizard";
 import { grommet, Grommet } from "grommet";
@@ -19,20 +18,6 @@ const router = ({ setTheme, setCondition, condition, theme }) =>
           condition={condition}
           setTheme={setTheme}
           theme={theme}
-        />
-      ),
-    },
-    {
-      path: "/english-german",
-      element: (
-        <Wizard
-          baseLanguage="english"
-          aimLanguage="german"
-          config={germanEnglishConfig}
-          setTheme={setTheme}
-          theme={theme}
-          setCondition={setCondition}
-          condition={condition}
         />
       ),
     },
@@ -57,20 +42,6 @@ const router = ({ setTheme, setCondition, condition, theme }) =>
           baseLanguage="german"
           aimLanguage="polish"
           config={polishGermanConfig}
-          setTheme={setTheme}
-          theme={theme}
-          setCondition={setCondition}
-          condition={condition}
-        />
-      ),
-    },
-    {
-      path: "/german-english",
-      element: (
-        <Wizard
-          baseLanguage="german"
-          aimLanguage="english"
-          config={germanEnglishConfig}
           setTheme={setTheme}
           theme={theme}
           setCondition={setCondition}

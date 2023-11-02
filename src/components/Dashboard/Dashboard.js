@@ -2,7 +2,6 @@ import React from "react";
 import { Page } from "../Page/Page";
 import {
   CardBody,
-  Button,
   Card,
   CardFooter,
   Heading,
@@ -11,14 +10,14 @@ import {
 } from "grommet";
 import { Center } from "../Wizard/Wizard.styles";
 import { Header } from "../Header/Header";
+import * as S from './Dashboard.styles'
 
 const Mode = ({ flags, name, href }) => (
-  <Button
+  <S.Tile
     href={href}
     hoverIndicator
-    round={"small"}
     icon={
-      <Card width={"small"} background="light-1">
+      <Card width={"small"}>
         <CardBody pad={{ horizontal: "small" }}>
           <Heading textAlign="center" level={2}>
             <span role="img" aria-label={name}>
@@ -61,16 +60,6 @@ export const Dashboard = ({ setTheme, theme, condition, setCondition }) => (
           justify="center"
           wrap
         >
-          <Mode
-            href={"/german-english"}
-            name={"Deutsch / English"}
-            flags={"🇩🇪 | 🇬🇧"}
-          />
-          <Mode
-            href={"/english-german"}
-            name={"English / Deutsch"}
-            flags={"🇬🇧 | 🇩🇪"}
-          />
           <Mode
             href={"/german-polish"}
             name={"Deutsch / Polski"}
