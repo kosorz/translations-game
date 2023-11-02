@@ -13,7 +13,7 @@ export const ThemeSwitch = ({ setTheme, theme }) => {
       <Switch
         config={[
           {
-            icon: <Sun />,
+            icon: Sun,
             active: theme === "light",
             onClick: () => {
               setTheme("light");
@@ -21,7 +21,7 @@ export const ThemeSwitch = ({ setTheme, theme }) => {
             },
           },
           {
-            icon: <Moon />,
+            icon: Moon,
             active: theme === "dark",
             onClick: () => {
               setTheme("dark");

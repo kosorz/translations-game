@@ -1,5 +1,4 @@
 import React from "react";
-import { Sidebar } from "../Sidebar/Sidebar";
 import { Page } from "../Page/Page";
 import {
   CardBody,
@@ -11,6 +10,7 @@ import {
   Box,
 } from "grommet";
 import { Center } from "../Wizard/Wizard.styles";
+import { Header } from "../Header/Header";
 
 const Mode = ({ flags, name, href }) => (
   <Button
@@ -42,9 +42,15 @@ const Mode = ({ flags, name, href }) => (
 );
 
 export const Dashboard = ({ setTheme, theme, condition, setCondition }) => (
-  <Page>
-    <Sidebar condition={condition} setCondition={setCondition} setTheme={setTheme} theme={theme} />
-    <Center>
+  <>
+    <Header
+      setCondition={setCondition}
+      setTheme={setTheme}
+      theme={theme}
+      condition={condition}
+    />
+    <Page>
+      <Center>
         <Heading>Explore modes</Heading>
         <Box
           width="big"
@@ -86,6 +92,7 @@ export const Dashboard = ({ setTheme, theme, condition, setCondition }) => (
             flags={"🇬🇧 | 🇵🇱"}
           />
         </Box>
-    </Center>
-  </Page>
+      </Center>
+    </Page>
+  </>
 );

@@ -6,6 +6,7 @@ import * as S from "./Wizard.styles";
 import { Achievement, Announce, Trophy, Checkmark, Close } from "grommet-icons";
 import { Sidebar } from "../Sidebar/Sidebar";
 import { Page } from "../Page/Page";
+import { Header } from "../Header/Header";
 
 export const Wizard = ({
   baseLanguage,
@@ -106,61 +107,61 @@ export const Wizard = ({
   );
 
   const Quiz = (
-    <S.Main width="medium" onClick={() => setRevealed(true)}>
-      <Box direction="row" justify="between">
-        <S.Progress>
-          {currentWordIndex + 1}/{wordList.length}
-        </S.Progress>
+    <>
+      <S.Main width="medium" onClick={() => setRevealed(true)}>
+        <Box direction="row" justify="between">
+          <S.Progress>
+            {currentWordIndex + 1}/{wordList.length}
+          </S.Progress>
 
-        {((revealed && condition === "write") || !!currentWordIndex) && (
-          <S.ProgressScore>
-            {score}/
-            {currentWordIndex + (revealed && condition === "write" ? 1 : 0)}{" "}
-            <S.Star />
-          </S.ProgressScore>
-        )}
-      </Box>
+          {((revealed && condition === "write") || !!currentWordIndex) && (
+            <S.ProgressScore>
+              {score}/
+              {currentWordIndex + (revealed && condition === "write" ? 1 : 0)}{" "}
+              <S.Star />
+            </S.ProgressScore>
+          )}
+        </Box>
 
-      <S.Word revealed={revealed}>
-        {currentWord && currentWord[baseLanguage]}
-        <S.Answer>{revealed && `(${currentWord[aimLanguage]})`}</S.Answer>
-      </S.Word>
+        <S.Word revealed={revealed}>
+          {currentWord && currentWord[baseLanguage]}
+          <S.Answer>{revealed && `(${currentWord[aimLanguage]})`}</S.Answer>
+        </S.Word>
 
-      <S.Control>
-        {condition === "write" && (
-          <TextInput
-            onKeyDown={(e) => {
-              if (e.keyCode === 13) {
-                checkAnswer();
-              }
-            }}
-            ref={inputRef}
-            placeholder="Translation"
-            type="text"
-            value={userInput}
-            onChange={(e) => setUserInput(e.target.value)}
-          />
-        )}
-
-        {condition === "view" && revealed && (
-          <S.View>
-            <S.ViewActionLeftBox>
-              {" "}
-              <S.ViewActionLeft onClick={viewContinue} icon={<Close />} />
-            </S.ViewActionLeftBox>
-
-            <S.ViewActionRight
-              onClick={(e) => {
-                viewContinue(e);
-                setScore(score + 1);
+        <S.Control>
+          {condition === "write" && (
+            <TextInput
+              onKeyDown={(e) => {
+                if (e.keyCode === 13) {
+                  checkAnswer();
+                }
               }}
-              icon={<Checkmark />}
-              primary
+              ref={inputRef}
+              placeholder="Translation"
+              type="text"
+              value={userInput}
+              onChange={(e) => setUserInput(e.target.value)}
             />
-          </S.View>
-        )}
-      </S.Control>
-    </S.Main>
+          )}
+        </S.Control>
+      </S.Main>
+      {condition === "view" && revealed && (
+        <S.View>
+          <S.ViewActionLeftBox>
+            <S.ViewActionLeft onClick={viewContinue} icon={<Close />} />
+          </S.ViewActionLeftBox>
+
+          <S.ViewActionRight
+            onClick={(e) => {
+              viewContinue(e);
+              setScore(score + 1);
+            }}
+            icon={<Checkmark />}
+            primary
+          />
+        </S.View>
+      )}
+    </>
   );
 
   const summary = (() => {
@@ -219,32 +220,35 @@ export const Wizard = ({
   };
 
   return (
-    <Page>
-      <Sidebar
+    <>
+      <Header
         condition={condition}
         setCondition={setCondition}
         theme={theme}
         setTheme={setTheme}
-      >
-        <S.Categories>
-          {Object.values(config).map((category) => (
-            <S.Category
-              active={source.name === category.name[baseLanguage]}
-              icon={<category.Icon />}
-              onClick={() =>
-                onSwitchCategory({
-                  name: category.name[baseLanguage],
-                  value: category.value,
-                })
-              }
-            />
-          ))}
-        </S.Categories>
-      </Sidebar>
-      <S.Center>
-        <Heading textAlign="center">{source.name}</Heading>
-        {currentWordIndex !== questions ? Quiz : Result}
-      </S.Center>
-    </Page>
+      />
+      <Page>
+        <Sidebar>
+          <S.Categories>
+            {Object.values(config).map((category) => (
+              <S.Category
+                active={source.name === category.name[baseLanguage]}
+                icon={<category.Icon />}
+                onClick={() =>
+                  onSwitchCategory({
+                    name: category.name[baseLanguage],
+                    value: category.value,
+                  })
+                }
+              />
+            ))}
+          </S.Categories>
+        </Sidebar>
+        <S.Center>
+          <Heading textAlign="center">{source.name}</Heading>
+          {currentWordIndex !== questions ? Quiz : Result}
+        </S.Center>
+      </Page>
+    </>
   );
 };

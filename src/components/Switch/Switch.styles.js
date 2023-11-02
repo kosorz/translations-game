@@ -1,6 +1,18 @@
 import styled from "styled-components";
-import { Button } from "grommet";
+import { Box, Button } from "grommet";
 
 export const Option = styled(Button)({
-  borderRadius: "50%",
+  borderRadius: 18,
+  padding: 8,
 });
+
+export const Root = styled(Box)({
+  borderRadius: 21,
+  padding: 3,
+});
+
+Root.defaultProps = {
+  border: { size: "small", color: "brand" },
+  direction: "row",
+  display: "flex",
+};

@@ -15,7 +15,12 @@ export const Main = styled(Box)({
 
 Main.defaultProps = {
   border: { color: "brand", size: "large" },
-  pad: "medium",
+  pad: {
+    right: "small",
+    left: "small",
+    top: "medium",
+    bottom: "medium",
+  },
   elevation: "big",
   round: true,
   responsive: true,
@@ -24,9 +29,6 @@ Main.defaultProps = {
 
 export const Center = styled(Box)({
   flexGrow: 1,
-  paddingRight: 6,
-  paddingLeft: 6,
-  paddingTop: 6,
 });
 
 Center.defaultProps = {
@@ -148,10 +150,14 @@ View.defaultProps = {
   direction: "row",
   alignItems: "center",
   justifyContent: "center",
+  pad: {
+    top: 'medium'
+  }
 };
 
 export const ViewAction = styled(Button)({
   width: "100px",
+  textAlign: 'center',
 });
 
 export const ViewActionLeftBox = styled(Box)({

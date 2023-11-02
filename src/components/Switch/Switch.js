@@ -1,18 +1,21 @@
 import React from "react";
 import * as S from "./Switch.styles";
-import { Box } from "grommet";
 
-export const Switch = ({ config }) => (
-  <Box>
-    <S.Option
-      onClick={config[0].onClick}
-      active={config[0].active}
-      icon={config[0].icon}
-    />
-    <S.Option
-      onClick={config[1].onClick}
-      active={config[1].active}
-      icon={config[1].icon}
-    />
-  </Box>
-);
+export const Switch = ({ config }) => {
+  const [first, second] = config;
+
+  const iconStyle = { width: 20, height: 20 };
+
+  return (
+    <S.Root onClick={first.active ? second.onClick : first.onClick}>
+      <S.Option
+        active={first.active}
+        icon={<first.icon style={iconStyle} />}
+      />
+      <S.Option
+        active={second.active}
+        icon={<second.icon style={iconStyle} />}
+      />
+    </S.Root>
+  );
+};

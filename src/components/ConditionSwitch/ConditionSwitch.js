@@ -13,7 +13,7 @@ export const ConditionSwitch = ({ setCondition, condition }) => {
       <Switch
         config={[
           {
-            icon: <Edit />,
+            icon: Edit,
             active: condition === "write",
             onClick: () => {
               setCondition("write");
@@ -21,7 +21,7 @@ export const ConditionSwitch = ({ setCondition, condition }) => {
             },
           },
           {
-            icon: <View />,
+            icon: View,
             active: condition === "view",
             onClick: () => {
               setCondition("view");
