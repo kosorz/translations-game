@@ -16,8 +16,8 @@ export const Header = ({ theme, setTheme, setCondition, condition }) => (
         />
       </S.LogoFrame>
       <S.Switches>
-        <ConditionSwitch setCondition={setCondition} condition={condition} />
-        <ThemeSwitch setTheme={setTheme} theme={theme} />
+        {condition && setCondition && <ConditionSwitch setCondition={setCondition} condition={condition} />}
+        {theme && setTheme && <ThemeSwitch setTheme={setTheme} theme={theme} />}
       </S.Switches>
     </S.Root>
     <S.Divider />

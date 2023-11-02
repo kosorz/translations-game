@@ -40,13 +40,11 @@ const Mode = ({ flags, name, href }) => (
   />
 );
 
-export const Dashboard = ({ setTheme, theme, condition, setCondition }) => (
+export const Dashboard = ({ setTheme, theme }) => (
   <>
     <Header
-      setCondition={setCondition}
       setTheme={setTheme}
       theme={theme}
-      condition={condition}
     />
     <Page>
       <Center>

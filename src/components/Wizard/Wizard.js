@@ -235,8 +235,6 @@ export const Wizard = ({
       <Header
         condition={condition}
         setCondition={setCondition}
-        theme={theme}
-        setTheme={setTheme}
       />
       <Page>
         <Sidebar>
