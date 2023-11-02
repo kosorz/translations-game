@@ -146,7 +146,9 @@ export const Wizard = ({
 
   const Quiz = (
     <>
-      <S.Main width="medium" onClick={() => setRevealed(true)}>
+      <S.Main width="medium" onClick={() => {
+          if (condition === 'view') setRevealed(true)
+        }}>
         <Box direction="row" justify="between">
           <S.Progress>
             {currentWordIndex + 1}/{wordList.length}

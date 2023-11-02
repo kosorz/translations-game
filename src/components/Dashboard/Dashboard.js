@@ -53,12 +53,12 @@ export const Dashboard = ({ setTheme, theme, condition, setCondition }) => (
         <Heading>Explore modes</Heading>
         <Box
           width="big"
-          border={{ color: "brand", size: "large" }}
           pad="medium"
-          round
+          gap='8px'
           direction="row"
           justify="center"
           wrap
+          round
         >
           <Mode
             href={"/german-polish"}
