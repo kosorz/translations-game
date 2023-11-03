@@ -14,7 +14,7 @@ export const Main = styled(Box)({
 });
 
 Main.defaultProps = {
-  border: { color: "brand", size: "large" },
+  border: { color: "neutral-3", size: "large" },
   pad: {
     right: "small",
     left: "small",
@@ -85,7 +85,7 @@ export const Score = styled(Heading)({
 });
 
 Score.defaultProps = {
-  color: "brand",
+  color: "neutral-3",
   level: 1,
 };
 
@@ -136,7 +136,7 @@ export const Categories = styled(Nav)({});
 
 Categories.defaultProps = {
   gap: "small",
-  background: "brand",
+  background: "neutral-3",
   round: "small",
 };
 

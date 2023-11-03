@@ -272,7 +272,7 @@ export const Wizard = ({
     <>
       <S.Main>
         <S.Badge>
-          <summary.Icon size="large" color="brand" />
+          <summary.Icon size="large" color="neutral-3" />
         </S.Badge>
 
         <S.Encouragement>{summary.heading}</S.Encouragement>

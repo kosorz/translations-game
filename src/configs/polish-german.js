@@ -5,6 +5,7 @@ import {
   Group,
   Connect,
   Time,
+  Cycle,
   Pause,
 } from "grommet-icons";
 
@@ -1459,13 +1460,11 @@ export const polishGermanConfig = {
         german: "zur Frau nehmen",
       },
       {
-        polish:
-          "wychodzić za mąż / wyjść za mąż",
+        polish: "wychodzić za mąż / wyjść za mąż",
         german: "heiraten",
       },
       {
-        polish:
-          "żenić się / ożenić się",
+        polish: "żenić się / ożenić się",
         german: "heiraten",
       },
       {
@@ -1594,5 +1593,370 @@ export const polishGermanConfig = {
       polish: "Małżeństwo",
     },
     Icon: Favorite,
+  },
+  everydayActivities: {
+    value: [
+      {
+        polish: "iść do kina",
+        german: "ins Kino gehen",
+      },
+      {
+        polish: "gotować",
+        german: "kochen",
+      },
+      {
+        polish: "iść na koncert",
+        german: "ins Konzert gehen",
+      },
+      {
+        polish: "nudzić się",
+        german: "sich langweilen",
+      },
+      {
+        polish: "biegać / biec",
+        german: "laufen",
+      },
+      {
+        polish: "uczyć się",
+        german: "lernen",
+      },
+      {
+        polish: "czytać",
+        german: "lesen",
+      },
+      {
+        polish: "leżeć",
+        german: "liegen",
+      },
+      {
+        polish: "leżeć do góry brzuchem",
+        german: "auf der faulen Haut liegen",
+      },
+      {
+        polish: "zgasić światło",
+        german: "das Licht ausschalten",
+      },
+      {
+        polish: "robić / zrobić",
+        german: "machen",
+      },
+      {
+        polish: "bawić się z dziećmi",
+        german: "mit den Kindern spielen",
+      },
+      {
+        polish: "wyrzucać śmieci / wynosić śmieci",
+        german: "den Müll wegbringen",
+      },
+      {
+        polish: "wyrzucić śmieci",
+        german: "in den Müll werfen",
+      },
+      {
+        polish: "słuchać muzyki",
+        german: "Musik hören",
+      },
+      {
+        polish: "szyć",
+        german: "nähen",
+      },
+      {
+        polish: "brać / wziąć",
+        german: "nehmen",
+      },
+      {
+        polish: "obowiązek",
+        german: "die Pflicht",
+      },
+      {
+        polish: "jeździć rowerem",
+        german: "Rad fahren",
+      },
+      {
+        polish: "naprawiać / naprawić",
+        german: "reparieren",
+      },
+      {
+        polish: "golić się",
+        german: "sich rasieren",
+      },
+      {
+        polish: "narzekać",
+        german: "schimpfen",
+      },
+      {
+        polish: "spać",
+        german: "schlafen",
+      },
+      {
+        polish: "kłaść się spać",
+        german: "sich schlafen legen",
+      },
+      {
+        polish: "pisać",
+        german: "schreiben",
+      },
+      {
+        polish: "siedzieć",
+        german: "sitzen",
+      },
+      {
+        polish: "siedzieć przy telewizorze",
+        german: "am Fernseher sitzen",
+      },
+      {
+        polish: "siedzieć przy kominku",
+        german: "am Kamin sitzen",
+      },
+      {
+        polish: "spacerować",
+        german: "spazieren",
+      },
+      {
+        polish: "iść na spacer",
+        german: "spazieren gehen",
+      },
+      {
+        polish: "mówić",
+        german: "sprechen",
+      },
+      {
+        polish: "zmywać",
+        german: "spülen",
+      },
+      {
+        polish: "chodzić po mieście",
+        german: "einen Stadtbummel machen",
+      },
+      {
+        polish: "odkurzać",
+        german: "staubsaugen",
+      },
+      {
+        polish: "ścierać kurze / zetrzeć kurze",
+        german: "Staub wischen",
+      },
+      {
+        polish: "robić na drutach",
+        german: "stricken",
+      },
+      {
+        polish: "sprzątać ze stołu",
+        german: "den Tisch abräumen",
+      },
+      {
+        polish: "nieść",
+        german: "tragen",
+      },
+      {
+        polish: "spotykać / spotkać",
+        german: "treffen",
+      },
+      {
+        polish: "pić",
+        german: "trinken",
+      },
+      {
+        polish: "czekać",
+        german: "warten",
+      },
+      {
+        polish: "myć się / umyć się",
+        german: "sich waschen",
+      },
+      {
+        polish: "robić pranie",
+        german: "die Wäsche machen",
+      },
+      {
+        polish: "napuścić wody do wanny",
+        german: "Wasser in die Badewanne einlassen",
+      },
+      {
+        polish: "budzić / obudzić",
+        german: "wecken",
+      },
+      {
+        polish: "rzucać / rzucić",
+        german: "werfen",
+      },
+      {
+        polish: "mieszkać",
+        german: "wohnen",
+      },
+      {
+        polish: "chcieć",
+        german: "wollen",
+      },
+      {
+        polish: "wycierać / wytrzeć",
+        german: "wischen",
+      },
+      {
+        polish: "myć zęby",
+        german: "sich dat die Zähne putzen",
+      },
+      {
+        polish: "zamykać na klucz",
+        german: "abschließen",
+      },
+      {
+        polish: "włączać / włączyć",
+        german: "anmachen",
+      },
+      {
+        polish: "włączać / włączyć",
+        german: "anstellen",
+      },
+      {
+        polish: "odpowiadać / odpowiedzieć",
+        german: "antworten",
+      },
+      {
+        polish: "ubierać się",
+        german: "sich anziehen",
+      },
+      {
+        polish: "patrzeć przez okno",
+        german: "aus dem Fenster schauen",
+      },
+      {
+        polish: "iść do pracy",
+        german: "zur Arbeit gehen",
+      },
+      {
+        polish: "iść do lekarza",
+        german: "zum Arzt gehen",
+      },
+      {
+        polish: "sprzątać / posprzątać",
+        german: "aufräumen",
+      },
+      {
+        polish: "wstawać",
+        german: "aufstehen",
+      },
+      {
+        polish: "wyprasować",
+        german: "ausbügeln",
+      },
+      {
+        polish: "wyłączać / wyłączyć",
+        german: "ausmachen",
+      },
+      {
+        polish: "odpoczywać",
+        german: "sich ausruhen",
+      },
+      {
+        polish: "brać kąpiel",
+        german: "ein Bad nehmen",
+      },
+      {
+        polish: "kąpać się / wykąpać się",
+        german: "baden",
+      },
+      {
+        polish: "majsterkować",
+        german: "basteln",
+      },
+      {
+        polish: "dostawać / dostać",
+        german: "bekommen",
+      },
+      {
+        polish: "opisywać / opisać",
+        german: "beschreiben",
+      },
+      {
+        polish: "załatwiać sprawunki",
+        german: "Besorgungen machen",
+      },
+      {
+        polish: "ścielić łóżko / zaścielać łóżko",
+        german: "das Bett machen",
+      },
+      {
+        polish: "prasować",
+        german: "bügeln",
+      },
+      {
+        polish: "dziękować",
+        german: "danken",
+      },
+      {
+        polish: "prysznic",
+        german: "duschen",
+      },
+      {
+        polish: "iść na zakupy",
+        german: "einkaufen gehen",
+      },
+      {
+        polish: "iść na lody",
+        german: "Eis essen gehen",
+      },
+      {
+        polish: "jeść",
+        german: "essen",
+      },
+      {
+        polish: "jeść kolację",
+        german: "zu Abend essen",
+      },
+      {
+        polish: "jeść obiad",
+        german: "zu Mittag essen",
+      },
+      {
+        polish: "myć okna / umyć okna",
+        german: "Fenster putzen",
+      },
+      {
+        polish: "oglądać telewizję",
+        german: "fernsehen",
+      },
+      {
+        polish: "pytać / zapytać",
+        german: "fragen",
+      },
+      {
+        polish: "jeść śniadanie",
+        german: "frühstücken",
+      },
+      {
+        polish: "dawać / dać",
+        german: "geben",
+      },
+      {
+        polish: "biegać po sklepach",
+        german: "die Geschäfte abklappern",
+      },
+      {
+        polish: "zmywać naczynia",
+        german: "Geschirr spülen",
+      },
+      {
+        polish: "mieć",
+        german: "haben",
+      },
+      {
+        polish: "siedzieć w domu",
+        german: "zu Hause hocken",
+      },
+      {
+        polish: "nastawić wodę na kawę",
+        german: "Kaffeewasser aufsetzen",
+      },
+      {
+        polish: "czesać / uczesać",
+        german: "kämmen",
+      },
+    ],
+    name: {
+      german: "Alltagsverben",
+      polish: "Czasowniki Codzienności",
+    },
+    Icon: Cycle,
   },
 };

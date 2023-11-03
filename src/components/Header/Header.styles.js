@@ -22,7 +22,7 @@ export const Divider = styled(Box)({});
 
 Divider.defaultProps = {
   border: {
-    color: "brand",
+    color: "neutral-3",
     size: "medium",
     side: "top",
   },
@@ -41,7 +41,7 @@ export const LogoFrame = styled(Box)({
 
 LogoFrame.defaultProps = {
   border: {
-    color: "brand",
+    color: "neutral-3",
     size: "small",
   },
 };
