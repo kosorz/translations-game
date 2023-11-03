@@ -14,8 +14,8 @@ export const Wizard = ({
   aimLanguage,
   config,
   questions = 10,
-  setCondition,
-  condition,
+  setMode,
+  mode,
   theme,
   setTheme,
 }) => {
@@ -100,7 +100,7 @@ export const Wizard = ({
       label="New set"
       onClick={() => {
         reset();
-        setCondition("view");
+        setMode("training");
         setWordList(getWordList(source.value));
       }}
     />
@@ -111,15 +111,15 @@ export const Wizard = ({
     setWordList(shuffle(wordList));
   };
 
-  const AttemptAgain = (
-    <S.Hero label="Attempt again" onClick={resetAndShuffleCurrentSet} />
+  const AttemptAgain = ({ label = "Attempt again" }) => (
+    <S.Hero label={label} onClick={resetAndShuffleCurrentSet} />
   );
 
   const Test = (
     <S.Hero
       label="Attempt test"
       onClick={() => {
-        setCondition("write");
+        setMode("test");
         resetAndShuffleCurrentSet();
       }}
     />
@@ -129,7 +129,7 @@ export const Wizard = ({
     <S.Option
       label="Keep training"
       onClick={() => {
-        setCondition("view");
+        setMode("training");
         resetAndShuffleCurrentSet();
       }}
     />
@@ -181,10 +181,10 @@ export const Wizard = ({
             {currentWordIndex + 1}/{wordList.length}
           </S.Progress>
 
-          {((revealed && condition === "write") || !!currentWordIndex) && (
+          {((revealed && mode === "test") || !!currentWordIndex) && (
             <S.ProgressScore>
               {score}/
-              {currentWordIndex + (revealed && condition === "write" ? 1 : 0)}{" "}
+              {currentWordIndex + (revealed && mode === "test" ? 1 : 0)}{" "}
               <S.Star />
             </S.ProgressScore>
           )}
@@ -195,10 +195,10 @@ export const Wizard = ({
           <S.Answer>{revealed && `(${currentWord[aimLanguage]})`}</S.Answer>
         </S.Word>
 
-        {condition === "write" && Write}
+        {mode === "test" && Write}
       </S.Main>
 
-      {condition === "view" && (revealed ? View : <S.ViewPlaceholder />)}
+      {mode === "training" && (revealed ? View : <S.ViewPlaceholder />)}
     </>
   );
 
@@ -235,20 +235,33 @@ export const Wizard = ({
       </S.Main>
       <S.Actions>
         {(() => {
-          if (score === questions) {
-            if (condition === "view") {
+          if (score >= questions) {
+            if (mode === "training") {
               return Test;
             }
 
-            if (condition === "write") {
+            if (mode === "test") {
               return <MoveOnToNewSet primary />;
             }
           }
 
-          return AttemptAgain;
+          if (mode === 'write') {
+            return <AttemptAgain />;
+          }
+
+          return <AttemptAgain label="Keep training" />;
         })()}
 
-        {condition === "write" ? Train : <MoveOnToNewSet primary={false} />}
+        {(() => {
+          if (mode === "test") {
+            if (score >= questions * 0.8)
+              return <MoveOnToNewSet primary={false} />;
+
+            return Train;
+          }
+
+          return <MoveOnToNewSet primary={false} />;
+        })()}
       </S.Actions>
     </>
   );
@@ -284,7 +297,7 @@ export const Wizard = ({
         </Sidebar>
         <S.Center
           onClick={
-            !finished && condition === "view"
+            !finished && mode === "training"
               ? () => setRevealed(true)
               : undefined
           }
