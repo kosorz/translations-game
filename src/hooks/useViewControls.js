@@ -5,9 +5,9 @@ export const useKeydownListener = (keyEventMapping) => {
     function handleKeyPress(e) {
       for (const key in keyEventMapping) {
         if (e.key === key || e.keyCode === keyEventMapping[key]) {
-          if (keyEventMapping[key].enabled) {
-            keyEventMapping[key].cb();
-          }
+          keyEventMapping[key].forEach((k) => {
+            if (k.active) k.cb();
+          });
         }
       }
     }

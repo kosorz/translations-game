@@ -63,6 +63,11 @@ export const Wizard = ({
     setCurrentWordIndex(currentWordIndex + 1);
   };
 
+  const viewCorrectContinue = (e) => {
+    viewContinue(e);
+    setScore(score + 1);
+  };
+
   const reset = () => {
     setCurrentWordIndex(0);
     setRevealed(false);
@@ -73,15 +78,12 @@ export const Wizard = ({
   const currentSet = wordList.map((el) => el[baseLanguage]).join("");
 
   useKeydownListener({
-    " ": { cb: () => setRevealed(true), enabled: !revealed && !finished },
-    Escape: { cb: viewContinue, enabled: revealed },
-    Enter: {
-      cb: () => {
-        viewContinue();
-        setScore(score + 1);
-      },
-      enabled: revealed,
-    },
+    " ": [
+      { cb: () => setRevealed(true), active: !revealed && !finished },
+      { cb: viewCorrectContinue, active: revealed },
+    ],
+    Escape: [{ cb: viewContinue, active: revealed }],
+    Enter: [{ cb: () => viewCorrectContinue, active: revealed }],
   });
 
   useEffect(() => {
@@ -111,8 +113,12 @@ export const Wizard = ({
     setWordList(shuffle(wordList));
   };
 
-  const AttemptAgain = ({ label = "Attempt again" }) => (
-    <S.Hero label={label} onClick={resetAndShuffleCurrentSet} />
+  const AttemptAgain = ({ label = "Attempt again", primary = true }) => (
+    <S.Hero
+      label={label}
+      primary={primary}
+      onClick={resetAndShuffleCurrentSet}
+    />
   );
 
   const Test = (
@@ -145,10 +151,7 @@ export const Wizard = ({
       />
 
       <S.ViewActionRight
-        onClick={(e) => {
-          viewContinue(e);
-          setScore(score + 1);
-        }}
+        onClick={viewCorrectContinue}
         icon={<Checkmark />}
         label={<S.EmptyLabel />}
         primary
@@ -183,8 +186,7 @@ export const Wizard = ({
 
           {((revealed && mode === "test") || !!currentWordIndex) && (
             <S.ProgressScore>
-              {score}/
-              {currentWordIndex + (revealed && mode === "test" ? 1 : 0)}{" "}
+              {score}/{currentWordIndex + (revealed && mode === "test" ? 1 : 0)}{" "}
               <S.Star />
             </S.ProgressScore>
           )}
@@ -235,7 +237,7 @@ export const Wizard = ({
       </S.Main>
       <S.Actions>
         {(() => {
-          if (score >= questions) {
+          if (score === questions) {
             if (mode === "training") {
               return Test;
             }
@@ -245,7 +247,7 @@ export const Wizard = ({
             }
           }
 
-          if (mode === 'write') {
+          if (mode === "test") {
             return <AttemptAgain />;
           }
 
@@ -254,6 +256,10 @@ export const Wizard = ({
 
         {(() => {
           if (mode === "test") {
+            if (score === questions) {
+              return <AttemptAgain primary={false} />;
+            }
+
             if (score >= questions * 0.8)
               return <MoveOnToNewSet primary={false} />;
 
