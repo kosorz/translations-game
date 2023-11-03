@@ -32,6 +32,7 @@ Main.defaultProps = {
 
 export const Center = styled(Box)({
   flexGrow: 1,
+  outline: 'none!important'
 });
 
 Center.defaultProps = {

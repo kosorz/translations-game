@@ -7,6 +7,7 @@ import { Achievement, Announce, Trophy, Checkmark, Close } from "grommet-icons";
 import { Sidebar } from "../Sidebar/Sidebar";
 import { Page } from "../Page/Page";
 import { Header } from "../Header/Header";
+import { useKeydownListener } from "../../hooks/useViewControls";
 
 export const Wizard = ({
   baseLanguage,
@@ -52,16 +53,16 @@ export const Wizard = ({
     }
   };
 
-  const finished = currentWordIndex === questions
+  const finished = currentWordIndex === questions;
 
   const viewContinue = (e) => {
-    e.stopPropagation();
+    if (e) e.stopPropagation();
 
     setRevealed(false);
     setCurrentWordIndex(currentWordIndex + 1);
   };
 
-  const reset = (e) => {
+  const reset = () => {
     setCurrentWordIndex(0);
     setRevealed(false);
     setUserInput("");
@@ -69,6 +70,18 @@ export const Wizard = ({
   };
 
   const currentSet = wordList.map((el) => el[baseLanguage]).join("");
+
+  useKeydownListener({
+    " ": { cb: () => setRevealed(true), enabled: !revealed },
+    Escape: { cb: viewContinue, enabled: revealed },
+    Enter: {
+      cb: () => {
+        viewContinue();
+        setScore(score + 1);
+      },
+      enabled: revealed,
+    },
+  });
 
   useEffect(() => {
     setCurrentWord(wordList[currentWordIndex]);
@@ -249,7 +262,11 @@ export const Wizard = ({
           </S.Categories>
         </Sidebar>
         <S.Center
-          onClick={!finished && condition === "view" ? () => setRevealed(true) : undefined}
+          onClick={
+            !finished && condition === "view"
+              ? () => setRevealed(true)
+              : undefined
+          }
         >
           <Heading textAlign="center">{source.name}</Heading>
           {finished ? Result : Quiz}
