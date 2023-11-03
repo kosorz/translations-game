@@ -21,7 +21,7 @@ export const Dialog = ({ open, setOpen, title, actions, message }) => {
           {actions.map((a, i) => (
             <Button
               label={a.label}
-              color={i === 0 ? "status-critical" : undefined}
+              color={i === 0 ? "status-critical" : 'neutral-3'}
               primary={i === 1}
               onClick={a.onClick}
             />

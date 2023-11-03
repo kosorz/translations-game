@@ -102,6 +102,10 @@ export const Option = styled(Button)({
   border: "none",
 });
 
+Option.defaultProps = {
+  color: 'neutral-3'
+}
+
 export const Hero = styled(Button)({
   marginTop: "8px",
   minWidth: 200,
@@ -109,6 +113,7 @@ export const Hero = styled(Button)({
 
 Hero.defaultProps = {
   primary: true,
+  color: 'neutral-3'
 };
 
 export const Badge = styled(Heading)({
