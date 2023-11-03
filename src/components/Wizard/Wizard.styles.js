@@ -37,6 +37,7 @@ export const Center = styled(Box)({
 Center.defaultProps = {
   align: "center",
   round: "small",
+  focusIndicator: false,
   pad: { bottom: "medium", right: "medium", left: "medium" },
 };
 

@@ -249,7 +249,6 @@ export const Wizard = ({
           </S.Categories>
         </Sidebar>
         <S.Center
-          fill="vertical"
           onClick={!finished && condition === "view" ? () => setRevealed(true) : undefined}
         >
           <Heading textAlign="center">{source.name}</Heading>
