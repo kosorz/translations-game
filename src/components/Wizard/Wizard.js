@@ -25,6 +25,7 @@ export const Wizard = ({
     value: Object.values(config)[0].value,
   });
   const [abortingTest, setAbortingTest] = useState();
+  const [resettingTraining, setResettingTraining] = useState();
   const [wordList, setWordList] = useState(getWordList(source.value));
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
   const [currentWord, setCurrentWord] = useState(wordList[0]);
@@ -94,7 +95,6 @@ export const Wizard = ({
         cb: () => setAbortingTest(true),
         active: mode === "test" && !abortingTest,
       },
-      { cb: () => setAbortingTest(false), active: abortingTest },
     ],
     Enter: [{ cb: () => viewCorrectContinue, active: revealed }],
   });
@@ -211,10 +211,23 @@ export const Wizard = ({
 
           {((revealed && mode === "test") || !!currentWordIndex) && (
             <S.ProgressScore>
-              {score}/{currentWordIndex + (revealed && mode === "test" ? 1 : 0)}{" "}
+              <strong>
+                {score}/
+                {currentWordIndex + (revealed && mode === "test" ? 1 : 0)}
+              </strong>{" "}
               <S.Star />
             </S.ProgressScore>
           )}
+
+          <Close
+            size="medium"
+            onClick={(e) => {
+              (mode === "training" ? setResettingTraining : setAbortingTest)(
+                true
+              );
+              e.stopPropagation();
+            }}
+          />
         </Box>
 
         <S.Word revealed={revealed}>
@@ -364,6 +377,29 @@ export const Wizard = ({
           }
           title="Interrupt Test?"
           setOpen={setAbortingTest}
+        />
+        <Dialog
+          open={resettingTraining}
+          actions={[
+            {
+              label: "Interrupt",
+              onClick: () => {
+                resetAndShuffleCurrentSet();
+                setResettingTraining(false);
+              },
+            },
+            {
+              label: "Resume",
+              onClick: () => {
+                setResettingTraining(false);
+              },
+            },
+          ]}
+          message={
+            "Are you sure you want to interrupt the ongoing training? Your current progress will be lost, and you'll start over."
+          }
+          title="Interrupt Training?"
+          setOpen={setResettingTraining}
         />
       </Page>
     </>

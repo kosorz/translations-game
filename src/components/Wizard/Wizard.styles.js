@@ -5,7 +5,6 @@ import { Star as StarBase } from "grommet-icons";
 export const Progress = styled(Paragraph)({
   margin: 0,
   textAlign: "left",
-  color: "gray",
 });
 
 export const Main = styled(Box)({
@@ -76,7 +75,12 @@ WriteInput.defaultProps = {
 export const ProgressScore = styled(Progress)({
   display: "flex",
   alignItems: "center",
+  fontSize: 20,
 });
+
+ProgressScore.defaultProps = {
+  color: "neutral-3",
+};
 
 export const Score = styled(Heading)({
   justifyContent: "center",
@@ -141,7 +145,7 @@ Categories.defaultProps = {
 };
 
 export const Star = styled(StarBase)({
-  width: 18,
+  width: 24,
   height: "auto",
 });
 
@@ -174,13 +178,17 @@ export const ViewActionLeft = styled(ViewAction)({
 });
 
 ViewActionLeft.defaultProps = {
-  color: 'status-critical',
-}
+  color: "status-critical",
+};
 
 export const ViewActionRight = styled(ViewAction)({
   borderTopLeftRadius: 0,
   borderBottomLeftRadius: 0,
 });
+
+ViewActionRight.defaultProps = {
+  color: "neutral-3",
+};
 
 export const EmptyLabel = styled(Box)({
   height: 35,
