@@ -8,6 +8,7 @@ import { Sidebar } from "../Sidebar/Sidebar";
 import { Page } from "../Page/Page";
 import { Header } from "../Header/Header";
 import { useKeydownListener } from "../../hooks/useViewControls";
+import { Dialog } from "../Dialog/Dialog";
 
 export const Wizard = ({
   baseLanguage,
@@ -23,6 +24,7 @@ export const Wizard = ({
     name: Object.values(config)[0].name[baseLanguage],
     value: Object.values(config)[0].value,
   });
+  const [abortingTest, setAbortingTest] = useState();
   const [wordList, setWordList] = useState(getWordList(source.value));
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
   const [currentWord, setCurrentWord] = useState(wordList[0]);
@@ -86,7 +88,14 @@ export const Wizard = ({
       },
       { cb: viewCorrectContinue, active: revealed && !inputHasFocus },
     ],
-    Escape: [{ cb: viewContinue, active: revealed }],
+    Escape: [
+      { cb: viewContinue, active: revealed && mode === "training" },
+      {
+        cb: () => setAbortingTest(true),
+        active: mode === "test" && !abortingTest,
+      },
+      { cb: () => setAbortingTest(false), active: abortingTest },
+    ],
     Enter: [{ cb: () => viewCorrectContinue, active: revealed }],
   });
 
@@ -120,7 +129,7 @@ export const Wizard = ({
         setMode("training");
         setWordList(getWordList(source.value));
       }}
-      ref={ref} // Pass the ref to the underlying S.Hero component
+      ref={ref}
     />
   ));
 
@@ -130,7 +139,7 @@ export const Wizard = ({
         label={label}
         primary={primary}
         onClick={resetAndShuffleCurrentSet}
-        ref={ref} // Pass the ref to the underlying S.Hero component
+        ref={ref}
       />
     )
   );
@@ -161,7 +170,7 @@ export const Wizard = ({
     <S.View>
       <S.ViewActionLeft
         secondary
-        icon={<Close color="red" />}
+        icon={<Close />}
         onClick={viewContinue}
         label={<S.EmptyLabel />}
       />
@@ -255,6 +264,10 @@ export const Wizard = ({
     }
   }, [summary]);
 
+  useEffect(() => {
+    if (mode === "test") input.current.focus();
+  }, [mode]);
+
   const Result = (
     <>
       <S.Main>
@@ -280,7 +293,7 @@ export const Wizard = ({
             if (score >= questions * 0.8)
               return <MoveOnToNewSet primary={false} />;
 
-            return Train;
+            return <Train />;
           }
 
           return <MoveOnToNewSet primary={false} />;
@@ -303,7 +316,7 @@ export const Wizard = ({
                 onClick={(e) => {
                   e.target.blur();
 
-                  setMode('training')
+                  setMode("training");
                   onSwitchCategory({
                     name: category.name[baseLanguage],
                     value: category.value,
@@ -328,6 +341,30 @@ export const Wizard = ({
           <Heading textAlign="center">{source.name}</Heading>
           {finished ? Result : Quiz}
         </S.Center>
+        <Dialog
+          open={abortingTest}
+          actions={[
+            {
+              label: "Interrupt",
+              onClick: () => {
+                setMode("training");
+                resetAndShuffleCurrentSet();
+                setAbortingTest(false);
+              },
+            },
+            {
+              label: "Resume",
+              onClick: () => {
+                setAbortingTest(false);
+              },
+            },
+          ]}
+          message={
+            "Are you sure you want to interrupt the ongoing test? Your current progress will be lost, and you'll be redirected back to the learning mode."
+          }
+          title="Interrupt Test?"
+          setOpen={setAbortingTest}
+        />
       </Page>
     </>
   );

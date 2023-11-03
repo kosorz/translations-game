@@ -32,7 +32,7 @@ Main.defaultProps = {
 
 export const Center = styled(Box)({
   flexGrow: 1,
-  outline: 'none!important'
+  outline: "none!important",
 });
 
 Center.defaultProps = {
@@ -104,8 +104,8 @@ export const Hero = styled(Button)({
 });
 
 Hero.defaultProps = {
-  primary: true
-}
+  primary: true,
+};
 
 export const Badge = styled(Heading)({
   marginBottom: 0,
@@ -171,12 +171,11 @@ export const ViewAction = styled(Button)({
 export const ViewActionLeft = styled(ViewAction)({
   borderTopRightRadius: 0,
   borderBottomRightRadius: 0,
-  borderColor: "red",
-
-  "&:hover": {
-    boxShadow: `0px 0px 0px 2px red`,
-  },
 });
+
+ViewActionLeft.defaultProps = {
+  color: 'status-critical',
+}
 
 export const ViewActionRight = styled(ViewAction)({
   borderTopLeftRadius: 0,
@@ -184,11 +183,9 @@ export const ViewActionRight = styled(ViewAction)({
 });
 
 export const EmptyLabel = styled(Box)({
-  background: "red",
   height: 35,
 });
 
 export const ViewPlaceholder = styled(Box)({
   height: 47,
-  background: "red",
 });
