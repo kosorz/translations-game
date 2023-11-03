@@ -8,14 +8,12 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { polishEnglishConfig } from "./configs/polish-english";
 import { Dashboard } from "./components/Dashboard/Dashboard";
 
-const router = ({ setTheme, setMode, mode, theme }) =>
+const router = ({ setTheme, theme }) =>
   createBrowserRouter([
     {
       path: "/",
       element: (
         <Dashboard
-          setMode={setMode}
-          mode={mode}
           setTheme={setTheme}
           theme={theme}
         />
@@ -30,8 +28,6 @@ const router = ({ setTheme, setMode, mode, theme }) =>
           config={polishGermanConfig}
           setTheme={setTheme}
           theme={theme}
-          setMode={setMode}
-          mode={mode}
         />
       ),
     },
@@ -44,8 +40,6 @@ const router = ({ setTheme, setMode, mode, theme }) =>
           config={polishGermanConfig}
           setTheme={setTheme}
           theme={theme}
-          setMode={setMode}
-          mode={mode}
         />
       ),
     },
@@ -53,14 +47,11 @@ const router = ({ setTheme, setMode, mode, theme }) =>
       path: "/polish-english",
       element: (
         <Wizard
-          questions={5}
           aimLanguage="english"
           baseLanguage="polish"
           config={polishEnglishConfig}
           setTheme={setTheme}
           theme={theme}
-          setMode={setMode}
-          mode={mode}
         />
       ),
     },
@@ -68,14 +59,11 @@ const router = ({ setTheme, setMode, mode, theme }) =>
       path: "/english-polish",
       element: (
         <Wizard
-          questions={5}
           aimLanguage="polish"
           baseLanguage="english"
           config={polishEnglishConfig}
           setTheme={setTheme}
           theme={theme}
-          setMode={setMode}
-          mode={mode}
         />
       ),
     },
@@ -87,7 +75,6 @@ const Root = styled(Grommet)({
 
 export const App = () => {
   const [theme, setTheme] = useState(localStorage.getItem("theme") || "dark");
-  const [mode, setMode] = useState("training");
 
   return (
     <Root
@@ -102,7 +89,7 @@ export const App = () => {
     >
       <React.StrictMode>
         <RouterProvider
-          router={router({ setTheme, theme, mode, setMode })}
+          router={router({ setTheme, theme })}
         />
       </React.StrictMode>
     </Root>

@@ -33,6 +33,10 @@ Divider.defaultProps = {
 
 export const LogoFrame = styled(Box)({
   borderRadius: "50%",
+
+  '&:active': {
+    boxShadow: '0 0 2px 2px #6FFFB0'
+  }
 });
 
 LogoFrame.defaultProps = {

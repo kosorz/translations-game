@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useLayoutEffect } from "react";
+import React, { useState, useEffect, useRef, forwardRef } from "react";
 import { TextInput, Heading, Box } from "grommet";
 
 import { shuffle } from "../../utils/shuffle";
@@ -14,13 +14,11 @@ export const Wizard = ({
   aimLanguage,
   config,
   questions = 10,
-  setMode,
-  mode,
   theme,
   setTheme,
 }) => {
   const getWordList = (src) => shuffle(src).slice(0, questions);
-
+  const [mode, setMode] = useState("training");
   const [source, setSource] = useState({
     name: Object.values(config)[0].name[baseLanguage],
     value: Object.values(config)[0].value,
@@ -32,7 +30,8 @@ export const Wizard = ({
   const [score, setScore] = useState(0);
   const [revealed, setRevealed] = useState(false);
 
-  const inputRef = useRef(null);
+  const input = useRef(null);
+  const nextButton = useRef(null);
 
   const checkAnswer = () => {
     if (
@@ -76,11 +75,16 @@ export const Wizard = ({
   };
 
   const currentSet = wordList.map((el) => el[baseLanguage]).join("");
+  const inputHasFocus =
+    input && input.current && input.current === document.activeElement;
 
   useKeydownListener({
     " ": [
-      { cb: () => setRevealed(true), active: !revealed && !finished },
-      { cb: viewCorrectContinue, active: revealed },
+      {
+        cb: () => setRevealed(true),
+        active: !revealed && !finished && !inputHasFocus,
+      },
+      { cb: viewCorrectContinue, active: revealed && !inputHasFocus },
     ],
     Escape: [{ cb: viewContinue, active: revealed }],
     Enter: [{ cb: () => viewCorrectContinue, active: revealed }],
@@ -90,13 +94,24 @@ export const Wizard = ({
     setCurrentWord(wordList[currentWordIndex]);
   }, [currentWordIndex, currentSet, wordList]);
 
-  useLayoutEffect(() => {
-    if (inputRef.current) {
-      inputRef.current.focus();
+  useEffect(() => {
+    if (input.current) {
+      input.current.focus();
     }
   }, [currentSet, wordList]);
 
-  const MoveOnToNewSet = ({ primary } = { primary: true }) => (
+  const resetAndShuffleCurrentSet = () => {
+    reset();
+    setWordList(shuffle(wordList));
+  };
+
+  const onSwitchCategory = ({ name, value }) => {
+    setSource({ name, value });
+    reset();
+    setWordList(getWordList(value));
+  };
+
+  const MoveOnToNewSet = forwardRef(({ primary = true }, ref) => (
     <S.Hero
       primary={primary}
       label="New set"
@@ -105,41 +120,42 @@ export const Wizard = ({
         setMode("training");
         setWordList(getWordList(source.value));
       }}
+      ref={ref} // Pass the ref to the underlying S.Hero component
     />
+  ));
+
+  const AttemptAgain = forwardRef(
+    ({ label = "Attempt again", primary = true }, ref) => (
+      <S.Hero
+        label={label}
+        primary={primary}
+        onClick={resetAndShuffleCurrentSet}
+        ref={ref} // Pass the ref to the underlying S.Hero component
+      />
+    )
   );
 
-  const resetAndShuffleCurrentSet = () => {
-    reset();
-    setWordList(shuffle(wordList));
-  };
-
-  const AttemptAgain = ({ label = "Attempt again", primary = true }) => (
+  const Test = forwardRef((_, ref) => (
     <S.Hero
-      label={label}
-      primary={primary}
-      onClick={resetAndShuffleCurrentSet}
-    />
-  );
-
-  const Test = (
-    <S.Hero
+      ref={ref}
       label="Attempt test"
       onClick={() => {
         setMode("test");
         resetAndShuffleCurrentSet();
       }}
     />
-  );
+  ));
 
-  const Train = (
+  const Train = forwardRef((_, ref) => (
     <S.Option
+      ref={ref}
       label="Keep training"
       onClick={() => {
         setMode("training");
         resetAndShuffleCurrentSet();
       }}
     />
-  );
+  ));
 
   const View = (
     <S.View>
@@ -167,7 +183,7 @@ export const Wizard = ({
             checkAnswer();
           }
         }}
-        ref={inputRef}
+        ref={input}
         placeholder="Translation"
         type="text"
         value={userInput}
@@ -204,12 +220,19 @@ export const Wizard = ({
     </>
   );
 
-  const Summary = (() => {
+  const summary = (() => {
     if (score === questions) {
       return {
         Icon: Achievement,
         heading: "Perfect!",
         subHeading: "You can now move on to a new set!",
+        Hero: (() => {
+          if (mode === "training") {
+            return <Test ref={nextButton} />;
+          }
+
+          return <MoveOnToNewSet ref={nextButton} primary />;
+        })(),
       };
     }
 
@@ -217,48 +240,42 @@ export const Wizard = ({
       Icon: Announce,
       heading: "Keep going!",
       subHeading: "You need to train more!",
+      Hero:
+        mode === "test" ? (
+          <AttemptAgain ref={nextButton} />
+        ) : (
+          <AttemptAgain ref={nextButton} label="Keep training" />
+        ),
     };
   })();
+
+  useEffect(() => {
+    if (nextButton.current) {
+      nextButton.current.focus();
+    }
+  }, [summary]);
 
   const Result = (
     <>
       <S.Main>
         <S.Badge>
-          <Summary.Icon size="large" color="brand" />
+          <summary.Icon size="large" color="brand" />
         </S.Badge>
 
-        <S.Encouragement>{Summary.heading}</S.Encouragement>
+        <S.Encouragement>{summary.heading}</S.Encouragement>
 
-        <S.EncouragementLong>{Summary.subHeading}</S.EncouragementLong>
+        <S.EncouragementLong>{summary.subHeading}</S.EncouragementLong>
 
         <S.Score>
           {score}/{questions}
         </S.Score>
       </S.Main>
       <S.Actions>
-        {(() => {
-          if (score === questions) {
-            if (mode === "training") {
-              return Test;
-            }
-
-            if (mode === "test") {
-              return <MoveOnToNewSet primary />;
-            }
-          }
-
-          if (mode === "test") {
-            return <AttemptAgain />;
-          }
-
-          return <AttemptAgain label="Keep training" />;
-        })()}
+        {summary.Hero}
 
         {(() => {
           if (mode === "test") {
-            if (score === questions) {
-              return <AttemptAgain primary={false} />;
-            }
+            if (score === questions) return <AttemptAgain primary={false} />;
 
             if (score >= questions * 0.8)
               return <MoveOnToNewSet primary={false} />;
@@ -272,15 +289,6 @@ export const Wizard = ({
     </>
   );
 
-  const onSwitchCategory = ({ name, value }) => {
-    setSource({
-      name,
-      value,
-    });
-    reset();
-    setWordList(getWordList(value));
-  };
-
   return (
     <>
       <Header theme={theme} setTheme={setTheme} />
@@ -289,14 +297,23 @@ export const Wizard = ({
           <S.Categories>
             {Object.values(config).map((category) => (
               <S.Category
+                focusIndicator={false}
                 active={source.name === category.name[baseLanguage]}
                 icon={<category.Icon />}
-                onClick={() =>
+                onClick={(e) => {
+                  e.target.blur();
+
+                  setMode('training')
                   onSwitchCategory({
                     name: category.name[baseLanguage],
                     value: category.value,
-                  })
-                }
+                  });
+                }}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" || e.key === " ") {
+                    e.preventDefault();
+                  }
+                }}
               />
             ))}
           </S.Categories>

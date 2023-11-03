@@ -801,7 +801,7 @@ export const polishGermanConfig = {
       },
       {
         polish: "babcia",
-        german: "die Großmutter",
+        german: "die Großmutter / die Oma",
       },
       {
         polish: "brat przyrodni",
@@ -846,10 +846,6 @@ export const polishGermanConfig = {
       {
         polish: "bratanica / siostrzenica",
         german: "die Nichte",
-      },
-      {
-        polish: "babcia",
-        german: "die Oma",
       },
       {
         polish: "wujek",
@@ -1395,7 +1391,7 @@ export const polishGermanConfig = {
         german: "eine Ehe für ungültig erklären",
       },
       {
-        polish: "zawierać małżeństwo; zawrzeć małżeństwo",
+        polish: "zawierać małżeństwo / zawrzeć małżeństwo",
         german: "eine Ehe schließen",
       },
       {
@@ -1443,7 +1439,7 @@ export const polishGermanConfig = {
         german: "den Haushalt führen",
       },
       {
-        polish: "mieć rogi; być rogaczem",
+        polish: "mieć rogi / być rogaczem",
         german: "Hörner tragen",
       },
       {
@@ -1501,7 +1497,7 @@ export const polishGermanConfig = {
         german: "das Hochzeitsmahl",
       },
       {
-        polish: "dzień ślubu; rocznica ślubu",
+        polish: "dzień ślubu / rocznica ślubu",
         german: "der Hochzeitstag",
       },
       {
@@ -1525,7 +1521,7 @@ export const polishGermanConfig = {
         german: "der Pantoffelheld",
       },
       {
-        polish: "rozwodzić się; rozwieść się",
+        polish: "rozwodzić się / rozwieść się",
         german: "sich scheiden lassen",
       },
       {
@@ -1589,7 +1585,7 @@ export const polishGermanConfig = {
         german: "die Unterhaltspflicht",
       },
       {
-        polish: "zamężna; żonaty",
+        polish: "zamężna / żonaty",
         german: "verheiratet",
       },
     ],
