@@ -93,19 +93,19 @@ export const Actions = styled(Box)({
   marginTop: "16px",
 });
 
-export const RedoSet = styled(Button)({
+export const Option = styled(Button)({
   marginTop: "8px",
   border: "none",
 });
 
-export const NewSet = styled(Button)({
+export const Hero = styled(Button)({
   marginTop: "8px",
   minWidth: 200,
 });
 
-NewSet.defaultProps = {
-  primary: true,
-};
+Hero.defaultProps = {
+  primary: true
+}
 
 export const Badge = styled(Heading)({
   marginBottom: 0,

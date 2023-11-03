@@ -3,7 +3,7 @@ import { TextInput, Heading, Box } from "grommet";
 
 import { shuffle } from "../../utils/shuffle";
 import * as S from "./Wizard.styles";
-import { Achievement, Announce, Trophy, Checkmark, Close } from "grommet-icons";
+import { Achievement, Announce, Checkmark, Close } from "grommet-icons";
 import { Sidebar } from "../Sidebar/Sidebar";
 import { Page } from "../Page/Page";
 import { Header } from "../Header/Header";
@@ -16,6 +16,8 @@ export const Wizard = ({
   questions = 10,
   setCondition,
   condition,
+  theme,
+  setTheme,
 }) => {
   const getWordList = (src) => shuffle(src).slice(0, questions);
 
@@ -30,7 +32,6 @@ export const Wizard = ({
   const [score, setScore] = useState(0);
   const [revealed, setRevealed] = useState(false);
 
-  const continueRef = useRef(null);
   const inputRef = useRef(null);
 
   const checkAnswer = () => {
@@ -72,7 +73,7 @@ export const Wizard = ({
   const currentSet = wordList.map((el) => el[baseLanguage]).join("");
 
   useKeydownListener({
-    " ": { cb: () => setRevealed(true), enabled: !revealed },
+    " ": { cb: () => setRevealed(true), enabled: !revealed && !finished },
     Escape: { cb: viewContinue, enabled: revealed },
     Enter: {
       cb: () => {
@@ -85,10 +86,6 @@ export const Wizard = ({
 
   useEffect(() => {
     setCurrentWord(wordList[currentWordIndex]);
-
-    if (continueRef.current) {
-      continueRef.current.focus();
-    }
   }, [currentWordIndex, currentSet, wordList]);
 
   useLayoutEffect(() => {
@@ -97,24 +94,43 @@ export const Wizard = ({
     }
   }, [currentSet, wordList]);
 
-  const NewSet = (
-    <S.NewSet
+  const MoveOnToNewSet = ({ primary } = { primary: true }) => (
+    <S.Hero
+      primary={primary}
       label="New set"
-      ref={score === questions ? continueRef : undefined}
       onClick={() => {
         reset();
+        setCondition("view");
         setWordList(getWordList(source.value));
       }}
     />
   );
 
-  const RedoSet = (
-    <S.RedoSet
-      label="Repeat set"
-      ref={score === questions ? undefined : continueRef}
+  const resetAndShuffleCurrentSet = () => {
+    reset();
+    setWordList(shuffle(wordList));
+  };
+
+  const AttemptAgain = (
+    <S.Hero label="Attempt again" onClick={resetAndShuffleCurrentSet} />
+  );
+
+  const Test = (
+    <S.Hero
+      label="Attempt test"
       onClick={() => {
-        reset();
-        setWordList(shuffle(wordList));
+        setCondition("write");
+        resetAndShuffleCurrentSet();
+      }}
+    />
+  );
+
+  const Train = (
+    <S.Option
+      label="Keep training"
+      onClick={() => {
+        setCondition("view");
+        resetAndShuffleCurrentSet();
       }}
     />
   );
@@ -187,19 +203,11 @@ export const Wizard = ({
   );
 
   const Summary = (() => {
-    if (score >= questions) {
+    if (score === questions) {
       return {
         Icon: Achievement,
         heading: "Perfect!",
         subHeading: "You can now move on to a new set!",
-      };
-    }
-
-    if (score >= questions * 0.8) {
-      return {
-        Icon: Trophy,
-        heading: "Almost!",
-        subHeading: "You can now move or consider repeating set!",
       };
     }
 
@@ -226,8 +234,21 @@ export const Wizard = ({
         </S.Score>
       </S.Main>
       <S.Actions>
-        {NewSet}
-        {RedoSet}
+        {(() => {
+          if (score === questions) {
+            if (condition === "view") {
+              return Test;
+            }
+
+            if (condition === "write") {
+              return <MoveOnToNewSet primary />;
+            }
+          }
+
+          return AttemptAgain;
+        })()}
+
+        {condition === "write" ? Train : <MoveOnToNewSet primary={false} />}
       </S.Actions>
     </>
   );
@@ -243,7 +264,7 @@ export const Wizard = ({
 
   return (
     <>
-      <Header condition={condition} setCondition={setCondition} />
+      <Header theme={theme} setTheme={setTheme} />
       <Page>
         <Sidebar>
           <S.Categories>

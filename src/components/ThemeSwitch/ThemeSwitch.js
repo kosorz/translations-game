@@ -15,7 +15,7 @@ export const ThemeSwitch = ({ setTheme, theme }) => {
           {
             icon: Sun,
             active: theme === "light",
-            onClick: () => {
+            onClick: (e) => {
               setTheme("light");
               saveTheme("light");
             },
@@ -23,7 +23,7 @@ export const ThemeSwitch = ({ setTheme, theme }) => {
           {
             icon: Moon,
             active: theme === "dark",
-            onClick: () => {
+            onClick: (e) => {
               setTheme("dark");
               saveTheme("dark");
             },

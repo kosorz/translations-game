@@ -1,10 +1,9 @@
 import React from "react";
 import { ThemeSwitch } from "../ThemeSwitch/ThemeSwitch";
-import { ConditionSwitch } from "../ConditionSwitch/ConditionSwitch";
 import * as S from "./Header.styles";
 import { Language } from "grommet-icons";
 
-export const Header = ({ theme, setTheme, setCondition, condition }) => (
+export const Header = ({ theme, setTheme }) => (
   <>
     <S.Root>
       <S.LogoFrame>
@@ -16,8 +15,7 @@ export const Header = ({ theme, setTheme, setCondition, condition }) => (
         />
       </S.LogoFrame>
       <S.Switches>
-        {condition && setCondition && <ConditionSwitch setCondition={setCondition} condition={condition} />}
-        {theme && setTheme && <ThemeSwitch setTheme={setTheme} theme={theme} />}
+        {<ThemeSwitch setTheme={setTheme} theme={theme} />}
       </S.Switches>
     </S.Root>
     <S.Divider />
