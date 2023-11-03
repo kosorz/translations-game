@@ -8,7 +8,9 @@ import {
 } from "grommet";
 import styled from "styled-components";
 
-export const Root = styled(LayerBase)({});
+export const Root = styled(LayerBase)({
+  borderRadius: 12
+});
 
 export const Card = styled(CardBase)({});
 
@@ -32,7 +34,7 @@ Heading.defaultProps = {
 export const CardBody = styled(CardBodyBase)({});
 
 CardBody.defaultProps = {
-  margin: { vertical: "medium", horizontal: "medium" },
+  margin: { bottom: "medium", top: 'small', horizontal: "medium" },
 };
 
 export const CardFooter = styled(CardFooterBase)({});

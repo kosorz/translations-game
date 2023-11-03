@@ -1,18 +1,11 @@
 import React from "react";
 import { Page } from "../Page/Page";
-import {
-  CardBody,
-  Card,
-  CardFooter,
-  Heading,
-  Paragraph,
-  Box,
-} from "grommet";
+import { CardBody, Card, CardFooter, Heading, Paragraph, Box } from "grommet";
 import { Center } from "../Wizard/Wizard.styles";
 import { Header } from "../Header/Header";
-import * as S from './Dashboard.styles'
+import * as S from "./Dashboard.styles";
 
-const Mode = ({ flags, name, href }) => (
+const Mode = ({ flags, name, href, theme }) => (
   <S.Tile
     href={href}
     hoverIndicator
@@ -25,7 +18,10 @@ const Mode = ({ flags, name, href }) => (
             </span>
           </Heading>
         </CardBody>
-        <CardFooter pad={{ horizontal: "small" }} background="light-2">
+        <CardFooter
+          pad={{ horizontal: "small" }}
+          background={theme === "dark" ? "dark-2" : "light-2"}
+        >
           <Paragraph
             style={{
               flex: 1,
@@ -42,38 +38,39 @@ const Mode = ({ flags, name, href }) => (
 
 export const Dashboard = ({ setTheme, theme }) => (
   <>
-    <Header
-      setTheme={setTheme}
-      theme={theme}
-    />
+    <Header setTheme={setTheme} theme={theme} />
     <Page>
       <Center>
         <Heading>Explore modes</Heading>
         <Box
           width="big"
           pad="medium"
-          gap='8px'
+          gap="8px"
           direction="row"
           justify="center"
           wrap
           round
         >
           <Mode
+            theme={theme}
             href={"/german-polish"}
             name={"Deutsch / Polski"}
             flags={"🇩🇪 | 🇵🇱"}
           />
           <Mode
+            theme={theme}
             href={"/polish-german"}
             name={"Polski / Deutsch"}
             flags={"🇵🇱 | 🇩🇪"}
           />
           <Mode
+            theme={theme}
             href={"/polish-english"}
             name={"Polski / English"}
             flags={"🇵🇱 | 🇬🇧"}
           />
           <Mode
+            theme={theme}
             href={"/english-polish"}
             name={"English / Polski"}
             flags={"🇬🇧 | 🇵🇱"}

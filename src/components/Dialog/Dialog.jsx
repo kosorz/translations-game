@@ -12,7 +12,7 @@ export const Dialog = ({ open, setOpen, title, actions, message }) => {
       onClickOutside={() => setOpen(false)}
       responsive={false}
     >
-      <S.Card background={theme === "dark" ? "dark-1" : undefined}>
+      <S.Card round={'small'} background={theme === "dark" ? "dark-1" : undefined}>
         <S.CardHeader>
           <S.Heading>{title}</S.Heading>
         </S.CardHeader>
