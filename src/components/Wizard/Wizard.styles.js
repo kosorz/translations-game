@@ -2,6 +2,10 @@ import styled from "styled-components";
 import { Box, Button, Heading, Paragraph, Nav } from "grommet";
 import { Star as StarBase } from "grommet-icons";
 
+export const Result = styled(Box)({
+  touchAction: 'manipulation',
+})
+
 export const Progress = styled(Paragraph)({
   margin: 0,
   textAlign: "left",

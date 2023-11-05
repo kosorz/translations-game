@@ -1,0 +1,15 @@
+{
+  "name": "Wordie.io",
+  "short_name": "Wordie",
+  "icons": [
+    {
+      "src": "/logo.svg",
+      "sizes": "32x32",
+      "type": "image/svg"
+    }
+  ],
+  "theme_color": "#000",
+  "background_color": "#000",
+  "display": "standalone",
+  "start_url": "."
+}

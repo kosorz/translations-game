@@ -33,6 +33,8 @@ Divider.defaultProps = {
 
 export const LogoFrame = styled(Box)({
   borderRadius: "50%",
+  minHeight: 46,
+  minWidth: 46,
 
   '&:active': {
     boxShadow: '0 0 2px 2px #6FFFB0'
@@ -48,7 +50,6 @@ LogoFrame.defaultProps = {
 
 export const Logo = styled(Button)({
   padding: 8,
-  borderRadius: "50%",
 });
 
 export const Switches = styled(Box)({

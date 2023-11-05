@@ -41,7 +41,7 @@ export const Wizard = ({
       currentWord[aimLanguage]
         .split(" / ")
         .map((el) => el.toLowerCase())
-        .includes(userInput.toLowerCase()) &&
+        .includes(userInput.toLowerCase().trim()) &&
       userInput !== ""
     ) {
       if (!revealed) {
@@ -282,7 +282,7 @@ export const Wizard = ({
   }, [mode]);
 
   const Result = (
-    <>
+    <S.Result>
       <S.Main>
         <S.Badge>
           <summary.Icon size="large" color="neutral-3" />
@@ -312,7 +312,7 @@ export const Wizard = ({
           return <MoveOnToNewSet primary={false} />;
         })()}
       </S.Actions>
-    </>
+    </S.Result>
   );
 
   return (

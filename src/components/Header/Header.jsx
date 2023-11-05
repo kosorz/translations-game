@@ -1,18 +1,18 @@
 import React from "react";
 import { ThemeSwitch } from "../ThemeSwitch/ThemeSwitch";
 import * as S from "./Header.styles";
-import { Language } from "grommet-icons";
 
 export const Header = ({ theme, setTheme }) => (
   <>
     <S.Root>
       <S.LogoFrame>
         <S.Logo
-          icon={<Language size="medium" />}
+          icon={<img alt="logo" src='/logo.svg' width={26} />}
           pad="small"
           href={"/"}
           hoverIndicator
         />
+        
       </S.LogoFrame>
       <S.Switches>
         {<ThemeSwitch setTheme={setTheme} theme={theme} />}
