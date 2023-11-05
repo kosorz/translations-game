@@ -3,12 +3,21 @@ import { TextInput, Heading, Box } from "grommet";
 
 import { shuffle } from "../../utils/shuffle";
 import * as S from "./Wizard.styles";
-import { Achievement, Announce, Checkmark, Close } from "grommet-icons";
+import {
+  Achievement,
+  Announce,
+  Checkmark,
+  Close,
+  Refresh,
+} from "grommet-icons";
 import { Sidebar } from "../Sidebar/Sidebar";
 import { Page } from "../Page/Page";
 import { Header } from "../Header/Header";
 import { useKeydownListener } from "../../hooks/useViewControls";
 import { Dialog } from "../Dialog/Dialog";
+
+import Joyride from "react-joyride";
+import { TourTooltip } from "../TourTooltip/TourTooltip";
 
 export const Wizard = ({
   baseLanguage,
@@ -25,13 +34,69 @@ export const Wizard = ({
     value: Object.values(config)[0].value,
   });
   const [abortingTest, setAbortingTest] = useState();
-  const [resettingTraining, setResettingTraining] = useState();
+  const [renewingTraining, setRenewingTraining] = useState();
   const [wordList, setWordList] = useState(getWordList(source.value));
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
   const [currentWord, setCurrentWord] = useState(wordList[0]);
   const [userInput, setUserInput] = useState("");
   const [score, setScore] = useState(0);
   const [revealed, setRevealed] = useState(false);
+  const [tour, setTour] = useState({
+    run: !localStorage.getItem("guidedOnTraining"),
+    stepIndex: 0,
+    steps: [
+      {
+        title: "Getting Started",
+        target: "#stack",
+        content:
+          "Begin by considering the word's translation, and then click the card to reveal the answer.",
+        disableBeacon: true,
+      },
+      {
+        title: "How Did You Perform?",
+        target: "#view",
+        content: "Let us know if you knew the answer after revealing it.",
+        placement: "bottom-center",
+        disableBeacon: true,
+      },
+      {
+        title: "Tracking Your Progress",
+        target: "#progress",
+        content:
+          "Here, you can monitor how many flashcards from the set you've already seen.",
+        disableBeacon: true,
+      },
+      {
+        title: "Check Your Score",
+        target: "#score",
+        content:
+          "Discover how many points you've earned; points will be relevant later on.",
+        disableBeacon: true,
+      },
+      {
+        title: "Starting Fresh",
+        target: "#stopIcon",
+        content: "Begin anew with a fresh deck of flashcards!",
+        placement: "left",
+        disableBeacon: true,
+      },
+      {
+        title: "Keep Going!",
+        target: "#actions",
+        content: "Explore the possible challenges that lie ahead.",
+        disableBeacon: true,
+      },
+      {
+        title: "One More Thing!",
+        target: "#categories",
+        content: "Here, you can find a variety of categories to enjoy.",
+        disableBeacon: true,
+        position: "right",
+      },
+    ],
+    active: !localStorage.getItem("guidedOnTraining"),
+    continuous: false,
+  });
 
   const input = useRef(null);
   const nextButton = useRef(null);
@@ -60,6 +125,10 @@ export const Wizard = ({
 
   const viewContinue = (e) => {
     if (e) e.stopPropagation();
+
+    if (currentWordIndex === 0 && tour.active && tour.stepIndex === 2) {
+      setTour((tour) => ({ ...tour, run: true }));
+    }
 
     setRevealed(false);
     setCurrentWordIndex(currentWordIndex + 1);
@@ -98,16 +167,6 @@ export const Wizard = ({
     ],
     Enter: [{ cb: () => viewCorrectContinue, active: revealed }],
   });
-
-  useEffect(() => {
-    setCurrentWord(wordList[currentWordIndex]);
-  }, [currentWordIndex, currentSet, wordList]);
-
-  useEffect(() => {
-    if (input.current) {
-      input.current.focus();
-    }
-  }, [currentSet, wordList]);
 
   const resetAndShuffleCurrentSet = () => {
     reset();
@@ -167,7 +226,7 @@ export const Wizard = ({
   ));
 
   const View = (
-    <S.View>
+    <S.View id="view">
       <S.ViewActionLeft
         secondary
         icon={<Close />}
@@ -201,16 +260,18 @@ export const Wizard = ({
     </S.WriteInput>
   );
 
+  const StopIcon = mode === "test" ? Close : Refresh;
+
   const Quiz = (
     <>
-      <S.Main width="medium">
+      <S.Main id="stack" width="medium">
         <Box direction="row" justify="between">
-          <S.Progress>
+          <S.Progress id="progress">
             {currentWordIndex + 1}/{wordList.length}
           </S.Progress>
 
           {((revealed && mode === "test") || !!currentWordIndex) && (
-            <S.ProgressScore>
+            <S.ProgressScore id="score">
               <strong>
                 {score}/
                 {currentWordIndex + (revealed && mode === "test" ? 1 : 0)}
@@ -219,10 +280,11 @@ export const Wizard = ({
             </S.ProgressScore>
           )}
 
-          <Close
+          <StopIcon
+            id="stopIcon"
             size="medium"
             onClick={(e) => {
-              (mode === "training" ? setResettingTraining : setAbortingTest)(
+              (mode === "training" ? setRenewingTraining : setAbortingTest)(
                 true
               );
               e.stopPropagation();
@@ -271,16 +333,6 @@ export const Wizard = ({
     };
   })();
 
-  useEffect(() => {
-    if (nextButton.current) {
-      nextButton.current.focus();
-    }
-  }, [summary]);
-
-  useEffect(() => {
-    if (mode === "test") input.current.focus();
-  }, [mode]);
-
   const Result = (
     <S.Result>
       <S.Main>
@@ -296,7 +348,7 @@ export const Wizard = ({
           {score}/{questions}
         </S.Score>
       </S.Main>
-      <S.Actions>
+      <S.Actions id="actions">
         {summary.Hero}
 
         {(() => {
@@ -315,12 +367,99 @@ export const Wizard = ({
     </S.Result>
   );
 
+  useEffect(() => {
+    if (nextButton.current) {
+      nextButton.current.focus();
+    }
+  }, [summary]);
+
+  useEffect(() => {
+    if (mode === "test") input.current.focus();
+  }, [mode]);
+
+  useEffect(() => {
+    if (tour.active && revealed && tour.stepIndex === 0) {
+      setTour((tour) => ({ ...tour, stepIndex: 1, run: true }));
+    }
+  }, [revealed]);
+
+  useEffect(() => {
+    console.log(tour);
+
+    if (tour.active && finished && [4, 5].includes(tour.stepIndex)) {
+      setTour((tour) => ({
+        ...tour,
+        stepIndex: 5,
+        run: true,
+      }));
+    }
+  }, [finished]);
+
+  useEffect(() => {
+    setCurrentWord(wordList[currentWordIndex]);
+  }, [currentWordIndex, currentSet, wordList]);
+
+  useEffect(() => {
+    if (input.current) {
+      input.current.focus();
+    }
+  }, [currentSet, wordList]);
+
+  const joyrideCallback = (data) => {
+    if (data.lifecycle !== "complete") return;
+
+    if (data.index === 0) {
+      setTour((tour) => ({ ...tour, run: false }));
+    }
+
+    if (data.index === 1) {
+      setTour((tour) => ({
+        ...tour,
+        stepIndex: 2,
+        continuous: true,
+        run: false,
+      }));
+    }
+
+    if (data.index === 2) {
+      setTour((tour) => ({ ...tour, stepIndex: 3 }));
+    }
+
+    if (data.index === 3) {
+      setTour((tour) => ({ ...tour, stepIndex: 4 }));
+    }
+
+    if (data.index === 4) {
+      setTour((tour) => ({ ...tour, run: false }));
+    }
+
+    if (data.index === 5) {
+      setTour((tour) => ({ ...tour, stepIndex: 6 }));
+    }
+
+    if (data.index === 6) {
+      localStorage.setItem("guidedOnTraining", true);
+      setTour((tour) => ({ ...tour, run: false, active: false }));
+    }
+  };
+
   return (
     <>
+      <Joyride
+        active={tour.active}
+        callback={joyrideCallback}
+        tooltipComponent={TourTooltip}
+        animation={false}
+        steps={tour.steps}
+        run={tour.run}
+        continuous={tour.continuous}
+        stepIndex={tour.stepIndex}
+      />
+
       <Header theme={theme} setTheme={setTheme} />
       <Page>
         <Sidebar>
-          <S.Categories>
+          <S.Categories id="categories">
             {Object.values(config).map((category) => (
               <S.Category
                 focusIndicator={false}
@@ -361,7 +500,8 @@ export const Wizard = ({
               label: "Interrupt",
               onClick: () => {
                 setMode("training");
-                resetAndShuffleCurrentSet();
+                reset();
+                setWordList(getWordList(source.value));
                 setAbortingTest(false);
               },
             },
@@ -379,27 +519,28 @@ export const Wizard = ({
           setOpen={setAbortingTest}
         />
         <Dialog
-          open={resettingTraining}
+          open={renewingTraining}
           actions={[
             {
-              label: "Interrupt",
+              label: "Draw new",
               onClick: () => {
-                resetAndShuffleCurrentSet();
-                setResettingTraining(false);
+                reset();
+                setWordList(getWordList(source.value));
+                setRenewingTraining(false);
               },
             },
             {
-              label: "Resume",
+              label: "Continue",
               onClick: () => {
-                setResettingTraining(false);
+                setRenewingTraining(false);
               },
             },
           ]}
           message={
-            "Are you sure you want to interrupt the ongoing training? Your current progress will be lost, and you'll start over."
+            "Are you sure you want to draw new flashcards set? Your current progress will be lost."
           }
-          title="Interrupt Training?"
-          setOpen={setResettingTraining}
+          title="Draw new set?"
+          setOpen={setRenewingTraining}
         />
       </Page>
     </>

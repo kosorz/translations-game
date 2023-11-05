@@ -3,8 +3,8 @@ import { Box, Button, Heading, Paragraph, Nav } from "grommet";
 import { Star as StarBase } from "grommet-icons";
 
 export const Result = styled(Box)({
-  touchAction: 'manipulation',
-})
+  touchAction: "manipulation",
+});
 
 export const Progress = styled(Paragraph)({
   margin: 0,
@@ -107,8 +107,8 @@ export const Option = styled(Button)({
 });
 
 Option.defaultProps = {
-  color: 'neutral-3'
-}
+  color: "neutral-3",
+};
 
 export const Hero = styled(Button)({
   marginTop: "8px",
@@ -117,7 +117,7 @@ export const Hero = styled(Button)({
 
 Hero.defaultProps = {
   primary: true,
-  color: 'neutral-3'
+  color: "neutral-3",
 };
 
 export const Badge = styled(Heading)({
@@ -165,8 +165,8 @@ Star.defaultProps = {
 export const View = styled(Box)({});
 
 View.defaultProps = {
-  width: "100%",
   justify: "center",
+  margin: { horizontal: "auto", top: "xsmall" },
   direction: "row",
   alignItems: "center",
   justifyContent: "center",

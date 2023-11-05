@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import ReactDOM from "react-dom";
 import { polishGermanConfig } from "./configs/polish-german";
-import { Wizard } from "./components/Wizard/Wizard";
+import { GuidedWizard, Wizard } from "./components/Wizard/Wizard";
 import { grommet, Grommet } from "grommet";
 import styled from "styled-components";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
@@ -12,12 +12,7 @@ const router = ({ setTheme, theme }) =>
   createBrowserRouter([
     {
       path: "/",
-      element: (
-        <Dashboard
-          setTheme={setTheme}
-          theme={theme}
-        />
-      ),
+      element: <Dashboard setTheme={setTheme} theme={theme} />,
     },
     {
       path: "/polish-german",
@@ -73,9 +68,7 @@ const Root = styled(Grommet)({
   minHeight: "100%",
 });
 
-export const App = () => {
-  const [theme, setTheme] = useState(localStorage.getItem("theme") || "dark");
-
+export const ThemeProvider = ({ children, theme }) => {
   return (
     <Root
       theme={{
@@ -87,12 +80,20 @@ export const App = () => {
       }}
       themeMode={theme}
     >
-      <React.StrictMode>
-        <RouterProvider
-          router={router({ setTheme, theme })}
-        />
-      </React.StrictMode>
+      {children}
     </Root>
+  );
+};
+
+export const App = () => {
+  const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
+
+  return (
+    <ThemeProvider theme={theme}>
+      <React.StrictMode>
+        <RouterProvider router={router({ setTheme, theme })} />
+      </React.StrictMode>
+    </ThemeProvider>
   );
 };
 

@@ -16,6 +16,7 @@ export const Card = styled(CardBase)({});
 
 Card.defaultProps = {
   width: "medium",
+  round: '24px',
 };
 
 export const CardHeader = styled(CardHeaderBase)({});
@@ -34,7 +35,7 @@ Heading.defaultProps = {
 export const CardBody = styled(CardBodyBase)({});
 
 CardBody.defaultProps = {
-  margin: { bottom: "medium", top: 'small', horizontal: "medium" },
+  margin: { bottom: "medium", top: "small", horizontal: "medium" },
 };
 
 export const CardFooter = styled(CardFooterBase)({
