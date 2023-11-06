@@ -45,11 +45,20 @@
       .__floater__body > div {
         border-radius: 12px;
       }
-
-      .react-joyride__tooltip::before {
-  border-color: red !important;
-}
     </style>
+
+    <style id="tourArrowColor"></style>
+
+    <script>
+        const theme = localStorage.getItem("theme");
+        const styleTag = document.getElementById("tourArrowColor");
+        styleTag.textContent = `
+          .__floater__arrow polygon { fill: ${
+            theme === "dark" ? "#333" : "white"
+          }; }
+      `;
+    </script>
+
     <noscript> You need to enable JavaScript to run this app. </noscript>
     <div id="root" style="margin: 0; height: 100%; min-height: 100%"></div>
     <!--

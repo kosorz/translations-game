@@ -27,6 +27,7 @@ Main.defaultProps = {
   margin: {
     bottom: "medium",
   },
+  width: 'medium',
   elevation: "big",
   round: true,
   responsive: true,
@@ -101,6 +102,12 @@ export const Actions = styled(Box)({
   marginTop: "16px",
 });
 
+Actions.defaultProps = {
+  margin: {
+    horizontal: 'auto',
+  }
+}
+
 export const Option = styled(Button)({
   marginTop: "8px",
   border: "none",
@@ -112,7 +119,7 @@ Option.defaultProps = {
 
 export const Hero = styled(Button)({
   marginTop: "8px",
-  minWidth: 200,
+  width: 200,
 });
 
 Hero.defaultProps = {

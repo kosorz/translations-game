@@ -5,6 +5,12 @@ import { Switch } from "../Switch/Switch";
 
 export const ThemeSwitch = ({ setTheme, theme }) => {
   const saveTheme = (theme) => {
+    const styleTag = document.getElementById("tourArrowColor");
+    styleTag.textContent = `
+      .__floater__arrow polygon { fill: ${
+        theme === "dark" ? "#333" : "white"
+      }; }
+  `;
     localStorage.setItem("theme", theme);
   };
 

@@ -48,8 +48,7 @@ export const Wizard = ({
       {
         title: "Getting Started",
         target: "#stack",
-        content:
-          "Begin by considering the word's translation, and then click the card to reveal the answer.",
+        content: `Begin by considering the word's ${aimLanguage} translation, and then click the card to reveal the answer.`,
         disableBeacon: true,
       },
       {
@@ -264,7 +263,7 @@ export const Wizard = ({
 
   const Quiz = (
     <>
-      <S.Main id="stack" width="medium">
+      <S.Main id="stack">
         <Box direction="row" justify="between">
           <S.Progress id="progress">
             {currentWordIndex + 1}/{wordList.length}
@@ -280,16 +279,18 @@ export const Wizard = ({
             </S.ProgressScore>
           )}
 
-          <StopIcon
-            id="stopIcon"
-            size="medium"
-            onClick={(e) => {
-              (mode === "training" ? setRenewingTraining : setAbortingTest)(
-                true
-              );
-              e.stopPropagation();
-            }}
-          />
+          {!!currentWordIndex && (
+            <StopIcon
+              id="stopIcon"
+              size="medium"
+              onClick={(e) => {
+                (mode === "training" ? setRenewingTraining : setAbortingTest)(
+                  true
+                );
+                e.stopPropagation();
+              }}
+            />
+          )}
         </Box>
 
         <S.Word revealed={revealed}>
@@ -309,7 +310,8 @@ export const Wizard = ({
       return {
         Icon: Achievement,
         heading: "Perfect!",
-        subHeading: "You can now move on to a new set!",
+        subHeading:
+          "You can now attempt test or start anew with fresh flashcard set!",
         Hero: (() => {
           if (mode === "training") {
             return <Test ref={nextButton} />;
