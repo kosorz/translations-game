@@ -5,7 +5,10 @@ import {
   Group,
   Connect,
   Time,
+  Cafeteria,
+  Lounge,
   Cycle,
+  Home,
   Pause,
 } from "grommet-icons";
 
@@ -1958,5 +1961,812 @@ export const polishGermanConfig = {
       polish: "Czasowniki Codzienności",
     },
     Icon: Cycle,
+  },
+  houseAndApartment: {
+    value: [
+      {
+        polish: "przybudówka",
+        german: "der Anbau",
+      },
+      {
+        polish: "posesja",
+        german: "das Anwesen",
+      },
+      {
+        polish: "mieszkaniec",
+        german: "der Anwohner",
+      },
+      {
+        polish: "mieszkanka",
+        german: "die Anwohnerin",
+      },
+      {
+        polish: "apartament",
+        german: "das Appartement",
+      },
+      {
+        polish: "osiedle robotnicze",
+        german: "das Arbeiterviertel",
+      },
+      {
+        polish: "wyprowadzać się",
+        german: "ausziehen",
+      },
+      {
+        polish: "balkon",
+        german: "der Balkon",
+      },
+      {
+        polish: "przytulne mieszkanie",
+        german: "behagliche Wohnung",
+      },
+      {
+        polish: "piorunochron",
+        german: "der Blitzableiter",
+      },
+      {
+        polish: "dach",
+        german: "das Dach",
+      },
+      {
+        polish: "rynna",
+        german: "die Dachrinne",
+      },
+      {
+        polish: "mieszkanie trzypokojowe",
+        german: "die Dreizimmerwohnung",
+      },
+      {
+        polish: "własne mieszkanie",
+        german: "eigene Wohnung",
+      },
+      {
+        polish: "dom jednorodzinny",
+        german: "das Einfamilienhaus",
+      },
+      {
+        polish: "wprowadzać się; wprowadzić się",
+        german: "einziehen",
+      },
+      {
+        polish: "kawalerka",
+        german: "die Einzimmerwohnung",
+      },
+      {
+        polish: "dom rodzinny",
+        german: "das Elternhaus",
+      },
+      {
+        polish: "parter",
+        german: "das Erdgeschoss",
+      },
+      {
+        polish: "mieszkać na parterze",
+        german: "im Erdgeschoss wohnen",
+      },
+      {
+        polish: "okno",
+        german: "das Fenster",
+      },
+      {
+        polish: "dom z prefabrykatów",
+        german: "das Fertighaus",
+      },
+      {
+        polish: "bieżąca woda",
+        german: "fließendes Gewässer",
+      },
+      {
+        polish: "garaż",
+        german: "die Garage",
+      },
+      {
+        polish: "ogród",
+        german: "der Garten",
+      },
+      {
+        polish: "gaz",
+        german: "das Gas",
+      },
+      {
+        polish: "rachunek za gaz",
+        german: "die Gasrechnung",
+      },
+      {
+        polish: "budynek",
+        german: "das Gebäude",
+      },
+      {
+        polish: "dom",
+        german: "das Haus",
+      },
+      {
+        polish: "domofon",
+        german: "die Haussprechanlage",
+      },
+      {
+        polish: "ogrzewanie",
+        german: "die Heizung",
+      },
+      {
+        polish: "podwórze; dziedziniec",
+        german: "der Hof",
+      },
+      {
+        polish: "lufcik",
+        german: "die Lüftungsklappe",
+      },
+      {
+        polish: "kanalizacja",
+        german: "die Kanalisation",
+      },
+      {
+        polish: "czynsz",
+        german: "die Miete",
+      },
+      {
+        polish: "wynajmować; wynająć",
+        german: "mieten",
+      },
+      {
+        polish: "lokator",
+        german: "der Mieter",
+      },
+      {
+        polish: "lokatorka",
+        german: "die Mieterin",
+      },
+      {
+        polish: "kamienica",
+        german: "das Mietshaus",
+      },
+      {
+        polish: "wynajęte mieszkanie",
+        german: "die Mietwohnung",
+      },
+      {
+        polish: "mieszkać z rodzicami",
+        german: "mit den Eltern wohnen",
+      },
+      {
+        polish: "sąsiad",
+        german: "der Nachbar",
+      },
+      {
+        polish: "sąsiadka",
+        german: "die Nachbarin",
+      },
+      {
+        polish: "rezydencja",
+        german: "die Residenz",
+      },
+      {
+        polish: "komin",
+        german: "der Schornstein",
+      },
+      {
+        polish: "piętro",
+        german: "der Stock",
+      },
+      {
+        polish: "na drugim piętrze",
+        german: "im zweiten Stock",
+      },
+      {
+        polish: "prąd",
+        german: "der Strom",
+      },
+      {
+        polish: "rachunek za prąd",
+        german: "die Stromrechnung",
+      },
+      {
+        polish: "taras",
+        german: "die Terrasse",
+      },
+      {
+        polish: "przeprowadzka",
+        german: "der Umzug",
+      },
+      {
+        polish: "koszty przeprowadzki",
+        german: "Umzugskosten",
+      },
+      {
+        polish: "kwatera; lokum; zakwaterowanie",
+        german: "die Unterkunft",
+      },
+      {
+        polish: "mieszkać na stancji",
+        german: "zur Untermiete wohnen",
+      },
+      {
+        polish: "willa",
+        german: "die Villa",
+      },
+      {
+        polish: "osiedle willowe",
+        german: "das Villenviertel",
+      },
+      {
+        polish: "ściana",
+        german: "die Wand",
+      },
+      {
+        polish: "blok mieszkalny",
+        german: "der Wohnblock",
+      },
+      {
+        polish: "dom mieszkalny",
+        german: "das Wohnhaus",
+      },
+      {
+        polish: "osiedle",
+        german: "das Wohnviertel",
+      },
+      {
+        polish: "mieszkanie",
+        german: "die Wohnung",
+      },
+      {
+        polish: "szukać nowego mieszkania",
+        german: "eine neue Wohnung suchen",
+      },
+      {
+        polish: "mieszkać",
+        german: "wohnen",
+      },
+      {
+        polish: "kawalerka (dla singla)",
+        german: "Wohnung für Alleinstehende",
+      },
+      {
+        polish: "zamiana mieszkania; wymiana mieszkania",
+        german: "der Wohnungstausch",
+      },
+      {
+        polish: "mieszkać kątem u kogoś",
+        german: "vorübergehend bei jemandem wohnen",
+      },
+      {
+        polish: "centralne ogrzewanie",
+        german: "die Zentralheizung",
+      },
+      {
+        polish: "wynajmować pokój",
+        german: "ein Zimmer mieten",
+      },
+      {
+        polish: "dzielić pokój",
+        german: "ein Zimmer teilen",
+      },
+      {
+        polish: "mieszkanie dwupokojowe",
+        german: "die Zweizimmerwohnung",
+      },
+    ],
+    name: {
+      german: "Wohnen und Immobilien",
+      polish: "Mieszkanie i Nieruchomości",
+    },
+    Icon: Home,
+  },
+  interior: {
+    value: [
+      {
+        polish: "drzwi wejściowe",
+        german: "die Abschlußtür",
+      },
+      {
+        polish: "system alarmowy",
+        german: "die Alarmanlage",
+      },
+      {
+        polish: "pokój do pracy",
+        german: "das Arbeitszimmer",
+      },
+      {
+        polish: "miotła; szczotka do zamiatania",
+        german: "der Besen",
+      },
+      {
+        polish: "deska do prasowania",
+        german: "das Bügelbrett",
+      },
+      {
+        polish: "doniczka",
+        german: "der Blumentopf",
+      },
+      {
+        polish: "sień; przedpokój",
+        german: "die Diele",
+      },
+      {
+        polish: "pokój przechodni",
+        german: "das Durchgangszimmer",
+      },
+      {
+        polish: "drzwi wejściowe",
+        german: "die Eingangstür",
+      },
+      {
+        polish: "jadalnia",
+        german: "das Esszimmer",
+      },
+      {
+        polish: "parapet",
+        german: "der Fensterbank",
+      },
+      {
+        polish: "korytarz",
+        german: "der Flur",
+      },
+      {
+        polish: "podłoga",
+        german: "der Fußboden",
+      },
+      {
+        polish: "wycieraczka przed drzwiami",
+        german: "die Fußmatte",
+      },
+      {
+        polish: "wieszak",
+        german: "die Garderobe",
+      },
+      {
+        polish: "firanka",
+        german: "die Gardine",
+      },
+      {
+        polish: "karnisz",
+        german: "die Gardinenleiste",
+      },
+      {
+        polish: "pokój gościnny",
+        german: "das Gästezimmer",
+      },
+      {
+        polish: "uchwyt",
+        german: "der Griff",
+      },
+      {
+        polish: "wizjer",
+        german: "das Guckloch",
+      },
+      {
+        polish: "odkurzacz ręczny",
+        german: "der Handstaubsauger",
+      },
+      {
+        polish: "kaloryfer",
+        german: "der Heizkörper",
+      },
+      {
+        polish: "boazeria",
+        german: "die Holztäfelung",
+      },
+      {
+        polish: "żaluzje",
+        german: "die Jalousien (pl.)",
+      },
+      {
+        polish: "kominek",
+        german: "der Kamin",
+      },
+      {
+        polish: "piwnica",
+        german: "der Keller",
+      },
+      {
+        polish: "bojler",
+        german: "der Kessel",
+      },
+      {
+        polish: "pokój dziecięcy",
+        german: "das Kinderzimmer",
+      },
+      {
+        polish: "wieszak ramiączko",
+        german: "der Kleiderbügel",
+      },
+      {
+        polish: "dzwonek",
+        german: "die Klinger",
+      },
+      {
+        polish: "klamka",
+        german: "die Klinke",
+      },
+      {
+        polish: "korytarz",
+        german: "der Korridor",
+      },
+      {
+        polish: "żyrandol",
+        german: "der Kronleuchter",
+      },
+      {
+        polish: "zegar z kukułką",
+        german: "die Kuckucksuhr",
+      },
+      {
+        polish: "lampa",
+        german: "die Lampe",
+      },
+      {
+        polish: "ścierka",
+        german: "der Lappen",
+      },
+      {
+        polish: "włącznik światła",
+        german: "der Lichtschalter",
+      },
+      {
+        polish: "kosz na śmieci",
+        german: "der Mülleimer",
+      },
+      {
+        polish: "roleta",
+        german: "das Rollo",
+      },
+      {
+        polish: "ścierka do podłogi",
+        german: "das Scheuertuch",
+      },
+      {
+        polish: "drzwi rozsuwane",
+        german: "die Schiebetür",
+      },
+      {
+        polish: "sypialnia",
+        german: "das Schlafzimmer",
+      },
+      {
+        polish: "szczotka do butów",
+        german: "die Schuhbürste",
+      },
+      {
+        polish: "lustro",
+        german: "der Spiegel",
+      },
+      {
+        polish: "odkurzacz (podłogowy)",
+        german: "der Staubsauger",
+      },
+      {
+        polish: "gniazdko elektryczne",
+        german: "die Steckdose",
+      },
+      {
+        polish: "lampa stojąca",
+        german: "die Stehlampe",
+      },
+      {
+        polish: "dywan",
+        german: "der Teppich",
+      },
+      {
+        polish: "szczotka do dywanów",
+        german: "die Teppichbürste",
+      },
+      {
+        polish: "kwiat doniczkowy",
+        german: "die Topfblume",
+      },
+      {
+        polish: "schody",
+        german: "die Treppe",
+      },
+      {
+        polish: "klatka schodowa",
+        german: "das Treppenhaus",
+      },
+      {
+        polish: "drzwi",
+        german: "die Tür",
+      },
+      {
+        polish: "klamka",
+        german: "die Türklinke",
+      },
+      {
+        polish: "zamek",
+        german: "das Türschloß",
+      },
+      {
+        polish: "waza",
+        german: "die Vase",
+      },
+      {
+        polish: "zasłona",
+        german: "der Vorhang",
+      },
+      {
+        polish: "obraz",
+        german: "das Wandbild",
+      },
+      {
+        polish: "kinkiet",
+        german: "die Wandleuchte",
+      },
+      {
+        polish: "pralka",
+        german: "die Waschmaschine",
+      },
+      {
+        polish: "sznur do bielizny",
+        german: "die Wäscheleine",
+      },
+      {
+        polish: "podgrzewacz wody",
+        german: "der Wasserhitzer",
+      },
+      {
+        polish: "pokój dzienny",
+        german: "das Wohnzimmer",
+      },
+      {
+        polish: "pokój",
+        german: "das Zimmer",
+      },
+      {
+        polish: "drzwi do pokoju",
+        german: "die Zimmertür",
+      },
+    ],
+    name: {
+      german: "Wnętrze",
+      polish: "Interior",
+    },
+    Icon: Lounge,
+  },
+  kitchen: {
+    value: [
+      {
+        polish: "garnek aluminiowy",
+        german: "der Aluminiumtopf",
+      },
+      {
+        polish: "piekarnik",
+        german: "der Backofen",
+      },
+      {
+        polish: "brytfanna",
+        german: "die Bratpfanne",
+      },
+      {
+        polish: "koszyk na chleb",
+        german: "der Brotkorb",
+      },
+      {
+        polish: "pokrywka",
+        german: "der Deckel",
+      },
+      {
+        polish: "otwieracz do puszek",
+        german: "der Dosenöffner",
+      },
+      {
+        polish: "okap z wyciągiem",
+        german: "der Dunstabzug",
+      },
+      {
+        polish: "szafka narożna",
+        german: "der Eckschrank",
+      },
+      {
+        polish: "minutnik",
+        german: "die Eieruhr",
+      },
+      {
+        polish: "garnek emaliowany",
+        german: "der Emailletopf",
+      },
+      {
+        polish: "otwieracz do butelek",
+        german: "der Flaschenöffner",
+      },
+      {
+        polish: "czajnik z gwizdkiem",
+        german: "der Flötenkessel",
+      },
+      {
+        polish: "kuchenka gazowa",
+        german: "der Gasherd",
+      },
+      {
+        polish: "pojemnik na warzywa",
+        german: "die Gemüseschale",
+      },
+      {
+        polish: "szafka na naczynia",
+        german: "der Geschirrschrank",
+      },
+      {
+        polish: "zmywarka do naczyń",
+        german: "die Geschirrspülmaschine",
+      },
+      {
+        polish: "zamrażalnik",
+        german: "das Gefrierfach",
+      },
+      {
+        polish: "zamrażalka",
+        german: "der Gefrierschrank",
+      },
+      {
+        polish: "słoiczek na przyprawy",
+        german: "das Gewürzglas",
+      },
+      {
+        polish: "tasak",
+        german: "das Hackmesser",
+      },
+      {
+        polish: "mikser ręczny",
+        german: "das Handrührgerät",
+      },
+      {
+        polish: "kuchenka",
+        german: "der Herd",
+      },
+      {
+        polish: "kuchenka elektryczna",
+        german: "elektrischer Herd",
+      },
+      {
+        polish: "ekspres do kawy",
+        german: "die Kaffeemaschine",
+      },
+      {
+        polish: "płyta kuchenna",
+        german: "die Kochplatte",
+      },
+      {
+        polish: "garnek",
+        german: "der Kochtopf",
+      },
+      {
+        polish: "korkociąg",
+        german: "der Korkenzieher",
+      },
+      {
+        polish: "lampa kuchenna",
+        german: "die Küchenlampe",
+      },
+      {
+        polish: "nóż kuchenny",
+        german: "das Küchenmesser",
+      },
+      {
+        polish: "robot kuchenny",
+        german: "die Küchenmaschine",
+      },
+      {
+        polish: "krzesło kuchenne",
+        german: "der Küchenstuhl",
+      },
+      {
+        polish: "stół kuchenny",
+        german: "der Küchentisch",
+      },
+      {
+        polish: "zegar kuchenny",
+        german: "die Küchenuhr",
+      },
+      {
+        polish: "półka w lodówce",
+        german: "das Kühlfach",
+      },
+      {
+        polish: "lodówka",
+        german: "die Kühlschrank",
+      },
+      {
+        polish: "kuchenka mikrofalowa",
+        german: "die Mikrowelle",
+      },
+      {
+        polish: "dziadek do orzechów",
+        german: "der Nussknacker",
+      },
+      {
+        polish: "ręcznik papierowy",
+        german: "das Papiertuch",
+      },
+      {
+        polish: "patelnia",
+        german: "die Pfanne",
+      },
+      {
+        polish: "tarka",
+        german: "die Reibe",
+      },
+      {
+        polish: "trzepaczka",
+        german: "der Schneebesen",
+      },
+      {
+        polish: "szybkowar",
+        german: "der Schnellkochtopf",
+      },
+      {
+        polish: "chochla",
+        german: "der Schöpflöffel",
+      },
+      {
+        polish: "czerpak",
+        german: "der Schöpfteil",
+      },
+      {
+        polish: "sito",
+        german: "das Sieb",
+      },
+      {
+        polish: "zlewozmywak",
+        german: "die Spüle",
+      },
+      {
+        polish: "zlew",
+        german: "das Spülbecken",
+      },
+      {
+        polish: "zmywarka",
+        german: "die Spülmaschine",
+      },
+      {
+        polish: "wałek do ciasta",
+        german: "die Teigrolle",
+      },
+      {
+        polish: "obrus",
+        german: "die Tischdecke",
+      },
+      {
+        polish: "blat stołu",
+        german: "die Tischplatte",
+      },
+      {
+        polish: "toster",
+        german: "der Toaster",
+      },
+      {
+        polish: "garnek",
+        german: "der Topf",
+      },
+      {
+        polish: "garnuszek",
+        german: "das Töpfchen",
+      },
+      {
+        polish: "lejek",
+        german: "der Trichter",
+      },
+      {
+        polish: "półka na butelki (w lodówce)",
+        german: "Türfach für Flaschen",
+      },
+      {
+        polish: "gofrownica",
+        german: "der Waffelautomat",
+      },
+      {
+        polish: "czajnik",
+        german: "der Wasserkessel",
+      },
+      {
+        polish: "czajnik elektryczny",
+        german: "elektrischer Wasserkocher",
+      },
+      {
+        polish: "czajnik bezprzewodowy",
+        german: "kabelloser Wasserkocher",
+      },
+    ],
+    name: {
+      german: "Küche",
+      polish: "Kitchen",
+    },
+    Icon: Cafeteria,
   },
 };
