@@ -96,14 +96,14 @@ export const Wizard = ({
   });
 
   const input = useRef(null);
-  const nextButton = useRef(null);
+  const hero = useRef(null);
 
   const checkAnswer = () => {
     if (
       currentWord[aimLanguage]
         .split(" / ")
-        .map((el) => el.toLowerCase())
-        .includes(userInput.toLowerCase().trim()) &&
+        .map((el) => el.toLowerCase().replaceAll(/-/g, " "))
+        .includes(userInput.toLowerCase().trim().replaceAll(/-/g, " ")) &&
       userInput !== ""
     ) {
       if (!revealed) {
@@ -151,18 +151,27 @@ export const Wizard = ({
     " ": [
       {
         cb: () => setRevealed(true),
-        active: !revealed && !finished && !inputHasFocus,
+        active: !revealed && !finished && mode === "training",
       },
-      { cb: viewCorrectContinue, active: revealed && !inputHasFocus },
+      { cb: viewCorrectContinue, active: revealed && mode === "training" },
     ],
     Escape: [
       { cb: viewContinue, active: revealed && mode === "training" },
       {
-        cb: () => setDialog("interruptTest"),
+        cb: () => setDialog("interruptTest") && mode === "training",
         active: mode === "test" && !dialog,
       },
     ],
-    Enter: [{ cb: () => viewCorrectContinue, active: revealed }],
+    Enter: [
+      {
+        cb: viewCorrectContinue,
+        active: revealed && mode === "training",
+      },
+      {
+        cb: checkAnswer,
+        active: mode === "test" && !finished,
+      },
+    ],
   });
 
   const resetAndShuffleCurrentSet = () => {
@@ -243,11 +252,6 @@ export const Wizard = ({
   const Write = (
     <S.WriteInput>
       <TextInput
-        onKeyDown={(e) => {
-          if (e.keyCode === 13) {
-            checkAnswer();
-          }
-        }}
         ref={input}
         placeholder="Translation"
         type="text"
@@ -278,21 +282,21 @@ export const Wizard = ({
           )}
 
           {(!!currentWordIndex || mode === "test") && (
-              <S.Reset
-                icon={
-                  <StopIcon
-                    id="stopIcon"
-                    size="medium"
-                    onClick={(e) => {
-                      setDialog(
-                        mode === "training" ? "drawNew" : "interruptTest"
-                      );
-                      e.stopPropagation();
-                    }}
-                  />
-                }
-              />
-            )}
+            <S.Reset
+              icon={
+                <StopIcon
+                  id="stopIcon"
+                  size="medium"
+                  onClick={(e) => {
+                    setDialog(
+                      mode === "training" ? "drawNew" : "interruptTest"
+                    );
+                    e.stopPropagation();
+                  }}
+                />
+              }
+            />
+          )}
         </Box>
 
         <S.Word revealed={revealed}>
@@ -316,10 +320,10 @@ export const Wizard = ({
           "You can now attempt test or start anew with fresh flashcard set!",
         Hero: (() => {
           if (mode === "training") {
-            return <Test ref={nextButton} />;
+            return <Test ref={hero} />;
           }
 
-          return <MoveOnToNewSet ref={nextButton} primary />;
+          return <MoveOnToNewSet ref={hero} primary />;
         })(),
       };
     }
@@ -330,9 +334,9 @@ export const Wizard = ({
       subHeading: "You need to train more!",
       Hero:
         mode === "test" ? (
-          <AttemptAgain ref={nextButton} />
+          <AttemptAgain ref={hero} />
         ) : (
-          <AttemptAgain ref={nextButton} label="Keep training" />
+          <AttemptAgain ref={hero} label="Keep training" />
         ),
     };
   })();
@@ -370,13 +374,11 @@ export const Wizard = ({
       </S.Actions>
     </S.Result>
   );
-
   useEffect(() => {
-    if (nextButton.current) {
-      nextButton.current.focus();
+    if (hero.current && !inputHasFocus) {
+      hero.current.focus();
     }
   }, [summary]);
-
   useEffect(() => {
     if (mode === "test") input.current.focus();
   }, [mode]);
@@ -402,10 +404,10 @@ export const Wizard = ({
   }, [currentWordIndex, currentSet, wordList]);
 
   useEffect(() => {
-    if (input.current) {
+    if (input.current && mode === "test") {
       input.current.focus();
     }
-  }, [currentSet, wordList]);
+  }, [currentSet, wordList, mode]);
 
   const joyrideCallback = (data) => {
     if (data.lifecycle !== "complete") return;
@@ -470,6 +472,7 @@ export const Wizard = ({
                 focusIndicator={false}
                 active={source.name === category.name[baseLanguage]}
                 icon={<category.Icon />}
+                key={category.name[baseLanguage]}
                 onClick={(e) => {
                   e.target.blur();
 
@@ -512,7 +515,7 @@ export const Wizard = ({
             {
               label: interruptDialogOpen ? "Interrupt" : "Draw new",
               onClick: () => {
-                if (mode === 'test') {
+                if (mode === "test") {
                   setMode("training");
                 }
 
