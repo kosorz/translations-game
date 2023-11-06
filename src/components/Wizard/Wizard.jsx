@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef, forwardRef } from "react";
-import { TextInput, Heading, Box } from "grommet";
+import { TextInput, Heading, Box, Button } from "grommet";
 
 import { shuffle } from "../../utils/shuffle";
 import * as S from "./Wizard.styles";
@@ -33,8 +33,7 @@ export const Wizard = ({
     name: Object.values(config)[0].name[baseLanguage],
     value: Object.values(config)[0].value,
   });
-  const [abortingTest, setAbortingTest] = useState();
-  const [renewingTraining, setRenewingTraining] = useState();
+  const [dialog, setDialog] = useState();
   const [wordList, setWordList] = useState(getWordList(source.value));
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
   const [currentWord, setCurrentWord] = useState(wordList[0]);
@@ -90,7 +89,6 @@ export const Wizard = ({
         target: "#categories",
         content: "Here, you can find a variety of categories to enjoy.",
         disableBeacon: true,
-        position: "right",
       },
     ],
     active: !localStorage.getItem("guidedOnTraining"),
@@ -160,8 +158,8 @@ export const Wizard = ({
     Escape: [
       { cb: viewContinue, active: revealed && mode === "training" },
       {
-        cb: () => setAbortingTest(true),
-        active: mode === "test" && !abortingTest,
+        cb: () => setDialog("interruptTest"),
+        active: mode === "test" && !dialog,
       },
     ],
     Enter: [{ cb: () => viewCorrectContinue, active: revealed }],
@@ -279,18 +277,22 @@ export const Wizard = ({
             </S.ProgressScore>
           )}
 
-          {!!currentWordIndex && (
-            <StopIcon
-              id="stopIcon"
-              size="medium"
-              onClick={(e) => {
-                (mode === "training" ? setRenewingTraining : setAbortingTest)(
-                  true
-                );
-                e.stopPropagation();
-              }}
-            />
-          )}
+          {(!!currentWordIndex || mode === "test") && (
+              <S.Reset
+                icon={
+                  <StopIcon
+                    id="stopIcon"
+                    size="medium"
+                    onClick={(e) => {
+                      setDialog(
+                        mode === "training" ? "drawNew" : "interruptTest"
+                      );
+                      e.stopPropagation();
+                    }}
+                  />
+                }
+              />
+            )}
         </Box>
 
         <S.Word revealed={revealed}>
@@ -386,8 +388,6 @@ export const Wizard = ({
   }, [revealed]);
 
   useEffect(() => {
-    console.log(tour);
-
     if (tour.active && finished && [4, 5].includes(tour.stepIndex)) {
       setTour((tour) => ({
         ...tour,
@@ -445,6 +445,9 @@ export const Wizard = ({
     }
   };
 
+  const interruptDialogOpen = dialog === "interruptTest";
+  const drawNewDialogOpen = dialog === "drawNew";
+
   return (
     <>
       <Joyride
@@ -492,57 +495,40 @@ export const Wizard = ({
               : undefined
           }
         >
-          <Heading textAlign="center">{mode === 'test' ? `Test: ${source.name}` : source.name}</Heading>
+          <Heading textAlign="center">
+            {mode === "test" ? `Test: ${source.name}` : source.name}
+          </Heading>
           {finished ? Result : Quiz}
         </S.Center>
         <Dialog
-          open={abortingTest}
+          open={interruptDialogOpen || drawNewDialogOpen}
+          title={interruptDialogOpen ? "Interrupt Test?" : "Draw new set?"}
+          message={
+            interruptDialogOpen
+              ? "Are you sure you want to interrupt the ongoing test? Your current progress will be lost, and you'll be redirected back to the learning mode."
+              : "Are you sure you want to draw new flashcards set? Your current progress will be lost."
+          }
           actions={[
             {
-              label: "Interrupt",
+              label: interruptDialogOpen ? "Interrupt" : "Draw new",
               onClick: () => {
-                setMode("training");
+                if (mode === 'test') {
+                  setMode("training");
+                }
+
                 reset();
                 setWordList(getWordList(source.value));
-                setAbortingTest(false);
+                setDialog("");
               },
             },
             {
-              label: "Resume",
+              label: interruptDialogOpen ? "Resume" : "Continue",
               onClick: () => {
-                setAbortingTest(false);
+                setDialog("");
               },
             },
           ]}
-          message={
-            "Are you sure you want to interrupt the ongoing test? Your current progress will be lost, and you'll be redirected back to the learning mode."
-          }
-          title="Interrupt Test?"
-          setOpen={setAbortingTest}
-        />
-        <Dialog
-          open={renewingTraining}
-          actions={[
-            {
-              label: "Draw new",
-              onClick: () => {
-                reset();
-                setWordList(getWordList(source.value));
-                setRenewingTraining(false);
-              },
-            },
-            {
-              label: "Continue",
-              onClick: () => {
-                setRenewingTraining(false);
-              },
-            },
-          ]}
-          message={
-            "Are you sure you want to draw new flashcards set? Your current progress will be lost."
-          }
-          title="Draw new set?"
-          setOpen={setRenewingTraining}
+          setOpen={setDialog}
         />
       </Page>
     </>

@@ -6,8 +6,8 @@ import * as S from "./Dialog.styles";
 export const Dialog = ({ open, setOpen, ...cardProps }) => {
   return open ? (
     <S.Root
-      onEsc={() => setOpen(false)}
-      onClickOutside={() => setOpen(false)}
+      onEsc={() => setOpen('')}
+      onClickOutside={() => setOpen('')}
       responsive={false}
     >
       <Card {...cardProps} />
@@ -16,7 +16,7 @@ export const Dialog = ({ open, setOpen, ...cardProps }) => {
 };
 
 export const Card = ({ title, actions, message }) => {
-  const theme = localStorage.getItem("theme") || "dark";
+  const theme = localStorage.getItem("theme") || "light";
 
   return (
     <S.Card

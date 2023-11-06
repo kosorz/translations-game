@@ -12,7 +12,7 @@ export const TourTooltip = ({
   primaryProps,
   tooltipProps,
 }) => {
-  const theme = localStorage.getItem("theme") || "dark";
+  const theme = localStorage.getItem("theme") || "light";
 
   return (
     <ThemeProvider theme={theme}>

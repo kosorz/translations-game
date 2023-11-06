@@ -163,6 +163,7 @@ Categories.defaultProps = {
 export const Star = styled(StarBase)({
   width: 24,
   height: "auto",
+  paddingRight: 0,
 });
 
 Star.defaultProps = {
@@ -213,3 +214,7 @@ export const EmptyLabel = styled(Box)({
 export const ViewPlaceholder = styled(Box)({
   height: 47,
 });
+
+export const Reset = styled(Button)({
+  padding: 0,
+})

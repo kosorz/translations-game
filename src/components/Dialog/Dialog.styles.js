@@ -16,7 +16,7 @@ export const Card = styled(CardBase)({});
 
 Card.defaultProps = {
   width: "medium",
-  round: '24px',
+  round: '12px',
 };
 
 export const CardHeader = styled(CardHeaderBase)({});
