@@ -492,7 +492,7 @@ export const Wizard = ({
               : undefined
           }
         >
-          <Heading textAlign="center">{source.name}</Heading>
+          <Heading textAlign="center">{mode === 'test' ? `Test: ${source.name}` : source.name}</Heading>
           {finished ? Result : Quiz}
         </S.Center>
         <Dialog
