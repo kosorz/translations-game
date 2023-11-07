@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef, forwardRef } from "react";
-import { TextInput, Heading, Box, Button } from "grommet";
+import { TextInput, Heading, Box } from "grommet";
+import { Helmet } from "react-helmet";
 
 import { shuffle } from "../../utils/shuffle";
 import * as S from "./Wizard.styles";
@@ -18,6 +19,7 @@ import { Dialog } from "../Dialog/Dialog";
 
 import Joyride from "react-joyride";
 import { TourTooltip } from "../TourTooltip/TourTooltip";
+import { useLocation, useParams } from "react-router-dom";
 
 export const Wizard = ({
   baseLanguage,
@@ -27,12 +29,16 @@ export const Wizard = ({
   theme,
   setTheme,
 }) => {
+  const { category } = useParams();
+
   const getWordList = (src) => shuffle(src).slice(0, questions);
   const [mode, setMode] = useState("training");
-  const [source, setSource] = useState({
-    name: Object.values(config)[0].name[baseLanguage],
-    value: Object.values(config)[0].value,
-  });
+  const source = {
+    name:
+      config[category]?.name[baseLanguage] ||
+      Object.values(config)[0].name[baseLanguage],
+    value: config[category]?.value || Object.values(config)[0].value,
+  };
   const [dialog, setDialog] = useState();
   const [wordList, setWordList] = useState(getWordList(source.value));
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
@@ -177,12 +183,6 @@ export const Wizard = ({
   const resetAndShuffleCurrentSet = () => {
     reset();
     setWordList(shuffle(wordList));
-  };
-
-  const onSwitchCategory = ({ name, value }) => {
-    setSource({ name, value });
-    reset();
-    setWordList(getWordList(value));
   };
 
   const MoveOnToNewSet = forwardRef(({ primary = true }, ref) => (
@@ -343,7 +343,7 @@ export const Wizard = ({
 
   const Result = (
     <S.Result>
-      <S.Main>
+      <S.Main border={0}>
         <S.Badge>
           <summary.Icon size="large" color="neutral-3" />
         </S.Badge>
@@ -374,11 +374,18 @@ export const Wizard = ({
       </S.Actions>
     </S.Result>
   );
+
+  const location = useLocation();
+  const anotherCategoryBase = category
+    ? location.pathname.replace(/\/[^/]+$/, "")
+    : location.pathname;
+
   useEffect(() => {
     if (hero.current && !inputHasFocus) {
       hero.current.focus();
     }
   }, [summary]);
+
   useEffect(() => {
     if (mode === "test") input.current.focus();
   }, [mode]);
@@ -452,6 +459,10 @@ export const Wizard = ({
 
   return (
     <>
+      <Helmet>
+        <title>Wordie - {source.name}</title>
+      </Helmet>
+
       <Joyride
         active={tour.active}
         callback={joyrideCallback}
@@ -464,29 +475,17 @@ export const Wizard = ({
       />
 
       <Header theme={theme} setTheme={setTheme} />
+
       <Page>
         <Sidebar>
           <S.Categories id="categories">
-            {Object.values(config).map((category) => (
+            {Object.values(config).map((category, i) => (
               <S.Category
+                href={`${anotherCategoryBase}/${Object.keys(config)[i]}`}
                 focusIndicator={false}
                 active={source.name === category.name[baseLanguage]}
                 icon={<category.Icon />}
                 key={category.name[baseLanguage]}
-                onClick={(e) => {
-                  e.target.blur();
-
-                  setMode("training");
-                  onSwitchCategory({
-                    name: category.name[baseLanguage],
-                    value: category.value,
-                  });
-                }}
-                onKeyDown={(e) => {
-                  if (e.key === "Enter" || e.key === " ") {
-                    e.preventDefault();
-                  }
-                }}
               />
             ))}
           </S.Categories>

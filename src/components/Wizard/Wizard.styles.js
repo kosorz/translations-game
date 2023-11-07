@@ -13,7 +13,6 @@ export const Progress = styled(Paragraph)({
 
 export const Main = styled(Box)({
   textAlign: "center",
-  boxShadow: "none !important",
 });
 
 Main.defaultProps = {

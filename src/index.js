@@ -1,12 +1,48 @@
 import React, { useState } from "react";
 import ReactDOM from "react-dom";
 import { polishGermanConfig } from "./configs/polish-german";
-import { GuidedWizard, Wizard } from "./components/Wizard/Wizard";
+import { Wizard } from "./components/Wizard/Wizard";
 import { grommet, Grommet } from "grommet";
 import styled from "styled-components";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { polishEnglishConfig } from "./configs/polish-english";
 import { Dashboard } from "./components/Dashboard/Dashboard";
+
+const PolishGermanWizard = (props) => (
+  <Wizard
+    {...props}
+    baseLanguage="polish"
+    aimLanguage="german"
+    config={polishGermanConfig}
+  />
+);
+
+const GermanPolishWizard = (props) => (
+  <Wizard
+    {...props}
+    baseLanguage="german"
+    aimLanguage="polish"
+    config={polishGermanConfig}
+  />
+);
+
+const PolishEnglishWizard = (props) => (
+  <Wizard
+    {...props}
+    aimLanguage="english"
+    baseLanguage="polish"
+    config={polishEnglishConfig}
+  />
+);
+
+const EnglishPolishWizard = (props) => (
+  <Wizard
+    {...props}
+    aimLanguage="polish"
+    baseLanguage="english"
+    config={polishEnglishConfig}
+  />
+);
 
 const router = ({ setTheme, theme }) =>
   createBrowserRouter([
@@ -16,51 +52,35 @@ const router = ({ setTheme, theme }) =>
     },
     {
       path: "/polish-german",
-      element: (
-        <Wizard
-          baseLanguage="polish"
-          aimLanguage="german"
-          config={polishGermanConfig}
-          setTheme={setTheme}
-          theme={theme}
-        />
-      ),
+      element: <PolishGermanWizard setTheme={setTheme} theme={theme} />,
+    },
+    {
+      path: "/polish-german/:category",
+      element: <PolishGermanWizard setTheme={setTheme} theme={theme} />,
     },
     {
       path: "/german-polish",
-      element: (
-        <Wizard
-          baseLanguage="german"
-          aimLanguage="polish"
-          config={polishGermanConfig}
-          setTheme={setTheme}
-          theme={theme}
-        />
-      ),
+      element: <GermanPolishWizard setTheme={setTheme} theme={theme} />,
+    },
+    {
+      path: "/german-polish/:category",
+      element: <GermanPolishWizard setTheme={setTheme} theme={theme} />,
     },
     {
       path: "/polish-english",
-      element: (
-        <Wizard
-          aimLanguage="english"
-          baseLanguage="polish"
-          config={polishEnglishConfig}
-          setTheme={setTheme}
-          theme={theme}
-        />
-      ),
+      element: <PolishEnglishWizard setTheme={setTheme} theme={theme} />,
+    },
+    {
+      path: "/polish-english/:category",
+      element: <PolishEnglishWizard setTheme={setTheme} theme={theme} />,
     },
     {
       path: "/english-polish",
-      element: (
-        <Wizard
-          aimLanguage="polish"
-          baseLanguage="english"
-          config={polishEnglishConfig}
-          setTheme={setTheme}
-          theme={theme}
-        />
-      ),
+      element: <EnglishPolishWizard setTheme={setTheme} theme={theme} />,
+    },
+    {
+      path: "/english-polish/:category",
+      element: <EnglishPolishWizard setTheme={setTheme} theme={theme} />,
     },
   ]);
 

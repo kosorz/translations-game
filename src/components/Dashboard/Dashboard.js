@@ -4,6 +4,7 @@ import { CardBody, Card, CardFooter, Heading, Paragraph, Box } from "grommet";
 import { Center } from "../Wizard/Wizard.styles";
 import { Header } from "../Header/Header";
 import * as S from "./Dashboard.styles";
+import { Helmet } from "react-helmet";
 
 const Mode = ({ flags, name, href, theme }) => (
   <S.Tile
@@ -38,6 +39,9 @@ const Mode = ({ flags, name, href, theme }) => (
 
 export const Dashboard = ({ setTheme, theme }) => (
   <>
+    <Helmet>
+      <title>Wordie - Dashboard</title>
+    </Helmet>
     <Header setTheme={setTheme} theme={theme} />
     <Page>
       <Center>
@@ -49,7 +53,6 @@ export const Dashboard = ({ setTheme, theme }) => (
           direction="row"
           justify="center"
           wrap
-          round
         >
           <Mode
             theme={theme}

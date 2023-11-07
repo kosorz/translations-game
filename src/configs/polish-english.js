@@ -68,7 +68,7 @@ export const polishEnglishConfig = {
     },
     Icon: Group,
   },
-  houseAndAccommodation: {
+  'house-and-accommodation': {
     name: {
       english: "House and accommodation",
       polish: "Dom i zakwaterowanie",
@@ -201,7 +201,7 @@ export const polishEnglishConfig = {
     },
     Icon: Restroom,
   },
-  personalBelongings: {
+  'personal-belongings': {
     value: [
       { polish: 'saszetka', english: 'bag' },
       { polish: 'pudełko zapałek', english: 'box of matches' },
@@ -266,7 +266,7 @@ export const polishEnglishConfig = {
     },
     Icon: Briefcase,
   },
-  dailyActivites: {
+  'daily-activites': {
     value: [
       { polish: 'spieszyć się', english: 'to be in a hurry' },
       { polish: 'czyścić', english: 'to clean' },
@@ -318,7 +318,7 @@ export const polishEnglishConfig = {
     },
     Icon: Calendar,
   },
-  babiesAndPregnancy: {
+  'babies-and-pregnancy': {
     value: [
       { polish: 'niemowlę / dziecko', english: 'baby' },
       { polish: 'chłopczyk', english: 'baby boy' },

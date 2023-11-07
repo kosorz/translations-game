@@ -978,7 +978,7 @@ export const polishGermanConfig = {
     },
     Icon: Group,
   },
-  lifeCycle: {
+  "life-cycle": {
     value: [
       {
         polish: "życie codzienne",
@@ -1597,7 +1597,7 @@ export const polishGermanConfig = {
     },
     Icon: Favorite,
   },
-  everydayActivities: {
+  'everyday-activities': {
     value: [
       {
         polish: "iść do kina",
@@ -1958,11 +1958,11 @@ export const polishGermanConfig = {
     ],
     name: {
       german: "Alltagsverben",
-      polish: "Czasowniki Codzienności",
+      polish: "Czasowniki codzienności",
     },
     Icon: Cycle,
   },
-  houseAndApartment: {
+  'house-and-apartment': {
     value: [
       {
         polish: "przybudówka",
@@ -2247,7 +2247,7 @@ export const polishGermanConfig = {
     ],
     name: {
       german: "Wohnen und Immobilien",
-      polish: "Mieszkanie i Nieruchomości",
+      polish: "Dom i mieszkanie",
     },
     Icon: Home,
   },
@@ -2515,8 +2515,8 @@ export const polishGermanConfig = {
       },
     ],
     name: {
-      german: "Wnętrze",
-      polish: "Interior",
+      german: "Innere",
+      polish: "Wnętrze",
     },
     Icon: Lounge,
   },
@@ -2765,7 +2765,7 @@ export const polishGermanConfig = {
     ],
     name: {
       german: "Küche",
-      polish: "Kitchen",
+      polish: "Kuchnia",
     },
     Icon: Cafeteria,
   },
