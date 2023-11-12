@@ -89,12 +89,6 @@ export const Wizard = ({
         content: "Explore the possible challenges that lie ahead.",
         disableBeacon: true,
       },
-      {
-        title: "One More Thing!",
-        target: "#categories",
-        content: "Here, you can find a variety of categories to enjoy.",
-        disableBeacon: true,
-      },
     ],
     active: !localStorage.getItem("guidedOnTraining"),
   });
@@ -352,7 +346,7 @@ export const Wizard = ({
     <S.Result>
       <S.Main border={0}>
         <S.Badge>
-          <summary.Icon size="large" color="neutral-3" />
+          <summary.Icon size="large" />
         </S.Badge>
 
         <S.Encouragement>{summary.heading}</S.Encouragement>
@@ -446,10 +440,6 @@ export const Wizard = ({
     }
 
     if (data.index === 5) {
-      setTour((tour) => ({ ...tour, stepIndex: 6 }));
-    }
-
-    if (data.index === 6) {
       localStorage.setItem("guidedOnTraining", true);
       setTour((tour) => ({ ...tour, run: false, active: false }));
     }

@@ -10,37 +10,47 @@ import * as S from "./Dashboard.styles";
 import { polishEnglishData } from "../../data/polish-english";
 import { polishGermanData } from "../../data/polish-german";
 
-const Categories = ({ data, hrefBase }) => (
-  <S.Categories direction="row" wrap margin={{ vertical: "medium" }}>
-    {Object.values(data).map((category, i) => (
-      <S.Category
-        href={`${hrefBase}/${Object.keys(data)[i]}`}
-        icon={<category.Icon />}
-        hoverIndicator
-      />
-    ))}
-  </S.Categories>
-);
+const Categories = ({ data, hrefBase, from }) => {
+  return (
+    <S.Categories>
+      {Object.values(data).map((category, i) => {
+        return (
+          <S.Category
+          label={Object.values(data)[i].name[from]}
+            href={`${hrefBase}/${Object.keys(data)[i]}`}
+            icon={<category.Icon />}
+          />
+        );
+      })}
+    </S.Categories>
+  );
+};
+
+const labels = {
+  polish: "Polski",
+  english: "English",
+  german: "German",
+};
 
 export const Dashboard = ({ setTheme, theme }) => {
-  const [from, setFrom] = useState("Polski");
-  const [to, setTo] = useState("Deutsch");
-  const [toOptions, setToOptions] = useState(["English", "Deutsch"]);
+  const [from, setFrom] = useState(labels.polish);
+  const [to, setTo] = useState(labels.german);
+  const [toOptions, setToOptions] = useState([labels.english, labels.german]);
 
   const config = (() => {
-    if (from === "Polski" && to === "Deutsch") {
+    if (from === labels.polish && to === labels.german) {
       return { hrefBase: "/polish-german", data: polishGermanData };
     }
 
-    if (to === "Polski" && from === "Deutsch") {
+    if (to === labels.polish && from === labels.german) {
       return { hrefBase: "/german-polish", data: polishGermanData };
     }
 
-    if (from === "Polski" && to === "English") {
+    if (from === labels.polish && to === labels.english) {
       return { hrefBase: "/polish-english", data: polishEnglishData };
     }
 
-    if (to === "Polski" && from === "English") {
+    if (to === labels.polish && from === labels.english) {
       return { hrefBase: "/german-polish", data: polishEnglishData };
     }
 
@@ -63,17 +73,21 @@ export const Dashboard = ({ setTheme, theme }) => {
             <Box>
               <Box>From</Box>
               <Select
-                options={["Polski", "English", "Deutsch"]}
+                options={Object.values(labels)}
                 value={from}
                 onChange={({ option }) => {
                   setFrom(option);
 
                   const toOptions =
-                    option === "Polski" ? ["English", "Deutsch"] : ["Polski"];
+                    option === labels.polish
+                      ? [labels.english, labels.german]
+                      : [labels.polish];
 
                   setToOptions(toOptions);
 
-                  if (toOptions.length === 1) setTo(toOptions[0]);
+                  if (toOptions.length === 1) return setTo(toOptions[0]);
+
+                  if (option === labels.polish) setTo(labels.german);
                 }}
               />
             </Box>
@@ -88,7 +102,12 @@ export const Dashboard = ({ setTheme, theme }) => {
             </Box>
           </Box>
 
-          {config && <Categories {...config} />}
+          {config && (
+            <Categories
+              from={Object.keys(labels)[Object.values(labels).findIndex(el => el === from)]}
+              {...config}
+            />
+          )}
         </Center>
       </Page>
     </>

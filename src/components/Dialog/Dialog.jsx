@@ -31,7 +31,7 @@ export const Card = ({ title, actions, message }) => {
         {actions.map((a, i, arr) => (
           <Button
             label={a.label}
-            color={arr.length > 0 && i === 0 ? "status-critical" : "neutral-3"}
+            color={arr.length > 0 && i === 0 ? "status-critical" : "brand"}
             primary={i === 1}
             onClick={a.onClick}
           />

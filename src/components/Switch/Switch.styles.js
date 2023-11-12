@@ -12,7 +12,7 @@ export const Root = styled(Box)({
 });
 
 Root.defaultProps = {
-  border: { size: "small", color: "neutral-3" },
+  border: { size: "small" },
   direction: "row",
   display: "flex",
 };

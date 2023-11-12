@@ -15,13 +15,17 @@ export const Category = styled(Button)({
 
 Category.defaultProps = {
   primary: "true",
-  color: "neutral-3",
-  margin: { bottom: 'xsmall' },
+  color: "brand",
+  margin: { bottom: "xsmall" },
 };
 
 export const Categories = styled(Box)({});
 
 Categories.defaultProps = {
-  gap: "small",
+  gap: "xsmall",
   round: "small",
+  direction: "row",
+  margin: { vertical: 'large' },
+  justify: 'start',
+  wrap: true,
 };

@@ -24,7 +24,6 @@ export const TourTooltip = ({ step, closeProps, tooltipProps }) => {
         <S.CardFooter background={theme === "dark" ? "dark-2" : "light-2"}>
           <Button
             {...closeProps}
-            color={"neutral-3"}
             label={<span id="close">{closeProps.title}</span>}
           />
         </S.CardFooter>

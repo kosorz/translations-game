@@ -16,7 +16,7 @@ export const Main = styled(Box)({
 });
 
 Main.defaultProps = {
-  border: { color: "neutral-3", size: "large" },
+  border: { color: "brand", size: "large" },
   pad: {
     right: "small",
     left: "small",
@@ -83,7 +83,7 @@ export const ProgressScore = styled(Progress)({
 });
 
 ProgressScore.defaultProps = {
-  color: "neutral-3",
+  color: "brand",
 };
 
 export const Score = styled(Heading)({
@@ -93,7 +93,7 @@ export const Score = styled(Heading)({
 });
 
 Score.defaultProps = {
-  color: "neutral-3",
+  color: "brand",
   level: 1,
 };
 
@@ -113,7 +113,7 @@ export const Option = styled(Button)({
 });
 
 Option.defaultProps = {
-  color: "neutral-3",
+  color: "brand",
 };
 
 export const Hero = styled(Button)({
@@ -123,7 +123,7 @@ export const Hero = styled(Button)({
 
 Hero.defaultProps = {
   primary: true,
-  color: "neutral-3",
+  color: "brand",
 };
 
 export const Badge = styled(Heading)({
@@ -155,7 +155,7 @@ export const Categories = styled(Nav)({});
 
 Categories.defaultProps = {
   gap: "small",
-  background: "neutral-3",
+  background: "brand",
   round: "small",
 };
 
@@ -203,7 +203,7 @@ export const ViewActionRight = styled(ViewAction)({
 });
 
 ViewActionRight.defaultProps = {
-  color: "neutral-3",
+  color: 'brand',
 };
 
 export const EmptyLabel = styled(Box)({
