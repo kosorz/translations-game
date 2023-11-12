@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import ReactDOM from "react-dom";
-import { polishGermanConfig } from "./configs/polish-german";
 import { Wizard } from "./components/Wizard/Wizard";
 import { grommet, Grommet } from "grommet";
 import styled from "styled-components";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { polishEnglishConfig } from "./configs/polish-english";
+import { polishEnglishData } from "./data/polish-english";
+import { polishGermanData } from "./data/polish-german";
 import { Dashboard } from "./components/Dashboard/Dashboard";
 
 const PolishGermanWizard = (props) => (
@@ -13,7 +13,7 @@ const PolishGermanWizard = (props) => (
     {...props}
     baseLanguage="polish"
     aimLanguage="german"
-    config={polishGermanConfig}
+    config={polishGermanData}
   />
 );
 
@@ -22,7 +22,7 @@ const GermanPolishWizard = (props) => (
     {...props}
     baseLanguage="german"
     aimLanguage="polish"
-    config={polishGermanConfig}
+    config={polishGermanData}
   />
 );
 
@@ -31,7 +31,7 @@ const PolishEnglishWizard = (props) => (
     {...props}
     aimLanguage="english"
     baseLanguage="polish"
-    config={polishEnglishConfig}
+    config={polishEnglishData}
   />
 );
 
@@ -40,7 +40,7 @@ const EnglishPolishWizard = (props) => (
     {...props}
     aimLanguage="polish"
     baseLanguage="english"
-    config={polishEnglishConfig}
+    config={polishEnglishData}
   />
 );
 

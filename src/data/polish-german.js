@@ -12,7 +12,7 @@ import {
   Pause,
 } from "grommet-icons";
 
-export const polishGermanConfig = {
+export const polishGermanData = {
   verbs: {
     value: [
       {

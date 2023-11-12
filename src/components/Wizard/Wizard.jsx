@@ -11,7 +11,6 @@ import {
   Close,
   Refresh,
 } from "grommet-icons";
-import { Sidebar } from "../Sidebar/Sidebar";
 import { Page } from "../Page/Page";
 import { Header } from "../Header/Header";
 import { useKeydownListener } from "../../hooks/useViewControls";
@@ -19,7 +18,7 @@ import { Dialog } from "../Dialog/Dialog";
 
 import Joyride from "react-joyride";
 import { TourTooltip } from "../TourTooltip/TourTooltip";
-import { useLocation, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 export const Wizard = ({
   baseLanguage,
@@ -383,11 +382,6 @@ export const Wizard = ({
     </S.Result>
   );
 
-  const location = useLocation();
-  const anotherCategoryBase = category
-    ? location.pathname.replace(/\/[^/]+$/, "")
-    : location.pathname;
-
   useEffect(() => {
     if (hero.current && !inputHasFocus && !tour.run) {
       hero.current.focus();
@@ -485,19 +479,6 @@ export const Wizard = ({
       <Header theme={theme} setTheme={setTheme} />
 
       <Page>
-        <Sidebar>
-          <S.Categories id="categories">
-            {Object.values(config).map((category, i) => (
-              <S.Category
-                href={`${anotherCategoryBase}/${Object.keys(config)[i]}`}
-                focusIndicator={false}
-                active={source.name === category.name[baseLanguage]}
-                icon={<category.Icon />}
-                key={category.name[baseLanguage]}
-              />
-            ))}
-          </S.Categories>
-        </Sidebar>
         <S.Center
           onClick={
             !finished && mode === "training"

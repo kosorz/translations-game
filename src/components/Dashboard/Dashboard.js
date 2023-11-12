@@ -1,85 +1,96 @@
-import React from "react";
+import React, { useState } from "react";
 import { Page } from "../Page/Page";
-import { CardBody, Card, CardFooter, Heading, Paragraph, Box } from "grommet";
-import { Center } from "../Wizard/Wizard.styles";
+import { Box, Heading, Select } from "grommet";
 import { Header } from "../Header/Header";
-import * as S from "./Dashboard.styles";
 import { Helmet } from "react-helmet";
+import { Center } from "../Wizard/Wizard.styles";
 
-const Mode = ({ flags, name, href, theme }) => (
-  <S.Tile
-    href={href}
-    hoverIndicator
-    icon={
-      <Card width={"small"}>
-        <CardBody pad={{ horizontal: "small" }}>
-          <Heading textAlign="center" level={2}>
-            <span role="img" aria-label={name}>
-              {flags}
-            </span>
-          </Heading>
-        </CardBody>
-        <CardFooter
-          pad={{ horizontal: "small" }}
-          background={theme === "dark" ? "dark-2" : "light-2"}
-        >
-          <Paragraph
-            style={{
-              flex: 1,
-            }}
-            textAlign="center"
-          >
-            {name}
-          </Paragraph>
-        </CardFooter>
-      </Card>
+import * as S from "./Dashboard.styles";
+
+import { polishEnglishData } from "../../data/polish-english";
+import { polishGermanData } from "../../data/polish-german";
+
+const Categories = ({ data, hrefBase }) => (
+  <S.Categories direction="row" wrap margin={{ vertical: "medium" }}>
+    {Object.values(data).map((category, i) => (
+      <S.Category
+        href={`${hrefBase}/${Object.keys(data)[i]}`}
+        icon={<category.Icon />}
+        hoverIndicator
+      />
+    ))}
+  </S.Categories>
+);
+
+export const Dashboard = ({ setTheme, theme }) => {
+  const [from, setFrom] = useState("Polski");
+  const [to, setTo] = useState("Deutsch");
+  const [toOptions, setToOptions] = useState(["English", "Deutsch"]);
+
+  const config = (() => {
+    if (from === "Polski" && to === "Deutsch") {
+      return { hrefBase: "/polish-german", data: polishGermanData };
     }
-  />
-);
 
-export const Dashboard = ({ setTheme, theme }) => (
-  <>
-    <Helmet>
-      <title>Wordie - Dashboard</title>
-    </Helmet>
-    <Header setTheme={setTheme} theme={theme} />
-    <Page>
-      <Center>
-        <Heading>Explore modes</Heading>
-        <Box
-          width="big"
-          pad="medium"
-          gap="8px"
-          direction="row"
-          justify="center"
-          wrap
-        >
-          <Mode
-            theme={theme}
-            href={"/german-polish"}
-            name={"Deutsch / Polski"}
-            flags={"🇩🇪 | 🇵🇱"}
-          />
-          <Mode
-            theme={theme}
-            href={"/polish-german"}
-            name={"Polski / Deutsch"}
-            flags={"🇵🇱 | 🇩🇪"}
-          />
-          <Mode
-            theme={theme}
-            href={"/polish-english"}
-            name={"Polski / English"}
-            flags={"🇵🇱 | 🇬🇧"}
-          />
-          <Mode
-            theme={theme}
-            href={"/english-polish"}
-            name={"English / Polski"}
-            flags={"🇬🇧 | 🇵🇱"}
-          />
-        </Box>
-      </Center>
-    </Page>
-  </>
-);
+    if (to === "Polski" && from === "Deutsch") {
+      return { hrefBase: "/german-polish", data: polishGermanData };
+    }
+
+    if (from === "Polski" && to === "English") {
+      return { hrefBase: "/polish-english", data: polishEnglishData };
+    }
+
+    if (to === "Polski" && from === "English") {
+      return { hrefBase: "/german-polish", data: polishEnglishData };
+    }
+
+    return null;
+  })();
+
+  return (
+    <>
+      <Helmet>
+        <title>Wordie - Dashboard</title>
+      </Helmet>
+
+      <Header setTheme={setTheme} theme={theme} />
+
+      <Page direction="column" background="red">
+        <Center>
+          <Heading>Explore modes</Heading>
+
+          <Box align="center" direction="row" gap="8px">
+            <Box>
+              <Box>From</Box>
+              <Select
+                options={["Polski", "English", "Deutsch"]}
+                value={from}
+                onChange={({ option }) => {
+                  setFrom(option);
+
+                  const toOptions =
+                    option === "Polski" ? ["English", "Deutsch"] : ["Polski"];
+
+                  setToOptions(toOptions);
+
+                  if (toOptions.length === 1) setTo(toOptions[0]);
+                }}
+              />
+            </Box>
+            <Box>
+              <Box>To</Box>
+              <Select
+                disabled={from === "" || toOptions.length === 1}
+                options={toOptions}
+                value={to}
+                onChange={({ option }) => setTo(option)}
+              />
+            </Box>
+          </Box>
+
+          {config && <Categories {...config} />}
+        </Center>
+      </Page>
+    </>
+  );
+};

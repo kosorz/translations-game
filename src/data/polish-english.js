@@ -1,6 +1,6 @@
 import { Group, Home, Restroom, Briefcase, Calendar, Baby } from "grommet-icons";
 
-export const polishEnglishConfig = {
+export const polishEnglishData = {
   family: {
     value: [
       { polish: "adopcja", english: "adoption" },
