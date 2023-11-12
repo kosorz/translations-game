@@ -98,7 +98,6 @@ export const Wizard = ({
       },
     ],
     active: !localStorage.getItem("guidedOnTraining"),
-    continuous: false,
   });
 
   const input = useRef(null);
@@ -154,30 +153,39 @@ export const Wizard = ({
     input && input.current && input.current === document.activeElement;
 
   useKeydownListener({
-    " ": [
-      {
-        cb: () => setRevealed(true),
-        active: !revealed && !finished && mode === "training",
-      },
-      { cb: viewCorrectContinue, active: revealed && mode === "training" },
-    ],
-    Escape: [
-      { cb: viewContinue, active: revealed && mode === "training" },
-      {
-        cb: () => setDialog("interruptTest") && mode === "training",
-        active: mode === "test" && !dialog,
-      },
-    ],
-    Enter: [
-      {
-        cb: viewCorrectContinue,
-        active: revealed && mode === "training",
-      },
-      {
-        cb: checkAnswer,
-        active: mode === "test" && !finished,
-      },
-    ],
+    keyEventMapping: {
+      " ": [
+        {
+          cb: () => setRevealed(true),
+          active: !revealed && !finished && mode === "training",
+        },
+        {
+          cb: viewCorrectContinue,
+          active: revealed && mode === "training",
+        },
+      ],
+      Escape: [
+        {
+          cb: viewContinue,
+          active: revealed && mode === "training",
+        },
+        {
+          cb: () => setDialog("interruptTest") && mode === "training",
+          active: mode === "test" && !dialog,
+        },
+      ],
+      Enter: [
+        {
+          cb: viewCorrectContinue,
+          active: revealed && mode === "training",
+        },
+        {
+          cb: checkAnswer,
+          active: mode === "test" && !finished,
+        },
+      ],
+    },
+    disabled: tour.run,
   });
 
   const resetAndShuffleCurrentSet = () => {
@@ -381,7 +389,7 @@ export const Wizard = ({
     : location.pathname;
 
   useEffect(() => {
-    if (hero.current && !inputHasFocus) {
+    if (hero.current && !inputHasFocus && !tour.run) {
       hero.current.focus();
     }
   }, [summary]);
@@ -427,7 +435,6 @@ export const Wizard = ({
       setTour((tour) => ({
         ...tour,
         stepIndex: 2,
-        continuous: true,
         run: false,
       }));
     }
@@ -464,13 +471,14 @@ export const Wizard = ({
       </Helmet>
 
       <Joyride
+        disableCloseOnEsc
+        disableOverlayClose
+        animation={false}
         active={tour.active}
         callback={joyrideCallback}
         tooltipComponent={TourTooltip}
-        animation={false}
         steps={tour.steps}
         run={tour.run}
-        continuous={tour.continuous}
         stepIndex={tour.stepIndex}
       />
 
