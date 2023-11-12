@@ -16,7 +16,7 @@ const Categories = ({ data, hrefBase, from }) => {
       {Object.values(data).map((category, i) => {
         return (
           <S.Category
-          label={Object.values(data)[i].name[from]}
+            label={Object.values(data)[i].name[from]}
             href={`${hrefBase}/${Object.keys(data)[i]}`}
             icon={<category.Icon />}
           />
@@ -27,9 +27,9 @@ const Categories = ({ data, hrefBase, from }) => {
 };
 
 const labels = {
-  polish: "Polski",
-  english: "English",
-  german: "German",
+  polish: "🇵🇱 Polski",
+  english: "🇬🇧 English",
+  german: "🇩🇪 Deutsch",
 };
 
 export const Dashboard = ({ setTheme, theme }) => {
@@ -67,7 +67,22 @@ export const Dashboard = ({ setTheme, theme }) => {
 
       <Page direction="column" background="red">
         <Center>
-          <Heading>Explore modes</Heading>
+          <Heading
+            margin={{
+              bottom: "small",
+            }}
+          >
+            Dive into Languages
+          </Heading>
+          <Heading
+            margin={{
+              top: "small",
+              bottom: "large",
+            }}
+            level={4}
+          >
+            Explore, learn, and translate with ease.
+          </Heading>
 
           <Box align="center" direction="row" gap="8px">
             <Box>
@@ -104,7 +119,11 @@ export const Dashboard = ({ setTheme, theme }) => {
 
           {config && (
             <Categories
-              from={Object.keys(labels)[Object.values(labels).findIndex(el => el === from)]}
+              from={
+                Object.keys(labels)[
+                  Object.values(labels).findIndex((el) => el === from)
+                ]
+              }
               {...config}
             />
           )}

@@ -6,11 +6,7 @@ export const Tile = styled(Button)({
 });
 
 export const Category = styled(Button)({
-  borderRadius: "11px",
-
-  "@media (max-width: 768px)": {
-    borderRadius: "6px",
-  },
+  borderRadius: 6,
 });
 
 Category.defaultProps = {
@@ -25,7 +21,7 @@ Categories.defaultProps = {
   gap: "xsmall",
   round: "small",
   direction: "row",
-  margin: { vertical: 'large' },
-  justify: 'start',
+  margin: { vertical: "large" },
+  justify: "start",
   wrap: true,
 };
