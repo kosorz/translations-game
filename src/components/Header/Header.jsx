@@ -1,6 +1,7 @@
 import React from "react";
 import { ThemeSwitch } from "../ThemeSwitch/ThemeSwitch";
 import * as S from "./Header.styles";
+import { LanguageSwitch } from "../LanguageSwitch/LanguageSwitch";
 
 export const Header = ({ theme, setTheme }) => (
   <>
@@ -15,7 +16,8 @@ export const Header = ({ theme, setTheme }) => (
         
       </S.LogoFrame>
       <S.Switches>
-        {<ThemeSwitch setTheme={setTheme} theme={theme} />}
+        <ThemeSwitch setTheme={setTheme} theme={theme} />
+        <LanguageSwitch />
       </S.Switches>
     </S.Root>
     <S.Divider />

@@ -1,0 +1,67 @@
+{
+  "dashboard": {
+    "title": "Tauchen Sie in Sprachen ein",
+    "subtitle": "Erforschen, lernen und erweitern Sie Ihren Wortschatz mit Leichtigkeit.",
+    "from": "Von",
+    "to": "Bis"
+  },
+  "wizard": {
+    "new_set": "Neues Set",
+    "attempt_again": "Erneut versuchen",
+    "attempt_test": "Test versuchen",
+    "keep_training": "Weiter trainieren",
+    "placeholder": "Übersetzung",
+    "summary": {
+      "success": {
+        "heading": "Perfekt!",
+        "subheading": "Sie können jetzt den Test versuchen oder mit einem neuen Flashkarten-Set von vorne beginnen!"
+      },
+      "other": {
+        "heading": "Weitermachen!",
+        "subheading": "Sie müssen mehr trainieren!"
+      }
+    },
+    "test_heading": "Test: {{name}}",
+    "dialogs": {
+      "interrupt": {
+        "title": "Test unterbrechen?",
+        "subtitle": "Sind Sie sicher, dass Sie den laufenden Test unterbrechen möchten? Ihr aktueller Fortschritt geht verloren, und Sie werden zurück in den Lernmodus geleitet.",
+        "confirm": "Unterbrechen",
+        "cancel": "Fortsetzen"
+      },
+      "reset": {
+        "title": "Neues Set ziehen?",
+        "subtitle": "Sind Sie sicher, dass Sie ein neues Flashkarten-Set ziehen möchten? Ihr aktueller Fortschritt geht verloren.",
+        "confirm": "Neues ziehen",
+        "cancel": "Weitermachen"
+      }
+    }
+  },
+  "tour": {
+    "close": "Weiter",
+    "step1": {
+      "title": "Erste Schritte",
+      "content": "Beginnen Sie damit, die Übersetzung des Wortes in Gedanken zu erwägen, und klicken Sie dann auf die Registerkarte, um die Antwort zu entdecken."
+    },
+    "step2": {
+      "title": "Wie haben Sie abgeschnitten?",
+      "content": "Lassen Sie uns wissen, ob Sie die Antwort kannten, nachdem Sie sie aufgedeckt haben."
+    },
+    "step3": {
+      "title": "Ihren Fortschritt verfolgen",
+      "content": "Hier können Sie überwachen, wie viele Flashkarten aus dem Set Sie bereits gesehen haben."
+    },
+    "step4": {
+      "title": "Überprüfen Sie Ihre Punktzahl",
+      "content": "Entdecken Sie, wie viele Punkte Sie verdient haben; Punkte werden später relevant sein."
+    },
+    "step5": {
+      "title": "Von vorne beginnen",
+      "content": "Beginnen Sie von neuem mit einem frischen Deck von Flashkarten!"
+    },
+    "step6": {
+      "title": "Weitermachen!",
+      "content": "Erkunden Sie die möglichen Herausforderungen, die vor Ihnen liegen."
+    }
+  }
+}

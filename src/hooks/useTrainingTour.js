@@ -1,54 +1,56 @@
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 
-export const useTrainingTour = ({ aimLanguage }) => {
+export const useTrainingTour = () => {
+  const { t } = useTranslation();
+
+  const steps = [
+    {
+      title: t("tour.step1.title"),
+      target: "#stack",
+      content: t("tour.step1.content"),
+      disableBeacon: true,
+    },
+    {
+      title: t("tour.step2.title"),
+      target: "#view",
+      content: t("tour.step2.content"),
+      placement: "bottom-center",
+      disableBeacon: true,
+    },
+    {
+      title: t("tour.step3.title"),
+      target: "#progress",
+      content: t("tour.step3.content"),
+      disableBeacon: true,
+    },
+    {
+      title: t("tour.step4.title"),
+      target: "#score",
+      content: t("tour.step4.content"),
+      disableBeacon: true,
+    },
+    {
+      title: t("tour.step5.title"),
+      target: "#stopIcon",
+      content: t("tour.step5.content"),
+      placement: "left",
+      disableBeacon: true,
+    },
+    {
+      title: t("tour.step6.title"),
+      target: "#actions",
+      content: t("tour.step6.content"),
+      disableBeacon: true,
+    },
+  ]
+
   const [tour, setTour] = useState({
-    run: !localStorage.getItem("guidedOnTraining"),
     stepIndex: 0,
-    steps: [
-      {
-        title: "Getting Started",
-        target: "#stack",
-        content: `Begin by considering the word's ${aimLanguage} translation, and then click the card to reveal the answer.`,
-        disableBeacon: true,
-      },
-      {
-        title: "How Did You Perform?",
-        target: "#view",
-        content: "Let us know if you knew the answer after revealing it.",
-        placement: "bottom-center",
-        disableBeacon: true,
-      },
-      {
-        title: "Tracking Your Progress",
-        target: "#progress",
-        content:
-          "Here, you can monitor how many flashcards from the set you've already seen.",
-        disableBeacon: true,
-      },
-      {
-        title: "Check Your Score",
-        target: "#score",
-        content:
-          "Discover how many points you've earned; points will be relevant later on.",
-        disableBeacon: true,
-      },
-      {
-        title: "Starting Fresh",
-        target: "#stopIcon",
-        content: "Begin anew with a fresh deck of flashcards!",
-        placement: "left",
-        disableBeacon: true,
-      },
-      {
-        title: "Keep Going!",
-        target: "#actions",
-        content: "Explore the possible challenges that lie ahead.",
-        disableBeacon: true,
-      },
-    ],
+    run: !localStorage.getItem("guidedOnTraining"),
     active: !localStorage.getItem("guidedOnTraining"),
   });
-
+  
   const joyrideCallback = (data) => {
     if (data.lifecycle !== "complete") return;
 
@@ -82,5 +84,5 @@ export const useTrainingTour = ({ aimLanguage }) => {
     }
   };
 
-  return { setTour, tour, joyrideCallback };
+  return { setTour, tour: { ...tour, steps }, joyrideCallback };
 };

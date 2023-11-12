@@ -2,7 +2,8 @@ import React from "react";
 import * as S from "./Switch.styles";
 
 export const Switch = ({ config }) => {
-  const [first, second] = config;
+  const activeIndex = config.findIndex((entry) => entry.active);
+  const lastActive = activeIndex === config.length - 1;
 
   const iconStyle = { width: 20, height: 20 };
 
@@ -14,15 +15,17 @@ export const Switch = ({ config }) => {
         }
       }}
       onClick={(e) => {
-        (first.active ? second : first).onClick();
+        (lastActive ? config[0] : config[activeIndex + 1]).onClick();
         e.target.blur();
       }}
     >
-      <S.Option active={first.active} icon={<first.icon style={iconStyle} />} />
-      <S.Option
-        active={second.active}
-        icon={<second.icon style={iconStyle} />}
-      />
+      {config.map((entry) => (
+        <S.Option
+          active={entry.active}
+          label={entry.label || undefined}
+          icon={entry.icon ? <entry.icon style={iconStyle} /> : undefined}
+        />
+      ))}
     </S.Root>
   );
 };

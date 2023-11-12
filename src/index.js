@@ -3,10 +3,33 @@ import ReactDOM from "react-dom";
 import { Wizard } from "./components/Wizard/Wizard";
 import { grommet, Grommet } from "grommet";
 import styled from "styled-components";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import {
+  createBrowserRouter,
+  Navigate,
+  RouterProvider,
+} from "react-router-dom";
 import { polishEnglishData } from "./data/polish-english";
 import { polishGermanData } from "./data/polish-german";
 import { Dashboard } from "./components/Dashboard/Dashboard";
+import "./locales/i18n";
+
+import { useParams } from "react-router-dom";
+import { useEffect } from "react";
+import i18n from "i18next";
+
+const LangWrapper = ({ children }) => {
+  let { lang } = useParams();
+
+  useEffect(() => {
+    const isSupportedLanguage = ["en", "de", "pl"].includes(lang);
+
+    if (isSupportedLanguage && i18n.language !== lang) {
+      i18n.changeLanguage(lang);
+    }
+  }, [lang]);
+
+  return children;
+};
 
 const PolishGermanWizard = (props) => (
   <Wizard
@@ -44,43 +67,92 @@ const EnglishPolishWizard = (props) => (
   />
 );
 
-const router = ({ setTheme, theme }) =>
+const router = (props) =>
   createBrowserRouter([
     {
-      path: "/",
-      element: <Dashboard setTheme={setTheme} theme={theme} />,
+      path: "/:lang",
+      children: [
+        {
+          index: true,
+          element: (
+            <LangWrapper>
+              <Dashboard {...props} />
+            </LangWrapper>
+          ),
+        },
+        {
+          path: "polish-german",
+          exact: true,
+          element: (
+            <LangWrapper>
+              <PolishGermanWizard {...props} />
+            </LangWrapper>
+          ),
+        },
+        {
+          path: "polish-german/:category",
+          element: (
+            <LangWrapper>
+              <PolishGermanWizard {...props} />
+            </LangWrapper>
+          ),
+        },
+        {
+          path: "german-polish",
+          exact: true,
+          element: (
+            <LangWrapper>
+              <GermanPolishWizard {...props} />
+            </LangWrapper>
+          ),
+        },
+        {
+          path: "german-polish/:category",
+          element: (
+            <LangWrapper>
+              <GermanPolishWizard {...props} />
+            </LangWrapper>
+          ),
+        },
+        {
+          path: "polish-english",
+          exact: true,
+          element: (
+            <LangWrapper>
+              <PolishEnglishWizard {...props} />
+            </LangWrapper>
+          ),
+        },
+        {
+          path: "polish-english/:category",
+          element: (
+            <LangWrapper>
+              <PolishEnglishWizard {...props} />
+            </LangWrapper>
+          ),
+        },
+        {
+          path: "english-polish",
+          exact: true,
+          element: (
+            <LangWrapper>
+              <EnglishPolishWizard {...props} />
+            </LangWrapper>
+          ),
+        },
+        {
+          path: "english-polish/:category",
+          element: (
+            <LangWrapper>
+              <EnglishPolishWizard {...props} />
+            </LangWrapper>
+          ),
+        },
+      ],
     },
     {
-      path: "/polish-german",
-      element: <PolishGermanWizard setTheme={setTheme} theme={theme} />,
-    },
-    {
-      path: "/polish-german/:category",
-      element: <PolishGermanWizard setTheme={setTheme} theme={theme} />,
-    },
-    {
-      path: "/german-polish",
-      element: <GermanPolishWizard setTheme={setTheme} theme={theme} />,
-    },
-    {
-      path: "/german-polish/:category",
-      element: <GermanPolishWizard setTheme={setTheme} theme={theme} />,
-    },
-    {
-      path: "/polish-english",
-      element: <PolishEnglishWizard setTheme={setTheme} theme={theme} />,
-    },
-    {
-      path: "/polish-english/:category",
-      element: <PolishEnglishWizard setTheme={setTheme} theme={theme} />,
-    },
-    {
-      path: "/english-polish",
-      element: <EnglishPolishWizard setTheme={setTheme} theme={theme} />,
-    },
-    {
-      path: "/english-polish/:category",
-      element: <EnglishPolishWizard setTheme={setTheme} theme={theme} />,
+      path: "*",
+      element: <Navigate to={`/${localStorage.getItem("lang") || 'en'}`} />,
     },
   ]);
 

@@ -1,0 +1,67 @@
+{
+  "dashboard": {
+    "title": "Zanurz się w językach",
+    "subtitle": "Odkrywaj, ucz się i rozszerzaj swoje słownictwo z łatwością.",
+    "from": "Od",
+    "to": "Do"
+  },
+  "wizard": {
+    "new_set": "Nowy zestaw",
+    "attempt_again": "Spróbuj ponownie",
+    "attempt_test": "Przystąp do testu",
+    "keep_training": "Kontynuuj trening",
+    "placeholder": "Tłumaczenie",
+    "summary": {
+      "success": {
+        "heading": "Perfekcyjnie!",
+        "subheading": "Możesz teraz przystąpić do testu lub zacząć od nowa z nowym zestawem fiszek!"
+      },
+      "other": {
+        "heading": "Nie przestawaj!",
+        "subheading": "Musisz więcej ćwiczyć!"
+      }
+    },
+    "test_heading": "Test: {{name}}",
+    "dialogs": {
+      "interrupt": {
+        "title": "Przerwać test?",
+        "subtitle": "Czy na pewno chcesz przerwać trwający test? Twój obecny postęp zostanie utracony i zostaniesz przekierowany z powrotem do trybu nauki.",
+        "confirm": "Przerwij",
+        "cancel": "Wznów"
+      },
+      "reset": {
+        "title": "Wylosować nowy zestaw?",
+        "subtitle": "Czy na pewno chcesz wylosować nowy zestaw fiszek? Twój obecny postęp zostanie utracony.",
+        "confirm": "Wylosuj nowy",
+        "cancel": "Kontynuuj"
+      }
+    }
+  },
+  "tour": {
+    "close": "Kontynuuj",
+    "step1": {
+      "title": "Rozpoczęcie",
+      "content": "Zacznij od rozwazenia tłumaczenia słowa w myślach, a następnie kliknij kartę, aby odkryć odpowiedź."
+    },
+    "step2": {
+      "title": "Jak ci poszło?",
+      "content": "Daj nam znać, czy znałeś odpowiedź po jej odkryciu."
+    },
+    "step3": {
+      "title": "Śledzenie postępu",
+      "content": "Tutaj możesz monitorować, ile fiszek z zestawu już widziałeś."
+    },
+    "step4": {
+      "title": "Sprawdź swój wynik",
+      "content": "Dowiedz się, ile punktów zdobyłeś; punkty będą ważne później."
+    },
+    "step5": {
+      "title": "Nowy start",
+      "content": "Zacznij od nowa z nowym zestawem fiszek!"
+    },
+    "step6": {
+      "title": "Nie przestawaj!",
+      "content": "Odkrywaj możliwe wyzwania, które przed tobą stoją."
+    }
+  }
+}

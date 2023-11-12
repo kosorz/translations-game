@@ -4,20 +4,25 @@ import { Box, Heading, Select } from "grommet";
 import { Header } from "../Header/Header";
 import { Helmet } from "react-helmet";
 import { Center } from "../Wizard/Wizard.styles";
+import { useTranslation } from "react-i18next";
 
 import * as S from "./Dashboard.styles";
 
 import { polishEnglishData } from "../../data/polish-english";
 import { polishGermanData } from "../../data/polish-german";
+import { useParams } from "react-router-dom";
+import { LanguageSwitch } from "../LanguageSwitch/LanguageSwitch";
 
 const Categories = ({ data, hrefBase, from }) => {
+  const { lang } = useParams();
+
   return (
     <S.Categories>
       {Object.values(data).map((category, i) => {
         return (
           <S.Category
             label={Object.values(data)[i].name[from]}
-            href={`${hrefBase}/${Object.keys(data)[i]}`}
+            href={`${lang}${hrefBase}/${Object.keys(data)[i]}`}
             icon={<category.Icon />}
           />
         );
@@ -36,6 +41,8 @@ export const Dashboard = ({ setTheme, theme }) => {
   const [from, setFrom] = useState(labels.polish);
   const [to, setTo] = useState(labels.german);
   const [toOptions, setToOptions] = useState([labels.english, labels.german]);
+
+  const { t } = useTranslation();
 
   const config = (() => {
     if (from === labels.polish && to === labels.german) {
@@ -63,30 +70,27 @@ export const Dashboard = ({ setTheme, theme }) => {
         <title>Wordie - Dashboard</title>
       </Helmet>
 
-      <Header setTheme={setTheme} theme={theme} />
+      <Header setTheme={setTheme} theme={theme}>
+        <LanguageSwitch />
+      </Header>
 
       <Page direction="column" background="red">
         <Center>
+          <Heading margin={{ bottom: "small" }}>{t("dashboard.title")}</Heading>
           <Heading
-            margin={{
-              bottom: "small",
-            }}
-          >
-            Dive into Languages
-          </Heading>
-          <Heading
+            textAlign="center"
             margin={{
               top: "small",
               bottom: "large",
             }}
             level={4}
           >
-            Explore, learn, and translate with ease.
+            {t("dashboard.subtitle")}
           </Heading>
 
           <Box align="center" direction="row" gap="8px">
             <Box>
-              <Box>From</Box>
+              <Box>{t("dashboard.from")}</Box>
               <Select
                 options={Object.values(labels)}
                 value={from}
@@ -107,7 +111,7 @@ export const Dashboard = ({ setTheme, theme }) => {
               />
             </Box>
             <Box>
-              <Box>To</Box>
+              <Box>{t("dashboard.to")}</Box>
               <Select
                 disabled={from === "" || toOptions.length === 1}
                 options={toOptions}

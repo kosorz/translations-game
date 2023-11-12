@@ -1,0 +1,67 @@
+{
+  "dashboard": {
+    "title": "Dive into Languages",
+    "subtitle": "Explore, learn, and expand your vocabulary with ease.",
+    "from": "From",
+    "to": "To"
+  },
+  "wizard": {
+    "new_set": "New set",
+    "attempt_again": "Attempt again",
+    "attempt_test": "Attempt test",
+    "keep_training": "Keep training",
+    "placeholder": "Translation",
+    "summary": {
+      "success": {
+        "heading": "Perfect!",
+        "subheading": "You can now attempt test or start anew with fresh flashcard set!"
+      },
+      "other": {
+        "heading": "Keep going!",
+        "subheading": "You need to train more!"
+      }
+    },
+    "test_heading": "Test: {{name}}",
+    "dialogs": {
+      "interrupt": {
+        "title": "Interrupt Test?",
+        "subtitle": "Are you sure you want to interrupt the ongoing test? Your current progress will be lost, and you'll be redirected back to the learning mode.",
+        "confirm": "Interrupt",
+        "cancel": "Resume"
+      },
+      "reset": {
+        "title": "Draw new set?",
+        "subtitle": "Are you sure you want to draw new flashcards set? Your current progress will be lost.",
+        "confirm": "Draw new",
+        "cancel": "Continue"
+      }
+    }
+  },
+  "tour": {
+    "close": "Continue",
+    "step1": {
+      "title": "Getting Started",
+      "content": "Start by considering the translation of the word in your mind, and then click the tab to discover the answer."
+    },
+    "step2": {
+      "title": "How Did You Perform?",
+      "content": "Let us know if you knew the answer after revealing it."
+    },
+    "step3": {
+      "title": "Tracking Your Progress",
+      "content": "Here, you can monitor how many flashcards from the set you've already seen."
+    },
+    "step4": {
+      "title": "Check Your Score",
+      "content": "Discover how many points you've earned; points will be relevant later on."
+    },
+    "step5": {
+      "title": "Starting Fresh",
+      "content": "Begin anew with a fresh deck of flashcards!"
+    },
+    "step6": {
+      "title": "Keep Going!",
+      "content": "Explore the possible challenges that lie ahead."
+    }
+  }
+}

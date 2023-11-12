@@ -20,6 +20,7 @@ import Joyride from "react-joyride";
 import { TourTooltip } from "../TourTooltip/TourTooltip";
 import { useParams } from "react-router-dom";
 import { useTrainingTour } from "../../hooks/useTrainingTour";
+import { useTranslation } from "react-i18next";
 
 export const Wizard = ({
   baseLanguage,
@@ -30,6 +31,7 @@ export const Wizard = ({
   setTheme,
 }) => {
   const { category } = useParams();
+  const { t } = useTranslation();
 
   const getWordList = (src) => shuffle(src).slice(0, questions);
   const [mode, setMode] = useState("training");
@@ -46,7 +48,7 @@ export const Wizard = ({
   const [userInput, setUserInput] = useState("");
   const [score, setScore] = useState(0);
   const [revealed, setRevealed] = useState(false);
-  const { tour, joyrideCallback, setTour } = useTrainingTour({ aimLanguage });
+  const { tour, joyrideCallback, setTour } = useTrainingTour();
 
   const input = useRef(null);
   const hero = useRef(null);
@@ -144,7 +146,7 @@ export const Wizard = ({
   const MoveOnToNewSet = forwardRef(({ primary = true }, ref) => (
     <S.Hero
       primary={primary}
-      label="New set"
+      label={t("wizard.new_set")}
       onClick={() => {
         reset();
         setMode("training");
@@ -155,7 +157,7 @@ export const Wizard = ({
   ));
 
   const AttemptAgain = forwardRef(
-    ({ label = "Attempt again", primary = true }, ref) => (
+    ({ label = t("wizard.attempt_again"), primary = true }, ref) => (
       <S.Hero
         label={label}
         primary={primary}
@@ -168,7 +170,7 @@ export const Wizard = ({
   const Test = forwardRef((_, ref) => (
     <S.Hero
       ref={ref}
-      label="Attempt test"
+      label={t("wizard.attempt_test")}
       onClick={() => {
         setMode("test");
         resetAndShuffleCurrentSet();
@@ -179,7 +181,7 @@ export const Wizard = ({
   const Train = forwardRef((_, ref) => (
     <S.Option
       ref={ref}
-      label="Keep training"
+      label={t("wizard.keep_training")}
       onClick={() => {
         setMode("training");
         resetAndShuffleCurrentSet();
@@ -209,7 +211,7 @@ export const Wizard = ({
     <S.WriteInput>
       <TextInput
         ref={input}
-        placeholder="Translation"
+        placeholder={t("wizard.placeholder")}
         type="text"
         value={userInput}
         onChange={(e) => setUserInput(e.target.value)}
@@ -271,9 +273,8 @@ export const Wizard = ({
     if (score === questions) {
       return {
         Icon: Achievement,
-        heading: "Perfect!",
-        subHeading:
-          "You can now attempt test or start anew with fresh flashcard set!",
+        heading: t("wizard.summary.success.heading"),
+        subheading: t("wizard.summary.success.subheading"),
         Hero: (() => {
           if (mode === "training") {
             return <Test ref={hero} />;
@@ -287,7 +288,7 @@ export const Wizard = ({
     return {
       Icon: Announce,
       heading: "Keep going!",
-      subHeading: "You need to train more!",
+      subheading: "You need to train more!",
       Hero:
         mode === "test" ? (
           <AttemptAgain ref={hero} />
@@ -306,7 +307,7 @@ export const Wizard = ({
 
         <S.Encouragement>{summary.heading}</S.Encouragement>
 
-        <S.EncouragementLong>{summary.subHeading}</S.EncouragementLong>
+        <S.EncouragementLong>{summary.subheading}</S.EncouragementLong>
 
         <S.Score>
           {score}/{questions}
@@ -370,6 +371,10 @@ export const Wizard = ({
   const interruptDialogOpen = dialog === "interruptTest";
   const drawNewDialogOpen = dialog === "drawNew";
 
+  const dialogTranslationPath = `wizard.dialogs.${
+    interruptDialogOpen ? "interrupt" : "reset"
+  }`;
+
   return (
     <>
       <Helmet>
@@ -387,7 +392,7 @@ export const Wizard = ({
         run={tour.run}
         stepIndex={tour.stepIndex}
         locale={{
-          close: 'Continue'
+          close: t('tour.close'),
         }}
       />
 
@@ -402,21 +407,17 @@ export const Wizard = ({
           }
         >
           <Heading textAlign="center">
-            {mode === "test" ? `Test: ${source.name}` : source.name}
+            {mode === "test" ? t('wizard.test_heading', { name: source.name }) : source.name}
           </Heading>
           {finished ? Result : Quiz}
         </S.Center>
         <Dialog
           open={interruptDialogOpen || drawNewDialogOpen}
-          title={interruptDialogOpen ? "Interrupt Test?" : "Draw new set?"}
-          message={
-            interruptDialogOpen
-              ? "Are you sure you want to interrupt the ongoing test? Your current progress will be lost, and you'll be redirected back to the learning mode."
-              : "Are you sure you want to draw new flashcards set? Your current progress will be lost."
-          }
+          title={t(`${dialogTranslationPath}.title`)}
+          message={t(`${dialogTranslationPath}.subtitle`)}
           actions={[
             {
-              label: interruptDialogOpen ? "Interrupt" : "Draw new",
+              label: t(`${dialogTranslationPath}.confirm`),
               onClick: () => {
                 if (mode === "test") {
                   setMode("training");
@@ -428,7 +429,7 @@ export const Wizard = ({
               },
             },
             {
-              label: interruptDialogOpen ? "Resume" : "Continue",
+              label: t(`${dialogTranslationPath}.cancel`),
               onClick: () => {
                 setDialog("");
               },
