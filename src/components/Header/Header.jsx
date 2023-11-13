@@ -13,7 +13,7 @@ export const Header = ({ theme, setTheme }) => (
           href={"/"}
           hoverIndicator
         />
-        
+
       </S.LogoFrame>
       <S.Switches>
         <ThemeSwitch setTheme={setTheme} theme={theme} />

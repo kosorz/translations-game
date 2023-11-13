@@ -1,10 +1,6 @@
 import { Box, Button } from "grommet";
 import styled from "styled-components";
 
-export const Tile = styled(Button)({
-  borderRadius: 12,
-});
-
 export const Category = styled(Button)({
   borderRadius: 6,
 });

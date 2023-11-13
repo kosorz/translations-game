@@ -2,8 +2,13 @@
   "dashboard": {
     "title": "Zanurz się w językach",
     "subtitle": "Odkrywaj, ucz się i rozszerzaj swoje słownictwo z łatwością.",
-    "from": "Od",
-    "to": "Do"
+    "from": "Z",
+    "to": "Na"
+  },
+  "langs": {
+    "polish": "Polski",
+    "german": "Niemiecki",
+    "english": "Angielski"
   },
   "wizard": {
     "new_set": "Nowy zestaw",

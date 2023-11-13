@@ -110,6 +110,7 @@ Actions.defaultProps = {
 export const Option = styled(Button)({
   marginTop: "8px",
   border: "none",
+  width: 250,
 });
 
 Option.defaultProps = {
@@ -118,7 +119,7 @@ Option.defaultProps = {
 
 export const Hero = styled(Button)({
   marginTop: "8px",
-  width: 200,
+  width: 250,
 });
 
 Hero.defaultProps = {

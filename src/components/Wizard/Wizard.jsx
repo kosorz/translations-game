@@ -287,13 +287,13 @@ export const Wizard = ({
 
     return {
       Icon: Announce,
-      heading: "Keep going!",
-      subheading: "You need to train more!",
+      heading: t("wizard.summary.other.heading"),
+      subheading: t("wizard.summary.other.subheading"),
       Hero:
         mode === "test" ? (
           <AttemptAgain ref={hero} />
         ) : (
-          <AttemptAgain ref={hero} label="Keep training" />
+          <AttemptAgain ref={hero} label={t("wizard.keep_training")} />
         ),
     };
   })();

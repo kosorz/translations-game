@@ -44,5 +44,5 @@ export const CardFooter = styled(CardFooterBase)({
 });
 
 CardFooter.defaultProps = {
-  pad: { vertical: "small", horizontal: "medium" },
+  pad: { vertical: "small", horizontal: "medium" }, justify: 'end',
 };

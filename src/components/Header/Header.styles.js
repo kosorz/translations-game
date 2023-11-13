@@ -35,9 +35,13 @@ export const LogoFrame = styled(Box)({
   minHeight: 46,
   minWidth: 46,
 
-  '&:active': {
-    boxShadow: '0 0 2px 2px #6FFFB0'
-  }
+  "&:active": {
+    boxShadow: "0 0 2px 2px #6FFFB0",
+  },
+
+  "a": {
+    borderRadius: 23,
+  },
 });
 
 LogoFrame.defaultProps = {

@@ -4,25 +4,25 @@ import { Switch } from "../Switch/Switch";
 import { useLocation, useNavigate } from "react-router-dom";
 
 const PolishFlag = () => (
-  <svg width="30" height="20">
-    <rect width="30" height="10" fill="white" />
-    <rect width="30" height="10" y="10" fill="#D4213D" />
+  <svg width="20" height="13.33">
+    <rect width="20" height="6.67" fill="white" />
+    <rect width="20" height="6.67" y="6.67" fill="#D4213D" />
   </svg>
 );
 
 const GermanFlag = () => (
-  <svg width="30" height="20">
-    <rect width="30" height="6.67" fill="black" />
-    <rect width="30" height="6.67" y="6.67" fill="#DD0000" />
-    <rect width="30" height="6.67" y="13.34" fill="#FFCC00" />
+  <svg width="20" height="13.33">
+    <rect width="20" height="4.44" fill="black" />
+    <rect width="20" height="4.44" y="4.44" fill="#DD0000" />
+    <rect width="20" height="4.44" y="8.88" fill="#FFCC00" />
   </svg>
 );
 
 const BritishFlag = () => (
-  <svg width="30" height="20">
-    <rect width="30" height="20" fill="white" />
-    <rect width="30" height="2" y="9" fill="#C8102E" />
-    <rect width="2" height="20" x="14" fill="#C8102E" />
+  <svg width="20" height="13.33">
+    <rect width="20" height="13.33" fill="white" />
+    <rect width="20" height="1.33" y="6" fill="#C8102E" />
+    <rect width="1.33" height="13.33" x="9.33" fill="#C8102E" />
   </svg>
 );
 

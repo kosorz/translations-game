@@ -21,6 +21,7 @@ export const useTrainingTour = () => {
     {
       title: t("tour.step3.title"),
       target: "#progress",
+      placement: "right",
       content: t("tour.step3.content"),
       disableBeacon: true,
     },

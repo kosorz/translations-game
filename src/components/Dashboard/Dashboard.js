@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Page } from "../Page/Page";
 import { Box, Heading, Select } from "grommet";
 import { Header } from "../Header/Header";
@@ -31,18 +31,18 @@ const Categories = ({ data, hrefBase, from }) => {
   );
 };
 
-const labels = {
-  polish: "🇵🇱 Polski",
-  english: "🇬🇧 English",
-  german: "🇩🇪 Deutsch",
-};
-
 export const Dashboard = ({ setTheme, theme }) => {
-  const [from, setFrom] = useState(labels.polish);
-  const [to, setTo] = useState(labels.german);
-  const [toOptions, setToOptions] = useState([labels.english, labels.german]);
+  const { t, i18n } = useTranslation();
 
-  const { t } = useTranslation();
+  const labels = {
+    polish: t('langs.polish'),
+    english: t('langs.english'),
+    german: t('langs.german'),
+  };
+
+  const [from, setFrom] = useState();
+  const [to, setTo] = useState();
+  const [toOptions, setToOptions] = useState([]);
 
   const config = (() => {
     if (from === labels.polish && to === labels.german) {
@@ -64,6 +64,12 @@ export const Dashboard = ({ setTheme, theme }) => {
     return null;
   })();
 
+  useEffect(() => {
+    setFrom(labels.polish)
+    setTo(labels.german)
+    setToOptions([labels.english, labels.german])
+  }, [i18n.language])
+
   return (
     <>
       <Helmet>
@@ -76,7 +82,7 @@ export const Dashboard = ({ setTheme, theme }) => {
 
       <Page direction="column" background="red">
         <Center>
-          <Heading margin={{ bottom: "small" }}>{t("dashboard.title")}</Heading>
+          <Heading textAlign="center" margin={{ bottom: "small" }}>{t("dashboard.title")}</Heading>
           <Heading
             textAlign="center"
             margin={{

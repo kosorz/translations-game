@@ -5,6 +5,11 @@
     "from": "Von",
     "to": "Bis"
   },
+  "langs": {
+    "polish": "Polnisch",
+    "german": "Deutsch",
+    "english": "Englisch"
+  },
   "wizard": {
     "new_set": "Neues Set",
     "attempt_again": "Erneut versuchen",
