@@ -10,6 +10,7 @@ import {
   Cycle,
   Home,
   Pause,
+  History,
 } from "grommet-icons";
 
 export const polishGermanData = {
@@ -1597,7 +1598,7 @@ export const polishGermanData = {
     },
     Icon: Favorite,
   },
-  'everyday-activities': {
+  "everyday-activities": {
     value: [
       {
         polish: "iść do kina",
@@ -1962,7 +1963,7 @@ export const polishGermanData = {
     },
     Icon: Cycle,
   },
-  'house-and-apartment': {
+  "house-and-apartment": {
     value: [
       {
         polish: "przybudówka",
@@ -2768,5 +2769,216 @@ export const polishGermanData = {
       polish: "Kuchnia",
     },
     Icon: Cafeteria,
+  },
+  participle: {
+    value: [
+      { polish: "rozkazać", german: "befehlen / befohlen" },
+      { polish: "piec", german: "backen / gebacken" },
+      { polish: "zaczynać", german: "beginnen / begonnen" },
+      { polish: "gryźć", german: "beißen / gebissen" },
+      { polish: "nakłaniać", german: "bewegen / bewogen" },
+      { polish: "giąć", german: "biegen / gebogen" },
+      { polish: "oferować", german: "bieten / geboten" },
+      { polish: "wiązać", german: "binden / gebunden" },
+      { polish: "prosić", german: "bitten / gebeten" },
+      { polish: "dmuchać", german: "blasen / geblasen" },
+      { polish: "zostać", german: "bleiben / geblieben" },
+      { polish: "piec / smażyć", german: "braten / gebraten" },
+      { polish: "łamać", german: "brechen / gebrochen" },
+      { polish: "palić się", german: "brennen / gebrannt" },
+      { polish: "przynosić", german: "bringen / gebracht" },
+      { polish: "myśleć", german: "denken / gedacht" },
+      { polish: "móc", german: "dürfen / gedurft" },
+      { polish: "przyjąć", german: "empfangen / empfangen" },
+      { polish: "polecić", german: "empfehlen / empfohlen" },
+      { polish: "przestraszyć się", german: "erschrecken / erschrocken" },
+      { polish: "jeść", german: "essen / gegessen" },
+      { polish: "jechać", german: "fahren / gefahren" },
+      { polish: "upadać", german: "fallen / gefallen" },
+      { polish: "chwytać", german: "fangen / gefangen" },
+      { polish: "znajdować", german: "finden / gefunden" },
+      { polish: "latać", german: "fliegen / geflogen" },
+      { polish: "uciekać", german: "fliehen / geflohen" },
+      { polish: "płynąć", german: "fließen / geflossen" },
+      { polish: "pożerać", german: "fressen / gefressen" },
+      { polish: "marznąć", german: "frieren / gefroren" },
+      { polish: "dawać", german: "geben / gegeben" },
+      { polish: "iść", german: "gehen / gegangen" },
+      { polish: "wygrać", german: "gewinnen / gewonnen" },
+      { polish: "lać", german: "gießen / gegossen" },
+      { polish: "sunąć, ślizgać się", german: "gleiten / geglitten" },
+      { polish: "kopać", german: "graben / gegraben" },
+      { polish: "chwytać", german: "greifen / gegriffen" },
+      { polish: "mieć", german: "haben / gehabt" },
+      { polish: "trzymać", german: "halten / gehalten" },
+      { polish: "wisieć", german: "hängen / gehangen" },
+      { polish: "podnieść", german: "heben / gehoben" },
+      { polish: "nazywać się", german: "heißen / geheißen" },
+      { polish: "pomagać", german: "helfen / geholfen" },
+      { polish: "znać", german: "kennen / gekannt" },
+      { polish: "brzmieć", german: "klingen / geklungen" },
+      { polish: "przychodzić", german: "kommen / gekommen" },
+      { polish: "móc", german: "können / gekonnt" },
+      { polish: "ładować", german: "laden / geladen" },
+      { polish: "zostawić", german: "lassen / gelassen" },
+      { polish: "biec", german: "laufen / gelaufen" },
+      { polish: "cierpieć", german: "leiden / gelitten" },
+      { polish: "pożyczać", german: "leihen / geliehen" },
+      { polish: "czytać", german: "lesen / gelesen" },
+      { polish: "leżeć", german: "liegen / gelegen" },
+      { polish: "kłamać", german: "lügen / gelogen" },
+      { polish: "mierzyć", german: "messen / gemessen" },
+      { polish: "lubić", german: "mögen / gemocht" },
+      { polish: "musieć", german: "müssen / gemusst" },
+      { polish: "brać", german: "nehmen / genommen" },
+      { polish: "nazywać", german: "nennen / genannt" },
+      { polish: "radzić", german: "raten / geraten" },
+      { polish: "rwać", german: "reißen / gerissen" },
+      { polish: "jeździć konno", german: "reiten / geritten" },
+      { polish: "pędzić", german: "rennen / gerannt" },
+      { polish: "wąchać", german: "riechen / gerochen" },
+      { polish: "wołać", german: "rufen / gerufen" },
+      { polish: "stworzyć", german: "schaffen / geschaffen" },
+      { polish: "dzielić", german: "scheiden / geschieden" },
+      { polish: "świecić", german: "scheinen / geschienen" },
+      { polish: "przesuwać", german: "schieben / geschoben" },
+      { polish: "strzelać", german: "schießen / geschossen" },
+      { polish: "spać", german: "schlafen / geschlafen" },
+      { polish: "bić", german: "schlagen / geschlagen" },
+      { polish: "zamykać", german: "schließen / geschlossen" },
+      { polish: "topnieć", german: "schmelzen / geschmolzen" },
+      { polish: "ciąć", german: "schneiden / geschnitten" },
+      { polish: "pisać", german: "schreiben / geschrieben" },
+      { polish: "krzyczeć", german: "schreien / geschrien" },
+      { polish: "milczeć", german: "schweigen / geschwiegen" },
+      { polish: "pływać", german: "schwimmen / geschwommen" },
+      { polish: "widzieć", german: "sehen / gesehen" },
+      { polish: "być", german: "sein / gewesen" },
+      {
+        polish: "wysyłać",
+        german: "senden / gesandt",
+      },
+      {
+        polish: "śpiewać",
+        german: "singen / gesungen",
+      },
+      {
+        polish: "siedzieć",
+        german: "sitzen / gesessen",
+      },
+      {
+        polish: "mówić",
+        german: "sprechen / gesprochen",
+      },
+      {
+        polish: "skakać",
+        german: "springen / gesprungen",
+      },
+      {
+        polish: "kłuć",
+        german: "stechen / gestochen",
+      },
+      {
+        polish: "tkwić",
+        german: "stecken / gesteckt",
+      },
+      {
+        polish: "stać",
+        german: "stehen / gestanden",
+      },
+      {
+        polish: "kraść",
+        german: "stehlen / gestohlen",
+      },
+      {
+        polish: "wznosić się",
+        german: "steigen / gestiegen",
+      },
+      {
+        polish: "umierać",
+        german: "sterben / gestorben",
+      },
+      {
+        polish: "śmierdzieć",
+        german: "stinken / gestunken",
+      },
+      {
+        polish: "skreślać",
+        german: "streichen / gestrichen",
+      },
+      {
+        polish: "kłócić się",
+        german: "streiten / gestritten",
+      },
+      {
+        polish: "nieść",
+        german: "tragen / getragen",
+      },
+      {
+        polish: "spotykać",
+        german: "treffen / getroffen",
+      },
+      {
+        polish: "pędzić",
+        german: "treiben / getrieben",
+      },
+      {
+        polish: "pić",
+        german: "trinken / getrunken",
+      },
+      {
+        polish: "czynić",
+        german: "tun / getan",
+      },
+      {
+        polish: "psuć",
+        german: "verderben / verdorben",
+      },
+      {
+        polish: "zapominać",
+        german: "vergessen / vergessen",
+      },
+      {
+        polish: "tracić",
+        german: "verlieren / verloren",
+      },
+      {
+        polish: "rosnąć",
+        german: "wachsen / gewachsen",
+      },
+      {
+        polish: "prać / myć",
+        german: "waschen / gewaschen",
+      },
+      {
+        polish: "stawać się",
+        german: "werden / geworden",
+      },
+      {
+        polish: "rzucać",
+        german: "werfen / geworfen",
+      },
+      {
+        polish: "ważyć",
+        german: "wiegen / gewogen",
+      },
+      {
+        polish: "wiedzieć",
+        german: "wissen / gewusst",
+      },
+      {
+        polish: "chcieć",
+        german: "wollen / gewollt",
+      },
+      {
+        polish: "ciągnąć",
+        german: "ziehen / gezogen",
+      },
+    ],
+    name: {
+      german: "Partizipien",
+      polish: "Imiesłowy",
+    },
+    Icon: History,
   },
 };
