@@ -57,8 +57,8 @@ export const Dashboard = ({ setTheme, theme }) => {
       return { hrefBase: "/polish-english", data: polishEnglishData };
     }
 
-    if (to === labels.polish && from === labels.english) {
-      return { hrefBase: "/german-polish", data: polishEnglishData };
+    if (from === labels.english && to === labels.polish) {
+      return { hrefBase: "/english-polish", data: polishEnglishData };
     }
 
     return null;
