@@ -12,6 +12,7 @@ import { polishEnglishData } from "./data/polish-english";
 import { polishGermanData } from "./data/polish-german";
 import { Dashboard } from "./components/Dashboard/Dashboard";
 import "./locales/i18n";
+import * as Sentry from "@sentry/react";
 
 import { useParams } from "react-router-dom";
 import { useEffect } from "react";
@@ -152,7 +153,7 @@ const router = (props) =>
     },
     {
       path: "*",
-      element: <Navigate to={`/${localStorage.getItem("lang") || 'en'}`} />,
+      element: <Navigate to={`/${localStorage.getItem("lang") || "en"}`} />,
     },
   ]);
 
@@ -176,6 +177,21 @@ export const ThemeProvider = ({ children, theme }) => {
     </Root>
   );
 };
+
+Sentry.init({
+  dsn: "https://7bddf6b097ddd9e58c9c3803adcb36b8@o4508392570421248.ingest.de.sentry.io/4508392572387408",
+  integrations: [
+    Sentry.browserTracingIntegration(),
+    Sentry.replayIntegration({
+      maskAllText: false,
+      blockAllMedia: false,
+    }),
+  ],
+  tracesSampleRate: 1.0,
+  replaysSessionSampleRate: 1.0, // This sets the sample rate at 10%. You may want to change it to 100% while in development and then sample at a lower rate in production.
+  replaysOnErrorSampleRate: 1.0,
+  tracePropagationTargets: ["localhost"],
+});
 
 export const App = () => {
   const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");

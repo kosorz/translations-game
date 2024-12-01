@@ -4,6 +4,8 @@
   "keywords": [],
   "main": "src/index.js",
   "dependencies": {
+    "@sentry/cli": "^2.39.1",
+    "@sentry/react": "^8.41.0",
     "grommet": "^2.33.2",
     "grommet-icons": "^4.11.0",
     "i18next": "^23.7.3",
@@ -22,9 +24,10 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "react-scripts build && yarn sentry:sourcemaps",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "sentry:sourcemaps": "sentry-cli sourcemaps inject --org kosorz --project javascript-react ./build && sentry-cli sourcemaps upload --org kosorz --project javascript-react ./build"
   },
   "browserslist": [
     ">0.2%",
